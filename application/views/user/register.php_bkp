@@ -1,0 +1,312 @@
+<?php include(APPPATH.'views/templates/front/template-top.php'); ?>
+
+
+
+
+<div class="jumbotron jumbotron-single d-flex align-items-center" style="background-image: url(<?php echo base_url(); ?>assets/front/img/bg.jpg)">
+  <div class="container text-center">
+    <h1 class="display-2 mb-4">Enroll With Us</h1>
+  </div>
+</div>	<!-- Blog Section -->
+<section id="blog" class="bg-grey">
+
+	<form  method="post" class="register-form needs-validation" name="register-form" action="" novalidate >
+	    <div class="container">
+	        <div class="section-content"> 
+	         	<div class="row d-flex justify-content-center">
+					<div class="col-md-10 mb-5 "> 
+						<h3 class="mb-3 form-group">Register as...</h3>
+						<div class="row">             
+						  	<div class="col-md-3 mb-2 col-sm-4">
+								<div class="custom-control custom-radio">
+									<span>An Organization</span>
+									<input id="comp" name="user_type" type="radio" class="custom-control-input" value="1" checked="" required>
+									<label class="custom-control-label" for="comp"></label>
+									
+							  	</div>
+						  	</div>
+						  	<div class="col-md-3 mb-2 col-sm-4">
+								<div class="custom-control custom-radio">
+									<span>An Individual</span>
+									<input id="ind" name="user_type" type="radio" class="custom-control-input" value="2" required>
+									<label class="custom-control-label" for="ind"></label>
+									
+								</div> 
+						  	</div>   
+						</div>   
+					  	<hr class="my-4"> 
+					  	<!--Start Company -->
+						<div id="register-1">
+					  		<h4 class="mb-3">Organization</h4>
+
+						 	<div class="mb-3 form-group">
+								<span>Organization name</span>
+								<input type="text" class="form-control reg-company-input" name="comp_name" id="comp_name" placeholder="Enter Name" value="" required />
+								<label for="comp_name"></label>
+						  	</div>
+							 <div class="mb-3 form-group">
+								 <span>Address</span>
+								 <input type="text" class="form-control reg-company-input" id="address" placeholder="1234 Main St" id="comp_addr" name="comp_addr" required>
+								 <label for="comp_addr"></label>
+							</div>
+
+							 <div class="mb-3 form-group">
+							  <span>Telephone</span>
+							  <!-- <div class="input-group"> -->                    
+								<input class="form-control reg-company-input" type="tel" placeholder="1-(555)-555-5555" id="comp_phone" name="comp_phone" required />
+								<label for="comp_phone"></label>
+							  <!-- </div> -->
+							</div>
+							<div class="mb-3 form-group">
+							  <span>Email</span>
+							  <input type="email" class="form-control reg-company-input" id="comp_email" placeholder="company@example.com" name="comp_email" required />
+							  <label for="comp_email"></label>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 mb-3 form-group">
+									<span>State</span>
+									<select class="custom-select d-block w-100 selectpicker reg-company-input" id="state" name="state" required />
+										<?php foreach($states as $state){ ?>
+
+										<option label='<?php echo $state['region'];?>' value="<?php echo $state['region'];?>">
+										
+										</option>
+										<?php } ?>
+									</select>
+								</div> 
+								<div class="col-md-6 mb-3 form-group">
+									<span>City</span>
+									<select class="custom-select d-block w-100 selectpicker reg-company-input" id="city" name="city" required />
+										<?php foreach($cities as $k=>$s){ ?>
+										<optgroup label="<?php echo str_replace("_"," ",$k); ?>">
+										<?php	foreach($s as $c) printf('<option value="%s">%s</option>',$c,$c); ?>
+										</optgroup>
+										<?php } ?> 
+									</select>
+								</div>                 
+							</div>
+							<hr class="mb-4">
+							<h4 class="mb-3 form-group">Request for Training</h4>
+							<div class="row">
+							  <div class="col-md-8 mb-3 form-group">
+								<span>Choose a Training</span>
+								<select class="custom-select d-block w-100"  name="etraining_id" id="etraining_id " required>
+								  <?php foreach($trainingname as $tname){ ?>
+								  <?php if($tname['certification'] == '') {?>
+										<option label='<?php echo str_replace(""," ",$tname['name']); ?>' value="<?php echo $tname['id']; ?>">
+										
+										</option>
+										<?php } else{?>
+										<option label='<?php echo str_replace(""," ",$tname['name'])."&nbsp;(".$tname['certification'].")"; ?>' value="<?php echo $tname['id']; ?>">
+										
+										</option>
+										<?php }} ?>  
+								</select>
+								<div class="invalid-feedback">
+								  Please select a valid country.
+								</div>
+							  </div>                 
+							  <div class="col-md-4 mb-3 form-group">
+								<span>No. of Delegates</span>
+								<select class="custom-select reg-company-input" name="no_of_trn_delegates" id="no_of_trn_delegates" required />
+								  <option selected>Choose...</option>
+								  <option value="0 - 5">0 - 5</option>
+								  <option value="5 - 10">5 - 10</option>
+								  <option value="10 - 25">10 - 25</option>
+								  <option value="25 - 50">25 - 50</option>
+								  <option value="50 and above">50 and above</option>
+								</select>
+								                   
+							  </div>
+							</div> 
+							<div class="mb-3 form-group">
+								<span>Name of Delegates</span>
+								<textarea name="delegates" id="delegates" class="form-control reg-company-input" placeholder="Names of participants (Surname First), one in a row" required ></textarea>
+								<span class="small-txt">Atleast one delegate name required, and can be changes later on.</span>
+								<label for="delegates"></label>
+							  </div>         
+							<div class="mb-3 form-group">
+								<span>Preferred Course Start Date/Time</span>
+								<input type="text" class="form-control reg-company-input" placeholder="Course Start Date/Time" name="pre_tr_sttime" id="pre_tr_sttime" />
+								<label for="pre_tr_sttime"></label>
+							</div>      
+							<div class="mb-3 form-group">
+								<span>Preferred Course End Date/Time</span>
+								<input type="text" class="form-control reg-company-input" placeholder="Course End Date/Time" name="pre_tr_etime" id="pre_tr_etime" required />
+								<label for="pre_tr_etime"></label>
+							</div>
+							<div class="mb-3 form-group">
+							  <span>Preferred Course Location</span>
+							  <input type="text" class="form-control reg-company-input" id="address" placeholder="1234 Main St" name="pre_tr_loc" required />
+							 <label for="pre_tr_loc"></label>
+							</div>  
+							<hr class="my-4">
+							<h4 class="mb-3">Requested by (Appropriate Authority)</h4>
+							<div class="row">
+							  <div class="col-md-6 mb-3 form-group">
+								<span>Full Name</span>
+								<input type="text" class="form-control reg-company-input" placeholder="" value="" name="ra_full_name" id="ra_full_name" required />
+								<label for="ra_full_name"></label>
+							  </div>
+							  <div class="col-md-6 mb-3 form-group">
+								<span>Position</span>
+								<input type="text" class="form-control reg-company-input" id="comp_cp_designation" placeholder="" value="" name="comp_cp_designation" required>
+								<label for="comp_cp_designation"></label>
+							  </div>
+							</div>
+					   
+							<div class="mb-3 form-group">
+							  <span>Telephone</span>
+							  <div class="input-group">                    
+								<input class="form-control reg-company-input" type="tel" placeholder="1-(555)-555-5555" name="comp_cp_phone" id="comp_cp_phone" required>
+								<label for="comp_cp_phone"></label>
+							  </div>
+							</div>
+
+							<hr class="my-4">
+				            <h4 class="mb-3">Account Details</h4>             
+			                <div class="mb-3 form-group">
+			                  <span>Username</span>
+			                  <div class="input-group">
+			                    <div class="input-group-prepend">
+			                      <span class="input-group-text">@</span>
+			                    </div>
+			                    <input type="text" class="form-control reg-company-input" id="cusername" name="cusername" placeholder="Username" required>
+			                    <label for="cusername"></label>
+			                  </div>
+			                </div>
+
+							<div class="mb-3 form-group">
+							<span>Password</span>
+								<input class="form-control reg-company-input" type="password" placeholder="password" name="copassword" id="copassword" required>
+								<label for="copassword"></label>
+							</div>
+
+							<div class="mb-3 form-group">
+							<span>Confirm Password</span>                   
+								<input class="form-control reg-company-input" type="password" placeholder="confirm password" name="ccpassword" id="ccpassword" required>
+								<label for="ccpassword"></label>
+							</div>      
+						</div>
+					   <!--End Company -->
+
+						<!--Start Individual -->
+						<div id="register-2" style="display: none;">
+
+					 		<h4 class="mb-3">Individual</h4>
+
+						  <div class="mb-3 form-group">
+							<span>Full Name</span>
+							<input type="text" class="form-control reg-individual-input" id="firstName" placeholder="Enter Name" value="" name ="ind_name" required>
+							<label for="ind_name"></label>
+						  </div>
+
+						<div class="mb-3 form-group">
+						  <span>Email</span>
+						  <input type="email" class="form-control reg-individual-input" id="email" name="ind_email" placeholder="you@example.com" required>
+						  <label for="ind_email"></label>
+						</div>
+
+						<div class="mb-3 form-group">
+						  <span>Address</span>
+						  <input type="text" class="form-control reg-individual-input" name="ind_addr" id="address" placeholder="1234 Main St" required>
+						  <label for="ind_addr"></label>
+						</div>
+						<div class="mb-3 form-group">
+						  <span>Telephone</span>
+						  <!-- <div class="input-group">  -->                   
+							<input class="form-control reg-individual-input" type="tel" name="ind_phone" placeholder="1-(555)-555-5555" id="example-tel-input" required>
+							<label for="ind_phone"></label>
+						  <!-- </div>
+ -->						</div>
+						 <div class="row">
+
+						 	<div class="col-md-6 mb-3 form-group">
+								<span>State</span>
+								<select class="custom-select d-block w-100 selectpicker reg-company-input" id="state" name="state" required />
+									<?php foreach($states as $state){ ?>
+
+									<option label='<?php echo $state['region'];?>' value="<?php echo $state['region'];?>">
+									
+									</option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="col-md-6 mb-3 form-group">
+								<span for="country">City</span>
+								<select class="custom-select d-block w-100 selectpicker" id="country" required >
+								<?php foreach($cities as $k=>$s){ ?>
+									<optgroup span="<?php echo str_replace("_"," ",$k); ?>">
+								<?php	foreach($s as $c) printf('<option value="%s">%s</option>',$c,$c); ?>
+									</optgroup>
+								<?php } ?> 
+								</select>
+							</div>
+						  	<div class="col-md-6 mb-3 form-group">
+							
+						  	</div>                  
+						</div>
+
+						<hr class="my-4">
+			            <h4 class="mb-3">Account Details</h4>             
+		                <div class="mb-3 form-group">
+		                  <span>Username</span>
+		                  <div class="input-group">
+		                    <div class="input-group-prepend">
+		                      <span class="input-group-text">@</span>
+		                    </div>
+		                    <input type="text" class="form-control reg-individual-input" id="username" name="username" placeholder="Username" required>
+		                    <label for="username"></label>
+		                  </div>
+		                </div>
+
+						<div class="mb-3 form-group">
+						<span>Password</span>               
+							<input class="form-control reg-individual-input" type="password" placeholder="password" name="password" id="password" required>
+							<label for="password"></label>
+						</div>
+
+						<div class="mb-3 form-group">
+						<span>Confirm Password</span>                   
+							<input class="form-control reg-individual-input" type="password" placeholder="confirm password" name="cpassword" id="cpassword" required>
+							<label for="cpassword"></label>
+						</div>
+					</div>
+					<!--End Individual -->
+					<hr class="my-4">
+					<input class="btn btn-success btn-lg" type="submit" name="submit" value="SUBMIT" > 
+					<div class="col-md-12 text-center">
+						<label for="message"></label>
+						<div class="text-center spinner col-md-12 hidden"><i class="fa fa-spinner fa-pulse"></i></div>
+						</div>
+						<div class="col-md-12 info"></div>
+					</div>
+	         
+	        	</div>
+	    	</div>
+		</div>
+	</form>
+		
+</section>	
+
+<?php include(APPPATH.'views/templates/front/template-bottom.php'); ?>
+ <script type="text/javascript">
+	$(document).ready(function(){
+
+		$("[name=user_type]").on('change', function(event) {
+			//alert("hiii");
+		  var radioButton = $(event.currentTarget);
+			  if(radioButton.val() == '1'){
+				$('#register-1').show();
+				$('#register-2').hide();
+			  }else if(radioButton.val() == '2'){
+				$('#register-2').show();
+				$('#register-1').hide();
+			  }
+		  
+		});
+
+	});
+</script>

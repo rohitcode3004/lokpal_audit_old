@@ -1,0 +1,59 @@
+<?php
+//$elements = $this->label->view(1);
+?>
+
+<div class="app-content">
+	<div class="main-content-app">
+		<div class="page-header">
+			<h4 class="page-title">Dashboard for Scrutiny</h4>
+			<ol class="breadcrumb"> 
+				<li class="breadcrumb-item"><a href="#">Dashboard for Scrutiny</a></li>
+			</ol>
+		</div>
+		<div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">Dashboard for Scrutiny</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-6 col-sm-6 mb-15" id="divFY">
+							  		<a href="<?php echo base_url('scrutiny/dashboard'); ?>" class="widgets-card gd-blueviolet">
+							  			<div class="widgets-icon">
+							  				<span id="ContentPlaceHolder1_lblTotalPending">
+							  					<?php echo $scrpen_comps; ?>
+							  				</span>
+							  			</div>
+							  			<div class="widgets-content">Complaints Received for Scrutiny</div>
+							  			<i class="fa fa-sitemap transparent_icon" aria-hidden="true"></i>
+							  		</a>
+							  	</div>
+							  	<div class="col-lg-6 col-sm-6 mb-15">
+							  		<a href="#" class="widgets-card gd-hotpink">
+							  			<div class="widgets-icon"><span id="ContentPlaceHolder1_lblTotlaDistposed"> <?php echo $scrdef_comps;  ?></span></div>
+							  			<div class="widgets-content">Defective Complaints</div>
+							  			<i class="fa fa-files-o transparent_icon" aria-hidden="true"></i>
+							  		</a>
+							  	</div>
+							  	<!--<div class="col-lg-6 col-sm-6 mb-15" id="divFY">
+							  		<a href="#" class="widgets-card gd-cyanblue">
+							  			<div class="widgets-icon"><span id="ContentPlaceHolder1_lblTotlaDistposed"> <?php echo $scrdef_comps;  ?></span></div>
+							  			<div class="widgets-content">Defected</div>
+							  			<i class="fa fa-files-o transparent_icon" aria-hidden="true"></i>
+							  		</a>
+							  	</div>
+							  	<div class="col-lg-6 col-sm-6 mb-15" id="divFY">
+							  		<a href="#" class="widgets-card gd-goldyellow">
+							  			<div class="widgets-icon"><span id="ContentPlaceHolder1_lblNoOfSuMotoCases"> <?php echo $scrundef_comps;  ?></span></div>
+							  			<div class="widgets-content">No Defects</div>
+							  			<i class="fa fa-files-o transparent_icon" aria-hidden="true"></i>
+							  		</a>
+							  	</div>-->
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

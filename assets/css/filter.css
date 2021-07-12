@@ -1,0 +1,702 @@
+
+/*  Minister CSS */
+
+/*.minister {
+   background-image: url(HTTPS://dgft.gov.in/sites/all/themes/cmf/images/dgftbanss.png);
+    height: 339px !important;
+}*/
+.abhi {
+    display: none !important;
+}
+.span1{
+
+  color: #b10713;
+}
+.nn{
+   color: #1e181c;
+}
+
+header {
+    margin-top: -19px;
+}
+
+input#edit-field-order-date-hqq-value-value-datepicker-popup-0 {
+    width: 123px;
+}
+ h2.node__title.node-title {
+    font-size: 87%;
+    margin-bottom: -4px;
+}
+  .slide-caption {
+    padding: 4px !important;
+    
+}
+.banner-wrapper .flex-pauseplay a.flex-pause, .banner-wrapper .flex-pauseplay a.flex-play {
+  top: 24px !important;
+}
+        td.views-field.views-field-field-year-fyear {
+    width: 7%;
+}
+  	.helpdesk { 
+    height: 286px !important;
+    margin-top: 0px !important;
+    
+}
+
+.helpdesk ul li a.toll {
+    
+    font-size: 109% !important;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m1-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m1-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m2-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m2-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m3-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m3-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m4-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m4-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m5-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m5-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m6-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m6-value-min-wrapper {
+    width: 185px;
+}
+ 
+ .form-item.form-type-date-popup.form-item-field-meeting-date-m7-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m7-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m8-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m8-value-min-wrapper {
+    width: 185px;
+}
+
+.form-item.form-type-date-popup.form-item-field-meeting-date-m9-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m9-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m11-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m11-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m12-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m12-value-min-wrapper {
+    width: 185px;
+}
+.form-item.form-type-date-popup.form-item-field-meeting-date-m13-value-max {
+    width: 18%;
+    margin-top: -87px;
+    margin-left: 191px;
+}
+
+div#edit-field-meeting-date-m13-value-min-wrapper {
+    width: 185px;
+}
+
+div#edit-field-meeting-date-33-value-wrapper {
+    width: 243px;
+}
+
+div#edit-field-meeting-date-33-value-max-wrapper {
+    margin-top: -88px;
+    margin-left: 184px;
+}
+
+div#edit-field-date-om-value-min-inside-wrapper {
+    width: 1%;
+}
+.form-item.form-type-date-popup.form-item-field-date-om-value-max {
+    margin-left: 73%;
+    margin-top: -35%;
+}
+input#edit-submit-import-of-items-under-indo-sri-lankan-free-trade-agreement {
+    margin-left: 187%;
+}
+input#edit-submit-efc-for-import-of-restricted-items {
+    margin-left: 165%;
+}
+div#edit-field-meeting-date-44-value-wrapper {
+    width: 211px;
+}
+div#edit-field-meeting-date-44-value-max-wrapper {
+    margin-left: 102%;
+    margin-top: -45%;
+}
+input#edit-submit-efc-for-export-items {
+    margin-left: 300%;
+}
+
+div#edit-field-meeting-date-55-value-wrapper {
+    width: 20%;
+}
+div#edit-field-meeting-date-55-value-max-wrapper {
+    margin-left: 87%;
+    margin-top: -40%;
+}
+input#edit-field-firm-name-ra-value {
+    width: 120px;
+}
+input#edit-field-iec-ra-value {
+    width: 120px;
+}
+input#edit-field-order-no-ra-value {
+    width: 120px;
+}
+input#edit-field-firm-name-hq-value {
+    width: 125px;
+}
+input#edit-field-hq-file-no-hqq-value {
+    width: 129px;
+}
+input#edit-field-order-date-ra-value-value-datepicker-popup-0 {
+    width: 100px;
+}
+
+div#edit-field-order-date-ra-value-1-wrapper {
+    width: 266px;
+    margin-top: -16px;
+}
+.form-item.form-type-date-popup.form-item-field-order-date-ra-value-1-max {
+    width: 123px;
+    margin-left: 194px;
+    margin-top: -88px;
+}
+input#edit-submit-ra-adjudication-appellate-passed {
+    margin-left: 150%;
+}
+input#edit-submit-clone-of-ra-adjudication-appellate-passed {
+    margin-left: 143%;
+}
+input#edit-field-order-date-hqq-value-value-datepicker-popup-0 {
+    width: 100px;
+}
+input#edit-field-iec-hq-value {
+    width: 100px;
+}
+select#edit-field-details-of-adj-appellate-o-value {
+    width: 100px;
+}
+
+th.views-field.views-field-field-anfs-anf {
+    width: 10%;
+}
+
+th.views-field.views-field-field-download-anfs {
+    width: 10%;
+}
+th.views-field.views-field-field-download-appendix {
+    width: 10%;
+}
+th.views-field.views-field-field-file-no-om {
+    WIDTH: 17%;
+}
+th.views-field.views-field-field-detail-om {
+    width: 10%;
+}
+input#edit-submit-o-m-instructionsprimary-tabs {
+    margin-left: 181%;
+    margin-top: 43% !important;
+}
+div#edit-field-order-date-hqq-value-1-wrapper {
+    width: 266px;
+    margin-top: -25px;
+}
+div#edit-field-order-date-hqq-value-max-wrapper {
+    
+    margin-top: -35%;
+    margin-left: 176px;
+}
+input#edit-submit-hq-appellate-order-review-order-passed-by-hq {
+    margin-left: 95px;
+   
+}
+input#edit-field-order-date-hqq-value-1-max-datepicker-popup-0 {
+    width: 145px;
+}
+select#edit-field-basic-order-appealed-value {
+    width: 151px;
+}
+input#edit-field-iec-new-format {
+    width: 100px;
+}
+input#edit-field-iec-ranew-format {
+    width: 144px;
+}
+input#edit-field-iec-ranew-format {
+    width: 110px;
+}
+
+/* Twitter */
+
+.announcement {
+   
+    height:270px !important;
+    
+}
+.dgft-learning {
+    
+    background: #fff !important; 
+    height: 270px !important;
+    padding: 0px 0px !important;
+}
+    
+/*.modal {
+    display: none; 
+   // position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.gandhi{
+
+  background-color: #b10713;
+}
+
+.modal-content {
+    position: relative;
+    
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none; 
+    cursor: pointer;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #b10713;
+    color: white;
+}
+
+.modal-body {background-color: #b10713;}
+
+.modal-footer {
+    border-top: 1px solid #e5e5e5;
+    background-color: #b10713;
+    color: white;
+}
+/* Menu CSS*/
+#popup_this {
+   top: 50% !important;
+  
+    margin-top: -50px;
+    margin-left: -50px;
+    position: fixed;
+    background: #fff;
+    padding: 30px;
+    width: 57%;
+}
+.b-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    color: #fff;
+    background: #b5131f;
+    padding: 5px 10px;
+}
+li.menu__item.is-expanded.expanded {
+    font-size: 11px;
+    font-weight: 600;
+}
+/*  Slider Home  bottom*/
+.mySlides {display:none;}
+
+.g_slide {
+  position: relative;
+  height: 270px;
+  overflow: hidden;
+}
+
+.g_slide .item {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.switch_main { position: relative; }
+
+.g_slide .switch_nav {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  z-index: 11;
+  text-align: center;
+}
+
+.g_slide .switch_nav_item {
+  display: inline-block;
+  margin: 0 10px 0 0;
+  width: 13px;
+  height: 13px;
+  line-height: 200px;
+  overflow: hidden;
+  font-size: 0;
+  border-radius: 100%;
+  background: #b7b7b7;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+
+.g_slide .switch_nav_item:hover { text-decoration: none; }
+
+.g_slide .switch_nav_item_current { background: #585e61; }
+
+.g_slide .prev,
+.g_slide .next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  margin-top: -15px;
+  width: 18px;
+  height: 30px;
+  overflow: hidden;
+  background: url(slide.png) no-repeat;
+  transition: margin-left .3s ease, margin-right .3s ease;
+}
+
+.g_slide .prev {
+  left: -18px;
+  _left: 10px;
+}
+
+.g_slide .next {
+  right: -18px;
+  _right: 10px;
+  background-position: -19px 0;
+}
+
+.g_slide .prev:hover { background-position: 0 -70px; }
+
+.g_slide .next:hover { background-position: -19px -70px; }
+
+.g_slide:hover .prev { margin-left: 28px; }
+
+.g_slide:hover .next { margin-right: 28px; }
+
+.scroll {
+  position: relative;
+  width: 752px;
+  height: 117px;
+  border: solid 1px #dfdfdf;
+  overflow: hidden;
+}
+
+.switch_main { position: relative; }
+
+.scroll .item {
+  float: left;
+  width: 250px;
+  height: 100%;
+  border-right: solid 1px #dfdfdf;
+}
+
+.scroll .switch_item {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.scroll .prev,
+.scroll .next {
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  width: 19px;
+  height: 39px;
+  overflow: hidden;
+  background: url(slide.png) no-repeat;
+}
+
+.scroll .prev {
+  left: 0;
+  background-position: 0 -31px;
+}
+
+.scroll .next {
+  right: 0;
+  background-position: -20px -31px;
+}
+
+.scroll .prev:hover { background-position: 0 -101px; }
+
+.scroll .next:hover { background-position: -20px -101px; }
+
+/*slideshow styles*/
+/* View popup */
+.viewbox-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 700;
+}
+.viewbox-body{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    overflow: auto;
+}
+.viewbox-header{
+    margin: 10px;
+}
+.viewbox-content{
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+}
+.viewbox-footer{
+    margin: 10px;
+}
+.viewbox-content .viewbox-image{
+    width: 100%;
+    height: 100%;
+}
+
+/* buttons */
+.viewbox-button-default{
+    cursor: pointer;
+    height: 64px;
+    width: 64px;
+}
+.viewbox-button-default > svg{
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    transform: translateX(0px);
+	
+}
+
+
+.viewbox-button-close{
+    position:absolute;
+       top: 50px;
+    right: 122px;
+    z-index:9;
+}
+.viewbox-button-full-screen{
+    position:absolute;
+    top:84px;
+    right: 10px;
+    z-index:9;
+}
+.viewbox-button-next,
+.viewbox-button-prev{
+    position:absolute;
+    top: 50%;
+    height: 128px;
+    width: 128px;
+    margin: -64px 0 0;
+    z-index:9;
+}
+.viewbox-button-next{
+    right: 10px;
+}
+.viewbox-button-prev{
+    left: 10px;
+}
+@media (max-width: 480px) {
+    .viewbox-button-close{
+        top: 0;
+        right: 0;
+    }
+    .viewbox-button-next,
+    .viewbox-button-prev{
+        height: 81px;
+        width: 81px;
+        margin-top: -40px;
+    }
+    .viewbox-button-next{
+        right:-15px;
+    }
+    .viewbox-button-prev{
+        left:-15px;
+    }
+}
+
+/* loader */
+.viewbox-container .loader{
+   
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin:-25px 0 0 -25px;
+}
+.viewbox-container .loader *{
+    margin: 0;
+    padding: 0;
+}
+.viewbox-container .loader .spinner{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin: 0 auto;
+}
+.viewbox-container .loader .double-bounce1,
+.viewbox-container .loader .double-bounce2{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #999;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+.viewbox-container .loader .double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+@-webkit-keyframes sk-bounce{
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce{
+    0%, 100% { 
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% { 
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
+
+
+.p {
+  margin-top: 140px;
+  text-align: center;
+}
+.wrapper.mid_links {
+    display: none;
+}
+.dgft-wrapper{
+    padding: 0px 0 0px !important;
+}
