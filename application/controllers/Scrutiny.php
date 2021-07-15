@@ -3106,7 +3106,7 @@ function api_action()
 		if($data_action == 'edit')
 		{
 				//die('great');
-			$api_url = "http://localhost/lokpal_audit/label/update";
+			$api_url = "http://localhost/git-workspace/lokpal_audit/label/update";
 
 			$form_data = array(
 				'level' => $this->input->post('level'),				
@@ -3127,7 +3127,7 @@ function api_action()
 
 		if($data_action == 'fetch_single')
 		{
-			$api_url = "http://localhost/lokpal_audit/api_lokpal/fetch_single";
+			$api_url = "http://localhost/git-workspace/lokpal_audit/api_lokpal/fetch_single";
 
 			$form_data = array(
 				'id' => $this->input->post('filing_no')
@@ -3145,7 +3145,7 @@ function api_action()
 		if($data_action == 'insert')
 		{
 				//die('great');
-			$api_url = "http://localhost/lokpal_audit/label/insert";
+			$api_url = "http://localhost/git-workspace/lokpal_audit/label/insert";
 
 			$form_data = array(
 				'level' => $this->input->post('level'),				
@@ -3165,7 +3165,7 @@ function api_action()
 
 		if($data_action == 'fetch_all')
 		{
-			$api_url = "http://localhost/lokpal_audit/label";
+			$api_url = "http://localhost/git-workspace/lokpal_audit/label";
 			$client = curl_init($api_url);
 			curl_setopt($client, CURLOPT_RETURNTRANSFER, true);
 			$response = curl_exec($client);

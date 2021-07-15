@@ -229,7 +229,8 @@ class Filing_model extends CI_Model
 			$this->db->from('complainant_details_parta');
 			$this->db->where('filing_status',FALSE);
 			$this->db->where('flag','EF');
-			$this->db->where('filing_no','');
+			$this->db->where('ref_no is NOT NULL', NULL, FALSE);
+			$this->db->where('filing_no is NULL', NULL, FALSE);
 			$this->db->where('user_id',$user_id);
 			$this->db->order_by('filing_no');
 			$query = $this->db->get();
@@ -537,7 +538,8 @@ function get_pub_pen_count($user_id)
 			
 			$this->db->select('id');
 			$this->db->where('user_id',$user_id);
-			$this->db->where('filing_no','');
+			$this->db->where('filing_no is NULL', NULL, FALSE);
+			$this->db->where('ref_no is NOT NULL', NULL, FALSE);
 			$this->db->where('filing_status',false);
 
 			$query = $this->db->get('complainant_details_parta');
