@@ -152,7 +152,7 @@ public function witnessave(){
     $this->form_validation->set_rules('w_state_id', 'State', 'required');
     $this->form_validation->set_rules('w_dist_id', 'District', 'required');
     $this->form_validation->set_rules('w_country_id', 'Country', 'required');
-    $this->form_validation->set_rules('w_mob_no', 'Mobile no', 'required');
+    //$this->form_validation->set_rules('w_mob_no', 'Mobile no', 'required');
     if ($this->form_validation->run() == FALSE)
     {
       if($this->isUserLoggedIn) 
@@ -260,7 +260,7 @@ public function witnessave(){
       $this->form_validation->set_rules('w_state_id', 'State', 'required');
       $this->form_validation->set_rules('w_dist_id', 'District', 'required');
       $this->form_validation->set_rules('w_country_id', 'Country', 'required');
-      $this->form_validation->set_rules('w_mob_no', 'Mobile no', 'required');
+      ///his->form_validation->set_rules('w_mob_no', 'Mobile no', 'required');
       if ($this->form_validation->run() == FALSE)
       {
         if($this->isUserLoggedIn) 
@@ -1354,7 +1354,7 @@ public function addsave(){
       $this->form_validation->set_rules('affect_state_id', 'State', 'required');
       $this->form_validation->set_rules('affect_dist_id', 'District', 'required');
       $this->form_validation->set_rules('affect_country_id', 'Country', 'required');
-      $this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
+    //$this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
       if ($this->form_validation->run() == FALSE)
       {
         if($this->isUserLoggedIn) 
@@ -1448,7 +1448,7 @@ else
       $this->form_validation->set_rules('affect_state_id', 'State', 'required');
       $this->form_validation->set_rules('affect_dist_id', 'District', 'required');
       $this->form_validation->set_rules('affect_country_id', 'Country', 'required');
-      $this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
+    //  $this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
       if ($this->form_validation->run() == FALSE)
       {
         if($this->isUserLoggedIn) 

@@ -177,7 +177,7 @@ public function addsave(){
     $this->form_validation->set_rules('affect_state_id', 'State', 'required');
     $this->form_validation->set_rules('affect_dist_id', 'District', 'required');
     $this->form_validation->set_rules('affect_country_id', 'Country', 'required');
-    $this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
+   // $this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
     if ($this->form_validation->run() == FALSE)
     {
       if($this->isUserLoggedIn) 
@@ -272,7 +272,7 @@ public function addsave(){
     $this->form_validation->set_rules('affect_state_id', 'State', 'required');
     $this->form_validation->set_rules('affect_dist_id', 'District', 'required');
     $this->form_validation->set_rules('affect_country_id', 'Country', 'required');
-    $this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
+  //  $this->form_validation->set_rules('affect_mob_no', 'Mobile no', 'required');
     $addparty = $this->report_model->getAddparty($ref_no);
     $ct=count($addparty);
     $ad_data=$ct+1;
@@ -590,7 +590,7 @@ else
       $this->form_validation->set_rules('ob_c_state_id', 'Correspondence State', 'required');
       $this->form_validation->set_rules('ob_c_dist_id', 'Correspondence District', 'required');
       $this->form_validation->set_rules('ob_c_country_id', 'Correspondence Country', 'required');
-      $this->form_validation->set_rules('ob_mob_no', 'Mobile no', 'required');
+     // $this->form_validation->set_rules('ob_mob_no', 'Mobile no', 'required');
        if(!empty($_FILES['ob_identity_proof_upload']['name']))
         {   
           $parameters = $_FILES['ob_identity_proof_upload']['name']."||".$_FILES['ob_identity_proof_upload']['size']."||".$_FILES['ob_identity_proof_upload']['tmp_name'];      
@@ -923,7 +923,7 @@ else
       $this->form_validation->set_rules('ob_c_state_id', 'Correspondence State', 'required');
       $this->form_validation->set_rules('ob_c_dist_id', 'Correspondence District', 'required');
       $this->form_validation->set_rules('ob_c_country_id', 'Correspondence Country', 'required');
-      $this->form_validation->set_rules('ob_mob_no', 'Mobile no', 'required');
+     // $this->form_validation->set_rules('ob_mob_no', 'Mobile no', 'required');
 
        if(!empty($_FILES['ob_identity_proof_upload']['name']))
         {   

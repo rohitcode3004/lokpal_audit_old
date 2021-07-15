@@ -28,7 +28,7 @@ $elements = $this->label->view(1);
  <script language="javascript"> 
   
    function close_window() {
-  if (confirm("Are you Completed to add officebearer detail, want to close this Window?")) {
+  if (confirm("Are you sure that you have saved the office bearers/Head of organisation details?")) {
     close();
   }
 }
@@ -235,7 +235,7 @@ function FillBilling(f) {
         ob_c_state_id:"required",
         ob_c_dist_id:"required",
         ob_c_country_id:"required",
-        ob_mob_no:"required",
+      //  ob_mob_no:"required",
         a_co_state_code:"required",
         a_co_pin_code:"required",
         a_co_occupation:"required",
@@ -337,13 +337,13 @@ $ref_no=$this->session->userdata('ref_no');
    ?>
 <div class="app-content">
   <div class="main-content-app">
-    <div class="page-header">
+   <!-- <div class="page-header">
       <h4 class="page-title">Filing Entry</h4>
       <ol class="breadcrumb"> 
         <li class="breadcrumb-item"><a href="<?php echo base_url('counter/dashboard_main_registry'); ?>">Dashboad</a></li> 
         <li class="breadcrumb-item active" aria-current="page">Filing Entry</li> 
       </ol>
-    </div>
+    </div>-->
 
     <div class="row">
       <div class="col-md-12">
@@ -390,9 +390,9 @@ $ref_no=$this->session->userdata('ref_no');
     <?php if(!empty($addparty)) { ?>
     <div class="row">
       <div class="col-md-12">                   
-        <label for="modify_party"><span class="text-danger">Select office bearers for modification</span></label> 
+        <label for="modify_party"><span class="text-danger">Select office bearers/Head of organizarion for modification</span></label> 
         <select type="text" class="form-control chosen-single chosen-default" name="modify_party" id="modify_party" onChange="modifyParty(this.value);">
-          <option value="">-- Select office bearers --</option>
+          <option value="">-- Select office bearers/Head of organizarion --</option>
             <?php foreach($addparty as $row):?>
           <option value="<?php echo $row->ob_party;?>"><?php echo $row->ob_party; ?> </option>
             <?php endforeach;?>           
@@ -476,7 +476,7 @@ $ref_no=$this->session->userdata('ref_no');
            <label class="error"><?php echo form_error('ob_age_years'); ?></label> 
 </div>       
       </div>
-    </div> 
+
 
     <div class="row">
       <div class="col-md-6 mb-15">                   
@@ -536,7 +536,7 @@ $ref_no=$this->session->userdata('ref_no');
       <div class="col-md-6 mb-15">
         <label for="ob_identity_proof_upload"><?php print_r($this->label->get_short_name($elements, 88)); ?></label>
         <input type="file" id="ob_identity_proof_upload" name="ob_identity_proof_upload" class="form-control" size="20"> 
-         <span class="text-danger" style="margin-left: 109px;">File should not greater than 20 MB</span>
+         <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
          <label class="error" id="identity_proof_upload_error"><?php echo form_error('ob_identity_proof_upload'); ?></label> 
         <div><label><a href="#" id="imgURL" target="_blank" alt="" >show uploaded document </a></label></div>
       </div>   
@@ -584,7 +584,7 @@ $ref_no=$this->session->userdata('ref_no');
       <div class="col-md-6 mb-15">
         <label for="ob_idres_proof_upload"><?php print_r($this->label->get_short_name($elements, 118)); ?></label>
         <input type="file" id="ob_idres_proof_upload" name="ob_idres_proof_upload" class="form-control" size="20">
-         <span class="text-danger" style="margin-left: 109px;">File should not greater than 20 MB</span>
+         <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
          <label class="error" id="ob_idres_proof_upload_error"><?php echo form_error('ob_idres_proof_upload'); ?></label>
         <label><a href="#" id="imgURL2" target="_blank" >show uploaded document </a></label>
       </div>          
@@ -720,7 +720,7 @@ $ref_no=$this->session->userdata('ref_no');
 
     <div class="row">
       <div class="col-md-6 mb-15">
-        <label for="ob_mob_no" class="text-orange">9(b) Mobile Number<span class="text-danger">*</span></label>
+        <label for="ob_mob_no" class="text-orange">9(b) Mobile Number</label>
         <input type="text" class="form-control" name="ob_mob_no" id="ob_mob_no" maxlength="10"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('ob_mob_no') ?>">
          <label class="error"><?php echo form_error('ob_mob_no'); ?></label>
       </div>
@@ -733,7 +733,10 @@ $ref_no=$this->session->userdata('ref_no');
 
     <div class="row">
       <div class="col-md-6 mb-15">
+
+           <?php if(!empty($addparty)){ ?>  
         <button type="button" class="btn btn-primary"  onclick="window.open('<?php echo site_url("applet/officebeared");?>')">Do you want to add more click here</button> 
+      <?php } ?>
              
       </div>
 

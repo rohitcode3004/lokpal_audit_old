@@ -108,5 +108,32 @@ class Users_model extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
-	
+
+	function user_register($userData=NULL){  
+		$this->db->insert('users', $userData);
+	 	$this->db->insert_id();
+ 	 	$user_id=$this->db->insert_id();
+	 	return  $user_id;
+	}
+
+	function user_parta_data_insert($partaData=NULL){  
+		$this->db->insert('complainant_details_parta', $partaData);
+		return $this->db->insert_id();      
+	}
+
+	function user_profile_insert($user_profile_data=NULL){  
+		$this->db->insert('user_profile', $user_profile_data);
+		//echo $this->db->last_query();die;
+		return $this->db->insert_id();      
+	}
+
+	function get_user_profile_data($user_id)
+	{
+		$sql1 = "select * from user_profile UP inner join users U on UP.user_id = U.id where UP.user_id='".$user_id."'";
+		//print_r($sql1);die;
+		$query 	= $this->db->query($sql1)->result();
+		//print_r($query);die;
+		//$this->db->last_query();die;
+		return $query;
+	}
 }

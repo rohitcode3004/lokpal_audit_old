@@ -9,9 +9,18 @@ class Login_model extends CI_Model {
 
 	Public function authenticate($data)
 	{
-		//echo "<pre>";
-		//print_r($data);die;
+		/*echo "<pre>";
+		print_r($data);
+
+		echo $data['username'];
+
+		echo $data['password'];
+		die;
+*/
+
 		$query = $this->db->get_where('users', array( 'username' => $data['username'],'password'=>($data['password'])))->row_array();
+
+	//die('@@');
 		// $query = $this->db->get_where('users', array( 'username' => $data['username']))->row_array();
 		
 		return $query;				
@@ -101,10 +110,53 @@ class Login_model extends CI_Model {
 		}
 	}
 
+	function checkUserExist_new($service_name, $service_id){
+		if($service_name == 'email')
+			$this->db->where('email', $service_id);
+		elseif($service_name == 'mobile')
+			$this->db->where('mobile', $service_id);
+		$query = $this->db->get('users');
+		if($query->num_rows() > 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	function check_otp_requests($service_name, $service_id){
+		if($service_name == 'email')
+			$this->db->where('service_name', 'E');
+		elseif($service_name == 'mobile')
+			$this->db->where('service_name', 'M');
+		else
+			die('invalid service');
+		$this->db->where('service_id', $service_id);
+		$query = $this->db->get('otp_validator');
+		if($query->num_rows() > 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
 	function updateOtp($email, $otp){
 		$data = array('otp' => $otp, 'login_status' => TRUE, 'sms_validate' => TRUE, 'updated_at' => date('Y-m-d H:i:s', time()), 'last_login' => date('Y-m-d H:i:s', time()), 'last_login_ip' => get_ip());
 		$this->db->where('mobile', $email);
 		return $this->db->update('users', $data);
+	}
+
+	function update_otp_validator($session_service_id, $otp, $service_name){
+		if($service_name == 'email')
+			$s_n = 'E';
+		elseif($service_name == 'mobile')
+			$s_n = 'M';
+		else
+			die('invalid service');
+		$data = array('otp_validated' => 't');
+		$this->db->where('service_name', $s_n);
+		$this->db->where('service_id', $session_service_id);
+		$this->db->where('otp_generated', $otp);
+		return $this->db->update('otp_validator', $data);
 	}
 
 	function updateOtp2($email, $otp){
@@ -119,10 +171,54 @@ class Login_model extends CI_Model {
 		return $this->db->insert('users', $data);
 	}
 
+	function insert_otp_new($service_name, $service_id, $otp){
+		if($service_name == 'email')
+			$s_n = 'E';
+		elseif($service_name == 'mobile')
+			$s_n = 'M';
+		else
+			die('invalid service');
+		$data = array('service_name' => $s_n, 'service_id' => $service_id, 'otp_attempts' => 1,
+			'otp_generated' => $otp, 'ip' => get_ip(), 'create_date' => date('Y-m-d H:i:s', time()));
+		return $this->db->insert('otp_validator', $data);
+	}
+
+	function update_otp_new($service_name, $service_id, $otp){
+		if($service_name == 'email')
+			$s_n = 'E';
+		elseif($service_name == 'mobile')
+			$s_n = 'M';
+		else
+			die('invalid service');
+		$data = array('otp_generated' => $otp, 'ip' => get_ip(), 'update_date' => date('Y-m-d H:i:s', time()));
+		$this->db->where('service_id', $service_id);
+		$this->db->where('service_name', $s_n);
+		return $this->db->update('otp_validator', $data);
+	}
+
 	function varifyOtp($email, $otp){
 		$this->db->where('mobile', $email);
 		$this->db->where('otp', $otp);
 		$query = $this->db->get('users');
+		if($query->num_rows() > 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	function varifyOtp_new($session_service_id, $otp, $service_name){
+		if($service_name == 'email')
+			$s_n = 'E';
+		elseif($service_name == 'mobile')
+			$s_n = 'M';
+		else
+			die('invalid service');
+		$this->db->where('service_id', $session_service_id);
+		$this->db->where('service_name', $s_n);
+		$this->db->where('otp_generated', $otp);
+		$query = $this->db->get('otp_validator');
+		//echo $this->db->last_query();die;
 		if($query->num_rows() > 0){
 			return 1;
 		}else{
