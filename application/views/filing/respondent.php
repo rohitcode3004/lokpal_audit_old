@@ -702,7 +702,7 @@ $(document).ready(function(){
       <div class="col-md-4 mb-15">
         <label for="sum_fact_allegation_upload">Summary of Fact/allegation upload</label>
         <input type="file" id="sum_fact_allegation_upload" name="sum_fact_allegation_upload" class="form-control" accept=".pdf" size="20">
-        <span class="text-danger">File should not greater than 20 MB</span>
+        <span class="text-danger">The File should not greater than 20 MB (only pdf file allowed)</span>
         <div class="error" id="sum_fact_allegation_upload_error"><?php echo form_error('sum_fact_allegation_upload'); ?></div>
         <?php if($sum_fact_allegation_upload !='')  {?>
         <div><a href="<?php echo base_url().$sum_fact_allegation_upload; ?>" target="_blank" alt="">show uploaded document </a></div>
@@ -723,7 +723,7 @@ $(document).ready(function(){
       <div class="col-md-4 mb-15">
         <label for="det_offen_upload">Detail offence upload</label> 
         <input type="file" style="width:90%;" id="detail_offence_upload" name="detail_offence_upload" class="form-control" accept=".pdf">
-        <span class="text-danger">File should not greater than 20 MB</span>
+        <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
         <div class="error" id="detail_offence_upload_error"><?php echo form_error('detail_offence_upload'); ?></div>
         <?php if($detail_offence_upload !='')  {?>
         <div><a href="<?php echo base_url().$detail_offence_upload; ?>" target="_blank" alt="">show uploaded document </a></div>
@@ -763,7 +763,7 @@ $(document).ready(function(){
       <div class="col-md-4 mb-15">
         <label for="relevant_evidence_upload">Relevant evidence Upload</label>
         <input type="file" id="relevant_evidence_upload" name="relevant_evidence_upload" class="form-control" accept=".pdf" size="20">
-        <span class="text-danger">File should not greater than 20 MB</span>
+        <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
         <div class="error" id="relevant_evidence_upload_error"><?php echo form_error('relevant_evidence_upload'); ?></div>
         <div>
         <?php if($relevant_evidence_upload !='')  {?>
@@ -825,7 +825,7 @@ $(document).ready(function(){
         <label for="comp_f_place"><?php print_r($this->label->get_short_name($elements, 49)); ?></label>
         <input type="text" class="form-control" name="comp_f_place"  value="<?php echo $myArray[0]->comp_f_place ?? '';?>" readonly="readonly"  >
       </div>
-      <div class="col-md-6 mb-15">
+      <div class="col-md-6 mb-15" hidden="true">
         <label for="comp_f_date"><?php print_r($this->label->get_short_name($elements, 50)); ?></label>
         <input type="text" class="form-control" name="comp_f_date" value="<?php echo $comp_f_date ?? '';?>" readonly="readonly">
       </div>

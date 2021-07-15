@@ -40,6 +40,9 @@ $chkdate= date("l jS \of F Y");
   $cur_date = $curDay.'/'.$curMonth.'/'.$curYear;
   $cur_date12 = $curDay.'/'.$curMonth.'/'.$curYear;
   $comp_f_date="$curYear-$curMonth-$curDay";
+
+  //echo "<pre>";
+ // echo $user['role'];
  ?>
 
 
@@ -155,10 +158,10 @@ $chkdate= date("l jS \of F Y");
   
 
       <div class="row">       
-        <div class="col-md-3" align="left">
+        <div class="col-md-4" align="left">
           <label for="affidavit_upload"><span class="text-danger">*</span>Affidavit Upload</label>
           <input type="file" id="affidavit_upload" name="affidavit_upload" class="form-control" accept=".pdf" size="20"> 
-          <span class="text-danger">File should not greater than 20 MB</span>
+          <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
           <div class="error" id="affidavit_upload_error"><?php echo form_error('affidavit_upload'); ?></div>
           <label for="affidavit_upload">
             <?php if($farma[0]->affidavit_upload !='')  {?>
@@ -166,12 +169,20 @@ $chkdate= date("l jS \of F Y");
             <?php } ?>
           </label>
         </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-success mt-30" id="submitbtn">Click here to upload Affidavit</button>    
+        </div>
       </div> 
 
       <div class="row">
         <div class="col-md-12 text-right">          
-          <button type="submit" class="btn btn-success" id="submitbtn">Click here to upload Affidavit</button>      
-          <button type="button" class="btn btn-success" onclick="window.location='<?php echo site_url("document/toPdf");?>'">Export Affidavit as pdf</button>
+          <button type="button" class="btn btn-success" onclick="window.location='<?php echo site_url("document/toPdf");?>'">Sample Affidavit</button>
+
+            <?php if($user['role'] == '18'){ ?>
+          <button type="button" class="btn btn-success" onclick="window.location='<?php echo site_url("affidavit/affidavit_detail");?>'">Save &amp; Next</button>
+        <?php } ?>
+
+        
         </div>
       </div>
 

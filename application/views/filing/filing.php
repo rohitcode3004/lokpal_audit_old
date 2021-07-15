@@ -1,4 +1,5 @@
 <?php
+//print_r($user_profile);die;
 //$r = $this->session->userdata('ref_no');
 //$u = $user['id'];
 //echo get_complaint_no($r, $u);
@@ -36,7 +37,9 @@ if(isset($farma))
 ?>
 
 
-<?php //echo $this->uri->segment(1);  exit;?>
+<?php 
+
+//echo $this->uri->segment(1);  exit;?>
 
 <div class="app-content">
   <div class="main-content-app">
@@ -91,12 +94,15 @@ if(isset($farma))
               <div class="col-md-12">
                 <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 54)); ?></label>
                 <?php 
+                  if(isset($user_profile[0]->salutation_id) && $user['role'] == 18){ $sal = $user_profile[0]->salutation_id;
+                  }else{
                   $sal=$myArray[0]->salutation_id ?? '';
+                  }
                 ?>
                 <div class="row">
                   <div class="col-lg-2 col-md-2 col-sm-4 mb-15">
                     <label for="salutation_id" ><?php print_r($this->label->get_short_name($elements, 10)); ?><span class="text-danger">*</span></label>    
-                    <select type="text" class="form-control" name="salutation_id" id="salutation_id">
+                    <select type="text" class="form-control" name="salutation_id" id="salutation_id" <?php if(isset($user_profile[0]->salutation_id) && $user['role'] == 18) echo 'disabled="true"'; ?>>
                       <option value="">Select Title</option>
                       <?php foreach($salution as $row):?>          
                         <?php if (!empty($sal)){             ?>
@@ -110,16 +116,20 @@ if(isset($farma))
                   </div>
                   <div class="col-lg-2 col-md-5 col-sm-4 mb-15">
                     <label for="sur_name"><?php print_r($this->label->get_short_name($elements, 11)); ?></label>       
-                    <input type="text" class="form-control" name="sur_name" id="sur_name" value="<?php echo set_value('mid_name', @$myArray[0]->sur_name); ?>" maxlength="25" onkeypress="return ValidateAlpha(event)" placeholder="" oninput="this.value = this.value.toUpperCase()"> 
+                    <input type="text" class="form-control" name="sur_name" id="sur_name" <?php if(isset($user_profile[0]->last_name) && $user['role'] == 18) echo 'readonly'; ?> value="<?php if(isset($user_profile[0]->last_name) && isset($user['role']) == 18){ echo $user_profile[0]->last_name;
+                  }else{ set_value('mid_name', @$myArray[0]->sur_name); } ?>" maxlength="25" onkeypress="return ValidateAlpha(event)" placeholder="" oninput="this.value = this.value.toUpperCase()"> 
                   </div>
                   <div class="col-lg-2 col-md-5 col-sm-4 mb-15">
                     <label for="mid_name"><?php print_r($this->label->get_short_name($elements, 12)); ?></label>      
-                    <input type="text" class="form-control" name="mid_name" id="mid_name" value="<?php echo set_value('mid_name', @$myArray[0]->mid_name); ?>" onkeypress="return ValidateAlpha(event)" maxlength="25" placeholder="" oninput="this.value = this.value.toUpperCase()"> 
+                    <input type="text" class="form-control" name="mid_name" id="mid_name" <?php if(isset($user_profile[0]->middle_name) && $user['role'] == 18) echo 'readonly'; ?> value="<?php if(isset($user_profile[0]->middle_name) && $user['role'] == 18){ echo $user_profile[0]->middle_name;
+                  }else{  echo set_value('mid_name', @$myArray[0]->mid_name); } ?>" onkeypress="return ValidateAlpha(event)" maxlength="25" placeholder="" oninput="this.value = this.value.toUpperCase()"> 
                   </div>
                   <div class="col-lg-3 col-md-7 col-sm-6 mb-15">
                     <label for="first_name"><?php print_r($this->label->get_short_name($elements, 13)); ?><span class="text-danger">*</span> </label>       
-                    <input type="text" class="form-control" name="first_name" id="first_name" maxlength="50" 
-          value="<?php echo set_value('first_name', @$myArray[0]->first_name); ?>" onkeypress="return ValidateAlpha(event)" placeholder="" oninput="this.value = this.value.toUpperCase()">     
+                    <input type="text" class="form-control" name="first_name" id="first_name" maxlength="50" <?php if(isset($user_profile[0]->first_name) && $user['role'] == 18) echo 'readonly'; ?>
+          value="<?php if(isset($user_profile[0]->first_name) && $user['role'] == 18){
+                      echo $user_profile[0]->first_name;
+                  }else{ echo set_value('first_name', @$myArray[0]->first_name); } ?>" onkeypress="return ValidateAlpha(event)" placeholder="" oninput="this.value = this.value.toUpperCase()">     
                     <div class="error"><?php echo form_error('first_name'); ?></div> 
                   </div>
                   <div class="col-lg-3 col-md-5 col-sm-6 mb-15">
@@ -221,7 +231,7 @@ if(isset($farma))
                 <?php    $identity_upload=$myArray[0]->identity_url_parta ?? ''; ?>
                 <label for="identity_proof_upload"><?php print_r($this->label->get_short_name($elements, 23)); ?></label>
                 <input type="file" id="identity_proof_upload" name="identity_proof_upload" class="form-control" accept=".pdf" size="20">
-                <span class="text-danger">File should not greater than 20 MB</span>
+                <span class="text-danger">The File should not greater than 20 MB(Only pdf file allowed)</span>
                 <div class="error" id="identity_proof_upload_error"><?php echo form_error('identity_proof_upload'); ?></div>    
                 <label><?php if($identity_upload !='')  {?>
                 <a href="<?php echo base_url();?><?php echo $identity_upload; ?>" target="_blank" alt="">show Uploaded document </a>
@@ -274,7 +284,7 @@ if(isset($farma))
                 <?php   $residence_upload=$myArray[0]->residence_url_parta ?? ''; ?>
                 <label for="a_affidavit_upload"><?php print_r($this->label->get_short_name($elements, 30)); ?></label>
                 <input type="file" id="a_affidavit_upload" name="a_affidavit_upload" class="form-control" size="20"> 
-                <span class="text-danger">File should not greater than 20 MB</span>
+                <span class="text-danger">The File should not greater than 20 MB(Only pdf file allowed)</span>
                 <div class="error" id="affidavit_proof_upload_error"><?php echo form_error('a_affidavit_upload'); ?></div>
 
                 <label><?php if($residence_upload !='')  {?>
@@ -434,8 +444,9 @@ if(isset($farma))
             <input type="text" class="form-control" name="mob_no" id="mob_no" <?php if($user['mobile'] && $user['role'] == 18) echo 'readonly'; ?> value="<?php
                   if($user['mobile'] && $user['role'] == 18){
                       echo $user['mobile'];
-                  }
-             echo set_value('mob_no', @$myArray[0]->mob_no); ?>"  maxlength="10"  onkeypress="return isNumberKey(event)" placeholder="">
+                  }else{
+             echo set_value('mob_no', @$myArray[0]->mob_no); 
+           }?>"  maxlength="10"  onkeypress="return isNumberKey(event)" placeholder="">
             <div class="error"><?php echo form_error('mob_no'); ?></div>
           </div>
         </div>
@@ -445,24 +456,45 @@ if(isset($farma))
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
             <label class="text-orange" for="email_id"><?php print_r($this->label->get_short_name($elements, 46)); ?></label>
-            <input type="text" class="form-control" name="email_id" id="email_id" value="<?php echo set_value('email_id', @$myArray[0]->email_id); ?>" maxlength="50" placeholder="">
+             <?php if($user['email'] && $user['role'] == 18){ ?>
+            <div class="icon medium_sea_green1 hvr-pulse">
+              <img src="<?php echo base_url();?>assets/rohp/icon/varified.png" title="varified" >
+            </div> 
+            <?php } ?>
+            <input type="text" class="form-control" name="email_id" id="email_id" <?php if($user['role'] == 18) echo 'readonly'; ?> value="<?php if(isset($user['email']) && $user['role'] == 18){
+                      echo $user['email'];
+                  }else{ echo set_value('email_id', @$myArray[0]->email_id); } ?>" maxlength="50" placeholder="">
           </div>   
 
           <div class="col-lg-4 col-md-6 col-sm-6 mb-15">                   
             <label class="text-orange" for="complaintmode_id"><?php print_r($this->label->get_short_name($elements, 9)); ?><span class="text-danger">*</span></label>    
+
             <select type="text" class="form-control chosen-single chosen-default" name="complaintmode_id" id="complaintmode_id" onchange="showDiv('hidden_div', this)">
               <?php $cam_mode=$myArray[0]->complaintmode_id ?? ''; ?>
               <option value="">-- Select --</option>
               <?php foreach($complaintmode as $row):?>
-                <?php if (!empty($cam_mode)){             ?>
-               <option value="<?php echo $row->complaintmode_id;?>" <?php echo ($cam_mode == $row->complaintmode_id) ? 'selected' : '' ?>> <?php echo $row->complaintmode_desc; ?> </option>
-                <?php }else{?>                
-               <option value="<?php echo $row->complaintmode_id; ?>" <?php echo set_select('complaintmode_id',  $row->complaintmode_id); ?>><?php echo $row->complaintmode_desc; ?></option>
-               <?php } ?> 
-             <?php  endforeach;?>
+                <?php if (!empty($cam_mode)){
+                          ?>
+               <option value="<?php echo $row->complaintmode_id;?>" <?php echo ($cam_mode == $row->complaintmode_id) ? 'selected ' : '' ?><?php if($user['role']==18 && $row->complaintmode_id != 3) echo 'disabled' ?>> <?php echo $row->complaintmode_desc; ?> </option>
+                <?php }else{                    
+                  if($user['role']==18 && $row->complaintmode_id==3){
+                  ?> 
+                  <option value="<?php echo $row->complaintmode_id; ?>" selected><?php echo $row->complaintmode_desc; ?></option>
+                <?php }else{ ?>
+               <option value="<?php echo $row->complaintmode_id; ?>" <?php echo set_select('complaintmode_id',  $row->complaintmode_id); ?> <?php if($user['role']==18) echo 'disabled' ?>><?php echo $row->complaintmode_desc; ?></option>
+               <?php } } ?> 
+             <?php  endforeach;
+             ?>
             </select> 
             <label class="error"><?php echo form_error('complaintmode_id'); ?></label>    
-            <div id="hidden_div" style="font-size: 12px; color: #0171b5;"><label class="col-md-12"><i>NOTE: A PHYSICAL COPY IS TO BE SUBMITTED TO LOKPAL WITHIN A PERIOD OF FIFTEEN DAYS.</i></label></div>     
+            <div id="hidden_div" style="font-size: 12px; color: #0171b5;"><label class="col-md-12"><i>NOTE: A PHYSICAL COPY IS TO BE SUBMITTED TO LOKPAL WITHIN A PERIOD OF FIFTEEN DAYS.</i></label></div>   
+
+
+              <?php  if($user['role']==18) { ?> 
+            <div style="font-size: 12px; color: #0171b5;"><label class="col-md-12"><i>NOTE: A PHYSICAL COPY IS TO BE SUBMITTED TO LOKPAL WITHIN A PERIOD OF FIFTEEN DAYS.</i></label></div> 
+
+            <?php } ?> 
+
           </div>  
       </div>
 
@@ -501,8 +533,9 @@ if(isset($farma))
       </div>
 
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
+        <div class="col-md-6 mb-15">
           <label for="comp_f_place"><?php print_r($this->label->get_short_name($elements, 49)); ?></label>
+         
           <input type="text" class="form-control" style="width:90%;" name="comp_f_place" value="<?php echo set_value('comp_f_place', @$myArray[0]->comp_f_place); ?>" id="comp_f_place" onkeypress="return ValidateAlpha(event)" placeholder="Enter place ...">
         </div>
         <?php
@@ -514,7 +547,7 @@ if(isset($farma))
         //  $comp_f_date="$curYear-$curMonth-$curDay"; 
         $comp_f_date="$curDay-$curMonth-$curYear";                        
         ?>
-        <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
+        <div class="col-lg-4 col-md-6 col-sm-6 mb-15" hidden="true">
           <label for="comp_f_date"><?php print_r($this->label->get_short_name($elements, 50)); ?></label>
           <input type="text" class="form-control" name="comp_f_date" id="comp_f_date" value="<?php echo $comp_f_date;?>" readonly="readonly" placeholder="Entet Date ...">
         </div>

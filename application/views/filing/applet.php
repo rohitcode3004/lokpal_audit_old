@@ -369,7 +369,7 @@ $elements = $this->label->view(1);
                     <div class="col-md-4 mb-15">
                       <label for="identity_proof_upload" class="col-md-12"><?php print_r($this->label->get_short_name($elements, 88)); ?></label>
                       <input type="file" id="identity_proof_upload" name="identity_proof_upload" class="form-control"> 
-                      <span class="text-danger">File should not greater than 20 MB</span>
+                      <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
                       <div class="error" id="identity_proof_upload_error"><?php echo form_error('identity_proof_upload'); ?></div>   
                       <div>
                         <?php if($identity_upload !='')  {?>
@@ -431,7 +431,7 @@ $elements = $this->label->view(1);
                     <div class="col-md-4 mb-15">
                       <label for="aidres_proof_upload"><?php print_r($this->label->get_short_name($elements, 118)); ?></label>
                       <input type="file" id="aidres_proof_upload" name="aidres_proof_upload" class="form-control" size="20"> 
-                      <span class="text-danger">File should not greater than 20 MB</span>
+                      <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
                       <div class="error" id="aidres_proof_upload_error"><?php echo form_error('aidres_proof_upload'); ?></div>   
                       <div>
                         <?php if($residence_upload !='')  {?>
@@ -619,7 +619,7 @@ $elements = $this->label->view(1);
                     <div class="col-md-6 mb-15">
                       <label for="auth_doc_upload">Authorized document upload</label>
                       <input type="file" id="auth_doc_upload" name="auth_doc_upload" class="form-control" size="20">
-                      <span class="text-danger">File should not greater than 20 MB</span>
+                      <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
                       <div class="error" id="auth_doc_upload_error"><?php echo form_error('auth_doc_upload'); ?></div> 
                       <div><?php if($auth_doc_upload !='')  {?>
                        <a href="<?php echo base_url();?><?php echo $auth_doc_upload; ?>" target="_blank" alt="">show Uploaded document </a>

@@ -183,7 +183,7 @@ public function update_form_status(){
         $array = array(
           'success' => true 
         );
-       
+   
           
         //redirect('affidavit/affidavit_detail'); 
       }else{ 
@@ -198,10 +198,12 @@ public function update_form_status(){
   //print_r($upd_data);die('lk');
     }
   }
+
 }
 else{
   redirect('admin/login'); 
 }
+
 
 }
 
@@ -237,6 +239,9 @@ public function exportToPdf(){
   $pdistrict=$myArray[0]->p_dist_id ?? '';
   $cdistrict=$myArray[0]->c_district_id ?? '';
   $pc=$myArray[0]->p_country_id ?? ''; 
+
+  $dt_of_filing=$myArray[0]->dt_of_filing ?? '';
+    $dt_of_filing=get_displaydate($dt_of_filing);
 
   $affidavit_upload=$myArray[0]->affidavit_upload ?? '';
    $affidavitupload=base_url().$affidavit_upload.'.'.'pdf';
@@ -1400,7 +1405,7 @@ by section 15 of the Lokpal and Lokayuktas Act,2013. </div>
 <div align="right"><b>                                              Signature of the complaint/<br>
 authorised signatory    </div></b> 
 <div>   Place :  '.$myArray[0]->comp_f_place.'</div>
-<div>Date  : '.$chkdate.'</div>
+<div>Date  : '.$dt_of_filing.'</div>
 
 
 
@@ -1989,7 +1994,7 @@ authorised person </div></b>
 </tr>
 <tr>
 <td style="border: 1px solid black;"></td>
-<td style="border: 1px solid black;">Date </td><td style="border: 1px solid black;">'.$chkdate.'</td>
+<td style="border: 1px solid black;">Date </td><td style="border: 1px solid black;">'.$dt_of_filing.'</td>
 </tr>
 
 </table> 

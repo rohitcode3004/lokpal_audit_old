@@ -227,8 +227,9 @@ class Filing_model extends CI_Model
 
 			$this->db->select('ref_no, filing_status, filing_no');
 			$this->db->from('complainant_details_parta');
-			//$this->db->where('filing_status',FALSE);
+			$this->db->where('filing_status',FALSE);
 			$this->db->where('flag','EF');
+			$this->db->where('filing_no','');
 			$this->db->where('user_id',$user_id);
 			$this->db->order_by('filing_no');
 			$query = $this->db->get();
@@ -527,4 +528,53 @@ function getCounterFilingdata($ref_no)
      $query = $this->db->query($sql)->result();
 return $query;
   }
+
+
+/* ysc code for public user dashboard */
+
+function get_pub_pen_count($user_id)
+		{
+			
+			$this->db->select('id');
+			$this->db->where('user_id',$user_id);
+			$this->db->where('filing_no','');
+			$this->db->where('filing_status',false);
+
+			$query = $this->db->get('complainant_details_parta');
+
+			//echo $this->db->last_query();die();
+			return $query->num_rows();
+		}
+
+
+function get_pub_completed_count($user_id)
+		{
+			
+			$this->db->select('id');
+			$this->db->where('user_id',$user_id);
+			$this->db->where('filing_status',true);
+			$query = $this->db->get('complainant_details_parta');
+			//echo $this->db->last_query();die();
+			return $query->num_rows();
+
+		}	
+
+
+		function get_pub_user_completed_complaints($user_id){  
+
+			$this->db->select('ref_no, filing_status, filing_no,gazzette_notification_url');
+			$this->db->from('complainant_details_parta');
+			$this->db->where('filing_status',true);
+			$this->db->where('flag','EF');
+			$this->db->where('user_id',$user_id);
+			$this->db->order_by('filing_no');
+			$query = $this->db->get();
+			return $query->result();
+
+		} 	
+
+
+
 }
+
+

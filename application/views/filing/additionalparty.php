@@ -10,7 +10,7 @@ $elements = $this->label->view(1);
  <script language="javascript"> 
   
   function close_window() {
-  if (confirm("Are you Completed to add additionalparty detail, want to close this Window?")) {
+  if (confirm("Are you sure that you have saved the third party detail of public servant?")) {
     close();
   }
 }
@@ -84,7 +84,7 @@ $elements = $this->label->view(1);
         affect_ageyears:"required",
         affect_state_id:"required",
         affect_country_id:"required",
-        affect_mob_no: "required",
+       // affect_mob_no: "required",
           affect_email_id: {
                 email: true,          
       },
@@ -170,13 +170,13 @@ if(isset($addparty))
 
 <div class="app-content">
   <div class="main-content-app">
-    <div class="page-header">
+    <!--<div class="page-header">
       <h4 class="page-title">Filing Entry</h4>
       <ol class="breadcrumb"> 
         <li class="breadcrumb-item"><a href="<?php echo base_url('counter/dashboard_main_registry'); ?>">Dashboad</a></li> 
         <li class="breadcrumb-item active" aria-current="page">Filing Entry</li> 
       </ol>
-    </div>
+    </div>-->
 
     <div class="row">
       <div class="col-md-12">
@@ -312,7 +312,7 @@ if(isset($addparty))
              <input type="text" class="form-control" name="affect_tel_no" id="affect_tel_no" maxlength="15"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('affect_tel_no') ?>">
         </div>
         <div class="col-md-4 mb-15">
-          <label for="affect_mob_no"><?php print_r($this->label->get_short_name($elements, 101)); ?><span class="text-danger">*</span></label>
+          <label for="affect_mob_no"><?php print_r($this->label->get_short_name($elements, 101)); ?></label>
              <input type="text" class="form-control" name="affect_mob_no" id="affect_mob_no" maxlength="10"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('affect_mob_no') ?>">
               <label class="error"><?php echo form_error('affect_mob_no'); ?></label> 
         </div>
@@ -326,9 +326,11 @@ if(isset($addparty))
         </div>
       </div>
 
-      <div class="row">
+      <div class="row"> 
         <div class="col-md-6">
-          <button type="button" class="btn btn-primary"  onclick="window.open('<?php echo site_url("respondent/additionalparty");?>')">Do you want to add more click here</button>   
+          <?php if(!empty($addparty)){ ?>  
+          <button type="button" class="btn btn-primary"  onclick="window.open('<?php echo site_url("respondent/additionalparty");?>')">Do you want to add more click here</button>  
+          <?php } ?> 
             
         </div>
         <div class="col-md-6 text-right">

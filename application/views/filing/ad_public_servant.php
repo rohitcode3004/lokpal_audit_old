@@ -29,7 +29,7 @@ else
 
  <script language="javascript"> 
  function close_window() {
-  if (confirm("Are you Completed to add witness detail, want to close this Window?")) {
+  if (confirm("Are you sure that you have saved the Additional Public Servant details?")) {
     close();
   }
 }
@@ -318,13 +318,13 @@ $ref_no=$this->session->userdata('ref_no');
    ?>
 <div class="app-content">
   <div class="main-content-app">
-    <div class="page-header">
+    <!--<div class="page-header">
       <h4 class="page-title">Filing Entry</h4>
       <ol class="breadcrumb"> 
         <li class="breadcrumb-item"><a href="<?php echo base_url('counter/dashboard_main_registry'); ?>">Dashboad</a></li> 
         <li class="breadcrumb-item active" aria-current="page">Filing Entry</li> 
       </ol>
-    </div>
+    </div>-->
 
     <div class="row">
       <div class="col-md-12">
@@ -367,8 +367,8 @@ $ref_no=$this->session->userdata('ref_no');
       <?php
         if(count($addparty)) { ?>  
         <div class="row">
-          <div class="col-md-3 col-xs-12">                   
-            <label for="modify_party" ><span class="text-danger">Select public servant for modification</label> 
+          <div class="col-md-12 col-xs-12">                   
+            <label for="modify_party" ><span class="text-danger">Select additioal public servant for modification</label> 
             <select type="text" class="form-control chosen-single chosen-default" name="modify_party" id="modify_party" onChange="modifyParty(this.value);">
               <option value="">-- Select public servant --</option>
               <?php foreach($addparty as $row):?>
@@ -573,11 +573,14 @@ $ref_no=$this->session->userdata('ref_no');
 
 
       <div class="row">
+
+           <?php if(!empty($addparty)){ ?>  
         <div class="col-md-6 mb-15">
           <button type="button" class="btn btn-primary"  onclick="window.open('<?php echo site_url("respondent/ad_public_servant");?>')">Do you want to add more click here</button>
+              <?php  }?>
           
         </div>
-        <div class="col-md-6 mb-15 text-right">
+        <div class="col-md-12 mb-15 text-right">
           <button type="submit" class="btn btn-success" id="submitbtn">Save public servant details</button>
           <a class="btn btn-danger" href="javascript:close_window();"><span>Close this windows</span></a>
         </div>
