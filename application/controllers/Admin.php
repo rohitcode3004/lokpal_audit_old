@@ -278,7 +278,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'edit')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/label/update";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/update";
 
 				$form_data = array(
 					'level' => $this->input->post('level'),				
@@ -299,7 +299,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_single')
 			{
-				$api_url = "http://localhost/lokpal_audit/label/fetch_single";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/fetch_single";
 
 				$form_data = array(
 					'id' => $this->input->post('element_id')
@@ -318,7 +318,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'insert_menu')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/menu/insert_menu";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu/insert_menu";
 
 				$form_data = array(
 					'menu_name' => $this->input->post('menuname'),				
@@ -336,7 +336,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_all')
 			{
-				$api_url = "http://localhost/lokpal_audit/menu";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu";
 				$client = curl_init($api_url);
 				curl_setopt($client, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($client, CURLOPT_FOLLOWLOCATION, true);
@@ -407,7 +407,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'edit')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/label/update";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/update";
 
 				$form_data = array(
 					'level' => $this->input->post('level'),				
@@ -428,7 +428,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_single')
 			{
-				$api_url = "http://localhost/lokpal_audit/label/fetch_single";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/fetch_single";
 
 				$form_data = array(
 					'id' => $this->input->post('element_id')
@@ -447,7 +447,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_all')
 			{
-				$api_url = "http://localhost/lokpal_audit/user";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/user";
 				$client = curl_init($api_url);
 				curl_setopt($client, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($client, CURLOPT_FOLLOWLOCATION, true);
@@ -530,7 +530,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'edit')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/label/update";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/update";
 
 				$form_data = array(
 					'level' => $this->input->post('level'),				
@@ -551,7 +551,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_single')
 			{
-				$api_url = "http://localhost/lokpal_audit/label/fetch_single";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/fetch_single";
 
 				$form_data = array(
 					'id' => $this->input->post('element_id')
@@ -570,7 +570,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_all')
 			{
-				$api_url = "http://localhost/lokpal_audit/menu/view_roles";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu/view_roles";
 				$client = curl_init($api_url);
 				curl_setopt($client, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($client, CURLOPT_FOLLOWLOCATION, true);
@@ -612,7 +612,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'insert_role')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/menu/insert_role";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu/insert_role";
 
 				$form_data = array(
 					'role' => $this->input->post('role'),				
@@ -630,7 +630,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'delete_role')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/menu/delete_role";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu/delete_role";
 
 				$form_data = array(
 					'id' => $this->input->post('role_id')
@@ -673,7 +673,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'edit')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/label/update";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/update";
 
 				$form_data = array(
 					'level' => $this->input->post('level'),				
@@ -694,7 +694,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_single')
 			{
-				$api_url = "http://localhost/lokpal_audit/label/fetch_single";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/label/fetch_single";
 
 				$form_data = array(
 					'id' => $this->input->post('element_id')
@@ -712,7 +712,7 @@ class Admin extends CI_Controller {
 
 			if($data_action == 'fetch_all')
 			{
-				$api_url = "http://localhost/lokpal_audit/menu/view_permissions";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu/view_permissions";
 				$client = curl_init($api_url);
 				curl_setopt($client, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($client, CURLOPT_FOLLOWLOCATION, true);
@@ -752,7 +752,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'insert_perm')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/menu/insert_perm";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu/insert_perm";
 
 				$form_data = array(
 					'role' => $this->input->post('role'),				
@@ -772,7 +772,7 @@ class Admin extends CI_Controller {
 			if($data_action == 'delete_perm')
 			{
 				//die('great');
-				$api_url = "http://localhost/lokpal_audit/menu/delete_perm";
+				$api_url = "http://localhost/git-workspace/lokpal_audit/menu/delete_perm";
 
 				$form_data = array(
 					'id' => $this->input->post('perm_id')

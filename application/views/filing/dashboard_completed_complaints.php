@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-default">
-          <div class="panel-heading">List of your complaints
+          <div class="panel-heading">List of your Completed Complaints
             <ul class="more-action">
               <li><a href="<?php echo base_url(); ?>filing/dashboard" class="previous">&laquo; Back</a></li>
             </ul>
@@ -31,13 +31,14 @@
                   <th>S.No.</th>
                   <th>Diary no</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <!--<th>Application Preview</th>-->
+                   <th>Complaint pdf</th>
                 </thead>
                 <tbody>
                     <?php
                       $u = $user['id'];
                       $c = 1;
-                        foreach($user_comps as $row):
+                        foreach($user_completed_comps as $row):
                   ?>
                   <tr>
                     <td><?php echo $c++; ?></td>
@@ -46,12 +47,12 @@
                       echo $row->filing_no;
                        } ?></td>
                     <td><?php if($row->filing_status == 't'){
-                                echo "Application submitted";
+                                echo "Complaint submitted";
                               }elseif($row->filing_status == 'f'){
                                 echo "Not submitted";
                               }
                         ?></td>
-                    <td>
+                   <!-- <td>
                       <?php
                       $comp_no=get_filing_no($r, $u);
                       $status = $comp_no['status'];
@@ -60,7 +61,16 @@
                       <?php }else{ ?>
                       <a href="<?php echo base_url().'filing/filing/'.$r ?>">Go to application</a>
                       <?php } ?>
-                    </td>
+                    </td>-->
+
+
+
+                   
+                     <?php if($row->gazzette_notification_url ?? '' !=''){?>
+                  <td><a href="<?php echo base_url();?><?php echo $row->gazzette_notification_url ?? ''; ?>.pdf" target="_blank" alt="">Show Complaint pdf </a>
+                  </td> 
+                    <?php } ?>
+
                   </tr>
                   <?php endforeach; ?>
                 </tbody>       
