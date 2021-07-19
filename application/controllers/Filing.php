@@ -862,7 +862,7 @@ class Filing extends CI_Controller {
 
 //$datacomplaint= $this->filing_model->getComplaintno($ref_no);   //why
 					     $this->session->set_userdata('ref_no',$ref_no);
-					     $this->load->view('filing/filing',$datacomplaint);
+					     $this->load->view('filing/filing');
 					     if($complaint_capacity_id =='1')
 					     {
 					     	redirect('/respondent/respondentfiling',$data);

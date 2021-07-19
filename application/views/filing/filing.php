@@ -140,15 +140,7 @@ if(isset($farma))
               </div>
             </div>
 
-          <div class="row">
-            <?php if (isset($this->data['datacomplaint'])) {?>
-            <div class="col-md-4">                   
-              <label for="complaintMode_id" >Refrance Number-</label>  
-              <span style="color: red"><b>  <?php echo $this->data['datacomplaint'] = $ref_no; ?></b></span>  
-            </div>
-            <?php } ?>
-
-          </div>
+         
           
         <div class="row">
          
