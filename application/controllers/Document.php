@@ -50,8 +50,8 @@ class Document extends CI_Controller {
 
   public function toPdf() 
   { 
-    ob_clean();
-    ob_flush(); 
+   // ob_clean();
+   // ob_flush(); 
     $ref_no=$this->session->userdata('ref_no');
     $farmadata = $this->common_model->getFormadata($ref_no);
     $myArray=(array)$farmadata;

@@ -518,17 +518,20 @@ if (empty($data['partc']))
         $this->form_validation->set_rules('periodt_coa', 'Offence To', 'required');
         $this->form_validation->set_rules('ps_pl_stateid', 'State', 'required');
         $this->form_validation->set_rules('ps_pl_dist_id', 'District', 'required');
+      
         if(!empty($_FILES['sum_fact_allegation_upload']['name']))
         {   
           $parameters = $_FILES['sum_fact_allegation_upload']['name']."||".$_FILES['sum_fact_allegation_upload']['size']."||".$_FILES['sum_fact_allegation_upload']['tmp_name'];      
           $this->form_validation->set_rules('sum_fact_allegation_upload', '', 'callback_validate_image['.$parameters.']');
         }
+        
          if(!empty($_FILES['relevant_evidence_upload']['name']))
         {   
           $parameters = $_FILES['relevant_evidence_upload']['name']."||".$_FILES['relevant_evidence_upload']['size']."||".$_FILES['relevant_evidence_upload']['tmp_name'];      
           $this->form_validation->set_rules('relevant_evidence_upload', '', 'callback_validate_image['.$parameters.']');
         }
-         if(!empty($_FILES['relevant_evidence_upload']['name']))
+         
+         if(!empty($_FILES['detail_offence_upload']['name']))
         {   
           $parameters = $_FILES['detail_offence_upload']['name']."||".$_FILES['detail_offence_upload']['size']."||".$_FILES['detail_offence_upload']['tmp_name'];      
           $this->form_validation->set_rules('detail_offence_upload', '', 'callback_validate_image['.$parameters.']');
@@ -691,7 +694,7 @@ if (empty($data['partc']))
           $parameters = $_FILES['relevant_evidence_upload']['name']."||".$_FILES['relevant_evidence_upload']['size']."||".$_FILES['relevant_evidence_upload']['tmp_name'];      
           $this->form_validation->set_rules('relevant_evidence_upload', '', 'callback_validate_image['.$parameters.']');
         }
-         if(!empty($_FILES['relevant_evidence_upload']['name']))
+         if(!empty($_FILES['detail_offence_upload']['name']))
         {   
           $parameters = $_FILES['detail_offence_upload']['name']."||".$_FILES['detail_offence_upload']['size']."||".$_FILES['detail_offence_upload']['tmp_name'];      
           $this->form_validation->set_rules('detail_offence_upload', '', 'callback_validate_image['.$parameters.']');
@@ -858,7 +861,7 @@ if (empty($data['partc']))
           {
             $periodt_coa = null;
           }
- // echo "in second time";die;
+ //echo "in second time";die;
           
     $ref_no=$ref_no;
     $curYear = date('Y');
