@@ -69,9 +69,8 @@ class Search_model extends CI_Model
  		function case_search_by_complainant_leg($name_of_complainant)
  		{ 
  			/* $sql="select filing_no from complainant_details_parta where first_name ilike '%$name_of_complainant%' or sur_name ilike '%$name_of_complainant%'
- 			or mid_name ilike '%$name_of_complainant%' and filing_no!='' ";*/
-
- 			$sql="select * from legacy_data where (first_name ilike '%$name_of_complainant%' or sur_name ilike '%$name_of_complainant%' or mid_name ilike '%$name_of_complainant%') ";
+ 			or mid_name ilike '%$name_of_complainant%' and filing_no!='' ";*/ 			
+ 			 $sql="select * from legacy_data where (first_name ilike '%$name_of_complainant%' or sur_name ilike '%$name_of_complainant%' or mid_name ilike '%$name_of_complainant%') ";
 
  			$query 	= $this->db->query($sql)->result();
  			return $query;	

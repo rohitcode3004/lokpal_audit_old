@@ -35,13 +35,13 @@
 
     <div class="app-content">
       <div class="main-content-app">
-        <div class="page-header">
+       <!-- <div class="page-header">
           <h4 class="page-title"> Report Received from External agency for the consideration of Bench</h4>
           <ol class="breadcrumb"> 
           <li class="breadcrumb-item"><a href="#">Dashoard</a></li>
           <li class="breadcrumb-item">Report Recieved from Agency</li>
           </ol>
-        </div>
+        </div>-->
 
         <div class="clearfix"></div>
 
@@ -182,7 +182,7 @@
                         <th>Diary no.</th>
                         <th>Complainant name</th>
                         <th>Complaint against</th>
-                          <th>Concerned Department/Additon Document/Detail of Action</th>
+                          <th>Other Action</th>
                         <!--<th>Bench Hearing date</th>-->
                         <!--<th>Bench nature</th>-->
                         <th>Preview</th>

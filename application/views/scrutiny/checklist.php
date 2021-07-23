@@ -5,6 +5,7 @@
 
 <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url();?>assets/bootstrap/js/jquery.validate.min.js"></script>
+ <script type="text/javascript" src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js"></script>
 
 
 <script type="text/javascript">
@@ -534,27 +535,40 @@
 				</div>
 				<hr>
 
+
+
+
+
+
+
 				<div class="form-group">
 					<label class="control-label col-sm-4" title="Brief summary of the case">Summary of Complaint: </label>
-					<div class="col-sm-8">
-					<textarea rows="3" class="form-control" name= "summary" placeholder="Write your summary here">
+					<div class="col-sm-8">				
+					<textarea class="ckeditor" name="summary" placeholder="Write your summary here">							
 						<?php echo (isset($summary)) ?  $summary : '';  ?>
-					</textarea>
+						</textarea>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-4" title="remarks">Remarks:</label>
 					<div class="col-sm-8">
-						<textarea rows="3" class="form-control" name= "remarks" placeholder="Write your remarks here"></textarea>
+						<textarea class="ckeditor" name="remarks" placeholder="Write your remarks here">					
+						</textarea>
 					</div>
 				</div>
 
 				<?php if(isset($last_remarkedby)) {?>
 				<div class="form-group">
 					<label class="control-label col-sm-4 text-danger">Last send by : <?php echo (isset($last_remarkedby)) ? $last_remarkedby : ''; ?> on <?php echo (isset($last_date)) ? $last_date : ''; ?> at <?php echo (isset($last_time)) ? $last_time : ''; ?></label>
-					<div class="col-sm-8">
-						<textarea class="form-control" rows="3" name= "remarks_latest" placeholder="No remarks given" readonly style="background-color:#feceab;"><?php echo (isset($last_remarks)) ?  $last_remarks : '';  ?></textarea>
+					<div class="col-sm-8">					
+
+							<textarea class="ckeditor" name="remarks_latest" placeholder="No remarks given">							
+					<?php echo (isset($last_remarks)) ?  $last_remarks : '';  ?>
+						</textarea>
+
+
+
 					</div>
 				</div>
 				<?php } ?>
@@ -567,7 +581,7 @@
 							<div class="form-group">
 								<label class="control-label col-sm-4">Previously remarks by : <?php echo get_remarkedby_name($row->remarkd_by); ?> on <?php echo get_remarkedby_his_datetime($row->updated_date, 'D'); ?> at <?php echo get_remarkedby_his_datetime($row->updated_date, 'T'); ?></label>
 								<div class="col-sm-8">
-								<textarea class="form-control disable" rows="3" name= "remarks_history" placeholder="No remarks given" readonly><?php echo $row->remarks;  ?></textarea>
+								<textarea class="ckeditor" rows="3" name= "remarks_history" placeholder="No remarks given" readonly><?php echo $row->remarks;  ?></textarea>
 								</div>
 							</div>
 						<?php

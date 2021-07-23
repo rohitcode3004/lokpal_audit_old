@@ -285,6 +285,9 @@ class Search extends CI_Controller {
 		{
 			$name_of_complainant= ($this->input->post('name_of_complainant'));
 			$data_view['case_detail']= $this->search_model->case_search_by_complainant_leg($name_of_complainant);
+
+			//echo  "<pre>";
+			//print_r($data_view['case_detail']);die;
 		}
 
 
