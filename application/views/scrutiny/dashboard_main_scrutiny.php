@@ -13,7 +13,11 @@
 		<div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-					<div class="panel-heading">Dashboard for Scrutiny Section</div>
+					<div class="panel-heading">Dashboard for <?php  if($user['username']){
+                                echo $user['username'];
+                              }else{
+                                echo 'n/a';
+                              }?></div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-6 col-sm-6 mb-15" id="divFY">
@@ -94,7 +98,7 @@
                     <div class="row">
                     	<div class="col-md-12">
                     		<div class="panel panel-default">
-							  <div class="panel-heading">Report Received from Opportunity to Public Servant after</div>
+							  <div class="panel-heading">Opportunity to Public Servant</div>
 							  <div class="panel-body">
 							  	<div class="row">
 							  		<div class="col-md-6 mb-15">
@@ -105,7 +109,7 @@
 
 							  			 ?>" class="widgets-card gd-blue" data-toggle="tooltip" data-placement="bottom" title="The Investigation report has been received from the agency but, yet to be examined by the bench">
 							  				<div class="widgets-icon"><span><?php echo  $oppertunity_ps_after_pi_count; ?></span></div>
-							  				<div class="widgets-content">Preliminary Inquiry</div>
+							  				<div class="widgets-content">After Preliminary Inquiry</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>
@@ -116,7 +120,7 @@
 
 							  			 ?>" class="widgets-card gd-fuchsia" data-toggle="tooltip" data-placement="bottom" title="The Investigation report has been received from the agency but, yet to be examined by the bench">
 							  				<div class="widgets-icon"><span><?php echo  $oppertunity_ps_after_IR_count; ?></span></div>
-							  				<div class="widgets-content">Investigation</div>
+							  				<div class="widgets-content">After Investigation</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>

@@ -28,11 +28,8 @@ class Scrutiny extends CI_Controller {
 		$this->load->model('causelist_model');
 		$this->load->model('report_model');
 		$this->load->model('reports_model');
-		$this->load->model('proceeding_model');
-
-
-	
-			$this->load->model('proceeding_model');
+		$this->load->model('proceeding_model');	
+			
 			$this->load->model('bench_model');
 			$this->load->model('agency_model');
 			$this->load->model('case_detail_model');
@@ -398,6 +395,7 @@ class Scrutiny extends CI_Controller {
 						'summary_ts' => $ts,
 						'level' => $torole,
 						'remarkd_by' => $remarks_by,
+						//'any_previous_complaint' => trim($this->security->xss_clean($this->input->post('any_previous_complaint'))),
 					);
 					$query = $this->scrutiny_model->scrutiny_update($scrutiny_upddata, $filing_no);
 				}elseif($remarks_by == 4 || $remarks_by == 5){
@@ -412,6 +410,7 @@ class Scrutiny extends CI_Controller {
 						'summary_ts' => $ts,
 						'level' => $torole,
 						'remarkd_by' => $remarks_by,
+						//'any_previous_complaint' => trim($this->security->xss_clean($this->input->post('any_previous_complaint'))),
 					);
 					$query = $this->scrutiny_model->scrutiny_update($scrutiny_upddata, $filing_no);
 				}else{
@@ -4149,6 +4148,7 @@ public function update_scrutiny_as_defective(){
 
 
 
+
 		function any_other_action_proceeding()
 		{	
 			//echo "hello";die;
@@ -4244,6 +4244,10 @@ public function update_scrutiny_as_defective(){
 
 				$status_report_department = trim($this->security->xss_clean($this->input->post('status_report_department')));
 				$other_action_code = trim($this->security->xss_clean($this->input->post('other_action_code')));
+				if($other_action_code =='')
+				{
+					$other_action_code=null;
+				}
 				$additional_documents = trim($this->security->xss_clean($this->input->post('additional_documents')));
 				$others_ordertype = trim($this->security->xss_clean($this->input->post('others_ordertype')));
 
@@ -4273,6 +4277,8 @@ public function update_scrutiny_as_defective(){
 	        $this->load->library('upload', $config);
 
 	        if ( ! $this->upload->do_upload('report_upload')) {
+
+	        
 	            $error = array('error' => $this->upload->display_errors()); 
 	            //print_r($error['error']);die;
 	            $this->session->set_flashdata('upload_error', $error['error']);

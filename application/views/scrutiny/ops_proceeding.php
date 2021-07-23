@@ -203,8 +203,8 @@ $elements = $this->label->view(1);
     <div class="app-content">
       <div class="main-content-app">
         <div class="page-header">
-          <h4 class="page-title">Recording of Proceedings of the Hon'ble Bench
-</h4>
+         <!-- <h4 class="page-title">Recording of Proceedings of the Hon'ble Bench
+</h4>-->
          <!-- <ol class="breadcrumb"> 
           <li class="breadcrumb-item"><a href="#">Dashoard</a></li>
           <li class="breadcrumb-item">Complaint Proceedings Form</li>
