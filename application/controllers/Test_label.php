@@ -44,7 +44,7 @@ class Test_label extends CI_Controller {
 			if($data_action == 'edit')
 			{
 				//die('great');
-			$api_url = "http://localhost/git-workspace/lokpal_audit/label/update";
+			$api_url = base_url()."label/update";
 
 			$form_data = array(
 					'level' => $this->input->post('level'),				
@@ -65,7 +65,7 @@ class Test_label extends CI_Controller {
 
 			if($data_action == 'fetch_single')
 			{
-				$api_url = "http://localhost/git-workspace/lokpal_audit/label/fetch_single";
+				$api_url = base_url()."label/fetch_single";
 
 				$form_data = array(
 					'id' => $this->input->post('element_id')
@@ -84,7 +84,7 @@ class Test_label extends CI_Controller {
 			if($data_action == 'insert')
 			{
 				//die('great');
-				$api_url = "http://localhost/git-workspace/lokpal_audit/label/insert";
+				$api_url = base_url()."label/insert";
 
 			$form_data = array(
 					'level' => $this->input->post('level'),				
@@ -104,7 +104,7 @@ class Test_label extends CI_Controller {
 
 			if($data_action == 'fetch_all')
 			{
-				$api_url = "http://localhost/git-workspace/lokpal_audit/label";
+				$api_url = base_url()."label";
 				$client = curl_init($api_url);
 				curl_setopt($client, CURLOPT_RETURNTRANSFER, true);
 				$response = curl_exec($client);
