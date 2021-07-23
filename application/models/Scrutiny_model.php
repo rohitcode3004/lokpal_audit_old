@@ -607,9 +607,9 @@ class Scrutiny_model extends CI_Model{
 		}
 
 
-		public function get_any_other_action()
+	public function get_any_other_action()
 		{
-			echo $sql1 = 'SELECT count(*) FROM case_proceeding P JOIN complainant_details_parta C ON P.filing_no = C.filing_no WHERE P.action = FALSE AND P.ordertype_code = 14';
+			$sql1 = 'SELECT count(*) FROM case_proceeding P JOIN complainant_details_parta C ON P.filing_no = C.filing_no WHERE P.action = FALSE AND (P.ordertype_code = 14 OR P.ordertype_code = 6)';
 			$query = $this->db->query($sql1);
 			$query = $query->row_array();
 
@@ -635,10 +635,10 @@ public function get_agency_data_OIR($flag)
 		}
 
 
+
 	public function get_agency_data_AOA($flag)
  {
-			$sql = 'SELECT * FROM case_proceeding P JOIN complainant_details_parta C ON P.filing_no = C.filing_no JOIN ordertype_master O ON
-			 O.ordertype_code = P.other_action_code WHERE P.action = FALSE AND P.ordertype_code = 14';
+			$sql = 'SELECT * FROM case_proceeding P JOIN complainant_details_parta C ON P.filing_no = C.filing_no WHERE P.action = FALSE AND (P.ordertype_code = 14 OR P.ordertype_code = 6)';
 			$query 	= $this->db->query($sql)->result();
 			return $query;
 		}
@@ -661,7 +661,7 @@ function ins_order_opertunity_to_ps_pi_report($insert_data)
 			$this->db->insert('any_other_action_detail',$insert_data);
 
 			 $this->db->last_query();
-			//die;
+			
     		return ($this->db->affected_rows() != 1) ? false : true;
 		}
 

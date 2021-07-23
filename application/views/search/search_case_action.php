@@ -63,6 +63,7 @@
                           <th>S.No.</th>
                           <th>Complaint No.</th>
                            <th>Complainant Name</th>
+                              <th>Mobile Number</th>
                            <th>Name of Public servant</th>
                            <th>Date of filing</th>
                             <th>Department name</th>
@@ -94,9 +95,14 @@
                         <td>
                           <?php 
                            echo get_complaintno($case_detail[$i]->filing_no);
-                          ?> 
-                        </td>
-                        <td><?php echo ($case_detail[$i]->first_name.' '.$case_detail[$i]->mid_name.' '.$case_detail[$i]->sur_name); ?></td>
+
+                            $sql="select mob_no from complainant_details_parta where filing_no='".$case_detail[$i]->filing_no."'";                
+                             $query   = $this->db->query($sql)->result();
+                               ?> 
+                        </td>        
+
+                         <td><?php echo ($case_detail[$i]->first_name.' '.$case_detail[$i]->mid_name.' '.$case_detail[$i]->sur_name); ?></td>
+                          <td><?php echo $query[0]->mob_no ?? ''; ?></td>
                         <td><?php echo ($case_detail[$i]->ps_first_name.' '.$case_detail[$i]->ps_mid_name.' '.$case_detail[$i]->ps_sur_name); ?></td>
                         <td>
                           <?php
@@ -108,6 +114,8 @@
                             {
                              $sql="select  dt_of_filing from complainant_details_parta where filing_no='".$case_detail[$i]->filing_no."'";                
                              $query   = $this->db->query($sql)->result();
+
+                             
                              echo get_displaydate($query[0]->dt_of_filing ?? '');
                             }
                           ?>
@@ -153,6 +161,7 @@
                         <th>S.No.</th>
                         <th>Complaint No.</th>
                         <th>Complaint Name</th>
+                         <th>Mobile Number</th>
                         <th>Name of Public servant</th>
                         <th>Date of filing</th>
                         <th>Department name</th>
