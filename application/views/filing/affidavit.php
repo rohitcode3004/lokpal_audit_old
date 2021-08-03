@@ -1506,6 +1506,15 @@ $this->load->helper("date_helper");
         }
         echo '<h3 class="status-msg error text-center">'.$this->session->flashdata('error_msg').'</h3>'; 
       ?> 
+      <?php if($status == 't') { ?>
+      <div class="alert alert-success msg-box">
+        <h3 class="text-center"  id="success_msg">Complaint submitted successfully</h3>
+        <h4 class="text-center" id="filing_no">Please note the 
+                <span><b>Dairy no. </b><?php echo $filing_no; ?></span>
+             </h4> 
+        <h4 class="text-center" id="quote_msg">Please quote the above diary no in all future communications.</h4>
+      </div>
+       <?php } ?>
       <div class="status-msg error text-center" id="error_message"></div>
     </div>
   </div>
@@ -1538,12 +1547,24 @@ $this->load->helper("date_helper");
         data:{reference_no:reference_no, data_action:'update_form'},
         dataType: 'json',
         success: function(data) {
-            console.log(data);
-            if(data.success){
-              console.log(data.success);
-              window.location.reload();
-            }
-            if(data.error){
+           if(data.success){
+            $.ajax({
+                        url: '<?php echo site_url('affidavit/exportToPdf'); ?>',
+                        method: "POST",
+                        data:
+                        {
+                            save_in_server: 1,
+                            filename: data.fn,  
+                        },
+                        success: function (response) {
+                            //$("#success_msg").html("Complainant submitted successfully");
+                            //$("#divMessages").html(response);
+                            window.location.reload();
+                            $(".msg-box").show();
+                        }
+                    });
+}
+ if(data.error){
               $('#error_message').html('<div class="alert alert-error"><h4>Some problem occured on submitting application.</h4></div>');
             }
         }

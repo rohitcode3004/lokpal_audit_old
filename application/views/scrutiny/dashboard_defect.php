@@ -39,14 +39,14 @@
                   <span id="success_message"></span>
                   <table id="mytable" class="table table-bordered table-striped table-hover dataTable js-exportable">
                     <thead>
-                      <th>S.No.</th>                      
+                      <th>S.No.</th>    
+                      <th style="width: 15px;">Select</th>                  
                       <th>Diary no.</th>
                       <th>Complaint no.</th>
                       <th>Complainant name</th>
                       <th>Complaint against</th>
                       <th>Date of Filing</th>
-                      <th>Preview</th>
-                     
+                      <th>Preview</th>                     
                     </thead>
                     <tbody>
                       <?php
@@ -61,9 +61,7 @@
                       <form action="<?php echo base_url();?>scrutiny/checklist" method="post" id="">
                         <tr <?php if($last_remarked_by == 6 || $last_remarked_by == 7 || $key == 'remarkd_by') { ?> class="secylce" <?php } ?>>
                           <td><?php echo $c++; ?></td>
-
-                         
-
+                         <td> <input type="checkbox" name="mycheck_[]" value="<?php echo $row->filing_no;?>"></td>
                           <td><?php if($row->filing_no){
                             echo $row->filing_no;
                             $against_name = get_against_name($row->filing_no);
@@ -86,7 +84,7 @@
                           <td>
                               <a href="<?php echo base_url().'scrutiny/affidavit_detail_pre/'.$row->ref_no ?>" target="_blank">Application preview</a>
 
-                            <span><a href="<?php echo base_url().'cdn/complainpdf/'.$row->ref_no.'.pdf' ?>" target="_blank" alt=""><strong><i class="fa fa-file-pdf-o" aria-hidden="true"></i> pdf</strong></a></span> 
+                           <!-- <span><a href="<?php echo base_url().'cdn/complainpdf/'.$row->ref_no.'.pdf' ?>" target="_blank" alt=""><strong><i class="fa fa-file-pdf-o" aria-hidden="true"></i> pdf</strong></a></span> -->
                           </td>
                          <!-- <td>
                             <input type="hidden" name="filing_no" value="<?php echo $row->filing_no; ?>">
@@ -102,7 +100,119 @@
                     </tbody>      
                   </table>
                 </div>               
+                <div class="row">
+                  <div class="col-md-6 mb-30">
+                    <button type="button" class="btn btn-success status_submit">                 
+                     Mark As Undefective
+                    </button> 
+                  </div>
 
+                  <div class="col-md-6 mb-30">
+                    <button type="button" class="btn btn-success status_edit_submit">                 
+                    Open for editing
+                    </button> 
+                  </div>
+
+                </div>
+
+
+<script type="text/javascript">
+      $(document).ready(function() {
+        $(document).on('click', '.status_submit', function(){
+
+                var allids = [];
+                $.each($("input[name='mycheck_[]']:checked"), function(){
+                    allids.push($(this).val());
+                });
+                //alert("My favourite sports are: " + favorite.join(", "));
+
+
+
+          var myJSON = JSON.stringify(allids);
+         // alert(myJSON);
+
+          if (allids && allids.length) {    
+
+          $.ajax({
+            url: '<?php echo site_url('scrutiny/update_scrutiny_as_undefective'); ?>',
+            type: 'POST',
+           // data:{hearing_date:hearing_date, checkedValue:checkedValue},
+            //data : myJSON,
+            data : {allids:myJSON},
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.success == 'success'){
+                   alert('Complaint successfully mark as Undefective');
+                   window.location.reload(); 
+                }else{
+                  alert('Error');
+                }
+                /*if(data.success){
+                  console.log(data.success);
+                  window.location.reload();
+                }  */         
+            }
+
+
+          });
+          }else{
+            alert('Please select at least one case for Defective !');
+          }
+        });
+      });
+
+</script>
+
+
+
+<script type="text/javascript">
+      $(document).ready(function() {
+        $(document).on('click', '.status_edit_submit', function(){
+
+                var allids = [];
+                $.each($("input[name='mycheck_[]']:checked"), function(){
+                    allids.push($(this).val());
+                });
+                //alert("My favourite sports are: " + favorite.join(", "));
+
+
+
+          var myJSON = JSON.stringify(allids);
+         // alert(myJSON);
+
+          if (allids && allids.length) {    
+
+          $.ajax({
+            url: '<?php echo site_url('scrutiny/status_open_for_edit_complaint'); ?>',
+            type: 'POST',
+           // data:{hearing_date:hearing_date, checkedValue:checkedValue},
+            //data : myJSON,
+            data : {allids:myJSON},
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.success == 'success'){
+                   alert('Complaint successfully open for editing');
+                   window.location.reload(); 
+                }else{
+                  alert('Error');
+                }
+                /*if(data.success){
+                  console.log(data.success);
+                  window.location.reload();
+                }  */         
+            }
+
+
+          });
+          }else{
+            alert('Please select at least one case for Defective !');
+          }
+        });
+      });
+
+</script>
                
               </div>
             </div>

@@ -919,3 +919,48 @@ ul.more-action > li > a {
 #accordion .panel-title a:focus{
     color: #fff;
 }
+
+
+.msg-box{
+    /*display: none;*/
+}
+
+.form_list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: outside none;
+}
+.form_list li{
+    width: 25%;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.form_list li a{
+    display: block;
+    padding: 15px 15px 15px 70px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 1px 1px 16px rgb(0 0 0 / 10%);
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+.form_list li::before{
+    position: absolute;
+    left: 30px;
+    top: 8px;
+    content: '\f1c1';
+    font-family: 'FontAwesome';
+    color: #f75700;
+    background-color: #ececec;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+}
+}

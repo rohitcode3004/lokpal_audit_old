@@ -29,7 +29,8 @@
                                
                 <thead>                
                   <th>S.No.</th>
-                  <th>Diary no</th>
+                   <th>Refrance No</th>
+                  <th>Old Diary no</th>
                   <th>Status</th>
                   <th>Action</th>
                 </thead>
@@ -41,7 +42,7 @@
                   ?>
                   <tr>
                     <td><?php echo $c++; ?></td>
-                    <!--<td><?php echo $r = $row->ref_no; ?></td>-->
+                    <td><?php echo $r = $row->ref_no; ?></td>
                     <td><?php if($row->filing_no){
                       echo $row->filing_no;
                        } ?></td>

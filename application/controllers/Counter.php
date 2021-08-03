@@ -86,13 +86,15 @@ class Counter extends CI_Controller {
 		$data['user'] = $this->login_model->getRows($this->con);
 		$data['role'] = $data['user']['role'];
 
-            //print_r($data['user']['id']);die;
+            $user_id=$data['user']['id'];
 
 		$data['menus'] = $this->menus_lib->get_menus($data['user']['role']);
 
 		$data['total_log'] = $this->filing_model->get_total_cfiling();
 		$data['pend_log'] = $this->filing_model->get_pend_cfiling();
 		$data['scr_log'] = $this->filing_model->get_scr_cfiling();
+
+		$data['re_entry_complaint'] = $this->filing_model->get_re_entry($user_id);
 
 	  		//print_r($data['total_log']);die('kk');
 		$this->load->helper("compno_helper");
