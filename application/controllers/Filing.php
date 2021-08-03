@@ -74,6 +74,7 @@ class Filing extends CI_Controller {
 
 	public function dashboard()
 	{	
+
 		if($this->isUserLoggedIn) 
 		{
 			$con = array( 
@@ -82,18 +83,16 @@ class Filing extends CI_Controller {
 			$data['user'] = $this->login_model->getRows($con);
 
 			//echo "<pre>";
-          //  print_r($data['user']['id']);die;
+         // $user_id=$data['user']['id'];
 
 			$data['menus'] = $this->menus_lib->get_menus($data['user']['role']);
 
 			//$data['user_comps'] = $this->filing_model->get_user_complaints($data['user']['id']);
+			$data['re_edit_comp'] = $this->filing_model->get_re_entry_complaints_count($data['user']['id']);
 
 			$data['pen_comps'] = $this->filing_model->get_pub_pen_count($data['user']['id']);
 
 			$data['completed_comps'] = $this->filing_model->get_pub_completed_count($data['user']['id']);
-
-
-
 
 			$this->load->view('templates/front/CE_Header.php',$data);
 			// ysc change for dashboard $this->load->view('filing/dashboard.php',$data);
@@ -928,4 +927,52 @@ class Filing extends CI_Controller {
 
 				}
 
+
+  /* ysc code for reentry 26072021 */
+
+  public function dashboard_re_entry_complaint()
+	{
+		if($this->isUserLoggedIn) 
+		{
+			$con = array( 
+				'id' => $this->session->userdata('userId') 
+			); 
+			$data['user'] = $this->login_model->getRows($con);
+			$data['menus'] = $this->menus_lib->get_menus($data['user']['role']);
+			$data['user_comps'] = $this->filing_model->get_re_entry_complaints($data['user']['id']);
+			$this->load->view('templates/front/CE_Header.php',$data);
+			// ysc change for dashboard $this->load->view('filing/dashboard.php',$data);
+			$this->load->view('filing/dashboard.php',$data);					
+			$this->load->view('templates/front/CE_Footer.php',$data);
+		}
+		else
+		{
+			redirect('user/login'); 
+		}
+
+	}
+
+
+	public function dashboard_edit_complaint()
+	{
+		
+		if($this->isUserLoggedIn) 
+		{
+			$con = array( 
+				'id' => $this->session->userdata('userId') 
+			); 
+			$data['user'] = $this->login_model->getRows($con);
+			$data['menus'] = $this->menus_lib->get_menus($data['user']['role']);
+			$data['user_comps'] = $this->filing_model->get_user_complaints($data['user']['id']);
+			$this->load->view('templates/front/CE_Header.php',$data);
+			// ysc change for dashboard $this->load->view('filing/dashboard.php',$data);
+			$this->load->view('filing/dashboard.php',$data);					
+			$this->load->view('templates/front/CE_Footer.php',$data);
+		}
+		else
+		{
+			redirect('user/login'); 
+		}
+
+	}
 }

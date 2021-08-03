@@ -84,7 +84,7 @@
                           <td>
                              <a href="<?php echo base_url().'scrutiny/affidavit_detail_pre/'.$row->ref_no ?>" target="_blank">Application preview</a>
 
-                            <span><a href="<?php echo base_url().'cdn/complainpdf/'.$row->ref_no.'.pdf' ?>" target="_blank" alt=""><strong><i class="fa fa-file-pdf-o" aria-hidden="true"></i> pdf</strong></a></span> 
+                           <!-- <span><a href="<?php echo base_url().'cdn/complainpdf/'.$row->ref_no.'.pdf' ?>" target="_blank" alt=""><strong><i class="fa fa-file-pdf-o" aria-hidden="true"></i> pdf</strong></a></span> -->
                           </td>
                           <td>
                             <input type="hidden" name="filing_no" value="<?php echo $row->filing_no; ?>">

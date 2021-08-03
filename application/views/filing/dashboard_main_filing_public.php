@@ -11,7 +11,7 @@
 <div class="app-content">
 	<div class="main-content-app">
 		<div class="page-header">
-			<h4 class="page-title">Dashboard for Complainant Section</h4>
+			<h4 class="page-title">Dashboard for Complainant</h4>
 			<ol class="breadcrumb"> 
 				<li class="breadcrumb-item"><a href="#">Dashboard for Complainant</a></li>
 			</ol>
@@ -21,8 +21,7 @@
                 <div class="panel panel-default">
 					<div class="panel-heading"></div>
 						<div class="panel-body">
-							<div class="row">
-								
+							<div class="row">			
 
 	
 
@@ -59,6 +58,34 @@
 							  			<i class="fa fa-files-o transparent_icon" aria-hidden="true"></i>
 							  		</a>
 							  	</div>
+
+
+
+							  	<div class="col-lg-4 col-sm-4 mb-15" id="divFY">
+							  		<a href="<?php echo base_url('filing/dashboard_re_entry_complaint'); ?>" class="widgets-card gd-blueviolet">
+							  			<div class="widgets-icon">
+							  				<span id="ContentPlaceHolder1_lblTotalPending">
+							  					<?php echo $re_edit_comp; ?>
+							  				</span>
+							  			</div>
+							  			<div class="widgets-content">List of Complaint open for editing</div>
+							  			<i class="fa fa-sitemap transparent_icon" aria-hidden="true"></i>
+							  		</a>
+							  	</div>
+
+
+
+							 <!--	<div class="col-lg-4 col-sm-4 mb-15">
+								<a href="<?php //echo base_url('Filing/dashboard_re_entry_complaint'); 
+
+									echo "<pre>";
+									print_r($re_edit_comp);
+								?>" class="widgets-card gd-blueviolet">
+							  		<div class="widgets-icon"><span id="ContentPlaceHolder1_lblTotalRegistration"><?php echo $re_edit_comp; ?></span></div>
+							  	<div class="widgets-content">List of Complaint open for editing</div>
+							  		<i class="fa fa-address-card-o transparent_icon" aria-hidden="true"></i>
+							  	</a>
+							</div>-->
 
 
 							  	

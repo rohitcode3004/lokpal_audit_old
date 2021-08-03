@@ -429,10 +429,10 @@ function getCounterFilingdata($ref_no)
 		}
 
 
-		function update_complaint_gazzette_notification($ref_no,$gazzette_notification_data){ 	
+		function update_complaint_gazzette_notification($fn,$gazzette_notification_data){ 	
 				
 				//echo $gazzette_notification_url;
-			$this->db->where('ref_no', $ref_no);
+			$this->db->where('filing_no', $fn);
 			//$this->db->where('user_id', $user_id);
 			$this->db->update('complainant_details_parta', $gazzette_notification_data); 
 			//echo $this->db->last_query();
@@ -603,7 +603,38 @@ function getCounterFilingdata($ref_no)
 		}
 
 
- 
+ /* code ysc23072021 */
+
+function get_ref_no_count($refe_no)
+		{
+			
+			$this->db->where('ref_no',$refe_no);
+		    $query = $this->db->get('complainant_details_parta');
+		    if ($query->num_rows() > 0){
+		        return $query->result();
+		    }
+		    else{
+		        return 0;
+		    }
+		}
+
+		function get_ref_no_count_nofificationurl($ref_no)
+		{
+			
+			$this->db->where('ref_no',$ref_no);
+		    $query = $this->db->get('complainant_details_parta');
+		    if ($query->num_rows() > 0){
+		        return $query->result();
+		    }
+		    else{
+		        return 0;
+		    }
+		}
+
+
+
+
+/* end ysc code 2307 */
  
 
 }

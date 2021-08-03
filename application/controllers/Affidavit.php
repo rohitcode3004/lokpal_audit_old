@@ -117,6 +117,7 @@ public function update_form_status(){
         'filing_status' => 'true',
         'filing_no' => $comp_data['comp_no'],
         'dt_of_filing' => date('Y-m-d'),
+        'openforedit' => 'false',
       );
       //print_r($upd_data['complaint_no']);die('FN');
       $query1 = $this->filing_model->update_complaint_status($upd_data1, $this->input->post('reference_no'), $user_id);  //we never ever update filing no
@@ -173,15 +174,28 @@ public function update_form_status(){
         $add_to_scrutiny = $this->scrutiny_model->scrutiny_ins($ins_data);
         //make a log file if insert is failed with data and error cause.
          //ysc code for db insertion of gazzette_notification_url cdn/complainpdf
-          $gazzette_notification_url='cdn/complainpdf/'.$ref_no;
-          $gazzette_notification_data = array(
-                'gazzette_notification_url' =>$gazzette_notification_url,
+
+
+
+        $gazzette_notification_url='cdn/complainpdf/'.$comp_data['comp_no'].'.pdf';
+
+       // echo $gazzette_notification_url;die;
+
+       // exportToPdf('1', $comp_data['comp_no']);
+
+         
+
+          //  $parta = $this->partapdf($filing_no);
+
+        $gazzette_notification_data = array(
+            'gazzette_notification_url' =>$gazzette_notification_url,
                 );
-                $gazzette_notification_update = $this->report_model->update_complaint_gazzette_notification($ref_no,$gazzette_notification_data);
-                
+        $gazzette_notification_update = $this->report_model->update_complaint_gazzette_notification($comp_data['comp_no'] ,$gazzette_notification_data);
+        
         $this->session->set_flashdata('success_msg', 'Complainant submitted successfully'); 
         $array = array(
-          'success' => true 
+          'success' => true,
+          'fn' => $comp_data['comp_no'],
         );
    
           
@@ -209,8 +223,15 @@ else{
 
 
 public function exportToPdf(){ 
-
+  $save_in_server = $this->input->post('save_in_server');
+  $filename = $this->input->post('filename');
    //echo "in here pdf";die;
+
+  //echo $save_in_server;
+
+ // echo $filename;
+
+  //die('@@@@@');
 
 //$array=$this->session->userdata('ref_no');
   $this->load->helper("date_helper"); 
@@ -1202,15 +1223,6 @@ else
    </tr>';
  }
 
-
-ini_set('set_time_limit', 0);
-ini_set('memory_limit', '-1');
-ini_set('xdebug.max_nesting_level', 2000);
-$this->html2pdf->folder('./cdn/complainpdf/');
-$this->html2pdf->paper('A4', 'portrait', 'fr');
-$elements = $this->label->view(1);
-$elements['17']['long_name'];
-
 $getallwidget =     
 '
 <div align="center"><b>ANNEXURE</b></div>
@@ -2079,26 +2091,31 @@ if($cp==1){
     ';
 
                       // echo $getallwidget;die;
-    
-    $file                           =    $refe_no;
-    $filename                       =     $file;
+    ini_set('set_time_limit', 0);
+    ini_set('memory_limit', '-1');
+    ini_set('xdebug.max_nesting_level', 2000);
+    $this->html2pdf->folder('./cdn/complainpdf/');
+    $this->html2pdf->paper('A4', 'portrait', 'fr');
+    if($filename){
+      $filename = $filename;
+    }else{
+    $filename = $refe_no;
+    }
      // $this->data['main_content']           =     'view_widget_report_pdf';
-    $html                       =     $getallwidget;
+    $html = $getallwidget;
 
     $this->html2pdf->filename($filename.".pdf"); 
     $this->html2pdf->html($html);
-    $this->html2pdf->create('save');
+    if($save_in_server == '1'){
+      $this->html2pdf->create('save');
+    }
+    //$this->html2pdf->create('save');
     $this->html2pdf->create('open');
      // $ref_no=$this->session->userdata('ref_no');
-    $this->session->unset_userdata('ref_no');        
-    $this->session->sess_destroy(); 
-    redirect('filing/filing/');
-    
-    exit;
-
-//$data['state'] = $this->common_model->getStateName();
-
-    
+    //$this->session->unset_userdata('ref_no');        
+    //$this->session->sess_destroy(); 
+    //return 1; 
+    return $filename;   
   }
 
 

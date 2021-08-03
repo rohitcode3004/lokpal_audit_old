@@ -20,4 +20,22 @@
                 return "";
         }
 
+        function get_gadjet_report($filing_no)
+        {
+            $CI =& get_instance();
+            $CI->load->model('scrutiny_model');
+            $parta_row =  $CI->scrutiny_model->fetch_gadjet_report($filing_no);
+            //return $parta_row;
+            $url = $parta_row->gazzette_notification_url;
+            return $url;
+        }
+
+        function get_previous_gadjet_report($ref_no)
+        {
+            $CI =& get_instance();
+            $CI->load->model('scrutiny_model');
+            $parta_row =  $CI->scrutiny_model->fetch_previous_gadjet_report($ref_no);
+            return $parta_row;
+        }
+
     }

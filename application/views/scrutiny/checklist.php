@@ -172,7 +172,29 @@
 					<div class="panel-body">
 
 			<!-- start: Accordion -->
-			<form id="myForm" class="form-horizontal" action="<?php echo base_url();?>scrutiny/action" method="post" id="">
+			<form id="myForm" class="" action="<?php echo base_url();?>scrutiny/action" method="post" id="">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title">Preview Complaint</h4>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="form_list">
+									<li><a target="_blank" href="<?php echo base_url().get_gadjet_report($filing_no);?>"><?php echo $filing_no; ?></a></li>
+									<?php
+										$previous_gazzatte_reports = get_previous_gadjet_report(get_refno($filing_no));
+									 if(!empty($previous_gazzatte_reports)) { 
+										foreach ($previous_gazzatte_reports as $key => $value) {
+										?>
+									<li><a target="_blank" href="<?php echo base_url().$value->gazzette_notification_url; ?>"><?php echo $value->filing_no; ?></a></li>
+									<?php } } ?>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="panel-group" id="accordion">
 					<?php if($comp_type == 1 || $comp_type == 2) {?>
 						<div class="panel panel-primary">
@@ -540,36 +562,31 @@
 
 
 
-
 				<div class="form-group">
-					<label class="control-label col-sm-4" title="Brief summary of the case">Summary of Complaint: </label>
-					<div class="col-sm-8">				
+					<label class="control-label" title="">Any Other Previous Complaint: </label>
+					<input class="form-control" type="text" name="previous_complaint_desc" value="<?php echo (isset($previous_complaint_desc)) ?  $previous_complaint_desc : ''; ?>">
+				</div>
+				<div class="form-group">
+					<label class="control-label" title="Brief summary of the case">Summary of Complaint: </label>			
 					<textarea class="ckeditor" name="summary" placeholder="Write your summary here">							
 						<?php echo (isset($summary)) ?  $summary : '';  ?>
-						</textarea>
-					</div>
+					</textarea>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-4" title="remarks">Remarks:</label>
-					<div class="col-sm-8">
-						<textarea class="ckeditor" name="remarks" placeholder="Write your remarks here">					
-						</textarea>
-					</div>
+					<label class="control-label" title="remarks">Remarks:</label>
+					<textarea class="ckeditor" name="remarks" placeholder="Write your remarks here">					
+					</textarea>
 				</div>
 
 				<?php if(isset($last_remarkedby)) {?>
 				<div class="form-group">
-					<label class="control-label col-sm-4 text-danger">Last send by : <?php echo (isset($last_remarkedby)) ? $last_remarkedby : ''; ?> on <?php echo (isset($last_date)) ? $last_date : ''; ?> at <?php echo (isset($last_time)) ? $last_time : ''; ?></label>
-					<div class="col-sm-8">					
-
-							<textarea class="ckeditor" name="remarks_latest" placeholder="No remarks given">							
+					<label class="control-label text-danger">Last send by : <?php echo (isset($last_remarkedby)) ? $last_remarkedby : ''; ?> on <?php echo (isset($last_date)) ? $last_date : ''; ?> at <?php echo (isset($last_time)) ? $last_time : ''; ?></label>
+						
+					<textarea class="ckeditor" name="remarks_latest" placeholder="No remarks given">							
 					<?php echo (isset($last_remarks)) ?  $last_remarks : '';  ?>
-						</textarea>
+					</textarea>
 
-
-
-					</div>
 				</div>
 				<?php } ?>
 
@@ -579,10 +596,9 @@
 							if($row->remarks != '') {
 							?>
 							<div class="form-group">
-								<label class="control-label col-sm-4">Previously remarks by : <?php echo get_remarkedby_name($row->remarkd_by); ?> on <?php echo get_remarkedby_his_datetime($row->updated_date, 'D'); ?> at <?php echo get_remarkedby_his_datetime($row->updated_date, 'T'); ?></label>
-								<div class="col-sm-8">
+								<label class="control-label">Previously remarks by : <?php echo get_remarkedby_name($row->remarkd_by); ?> on <?php echo get_remarkedby_his_datetime($row->updated_date, 'D'); ?> at <?php echo get_remarkedby_his_datetime($row->updated_date, 'T'); ?></label>
+
 								<textarea class="ckeditor" rows="3" name= "remarks_history" placeholder="No remarks given" readonly><?php echo $row->remarks;  ?></textarea>
-								</div>
 							</div>
 						<?php
 						}
@@ -591,8 +607,7 @@
 				?>
 
 				<div class="form-group" id="" style="">   
-					<label for="torole" class="control-label col-sm-4" title="select officer to forward case to"><span style="color: red" data-darkreader-inline-color="">*</span>Forward to:</label>
-					<div class="col-sm-8"> 
+					<label for="torole" class="control-label" title="select officer to forward case to"><span style="color: red" data-darkreader-inline-color="">*</span>Forward to:</label>
 					<select class="torole form-control" style="" name="torole" id="torole" aria-invalid="false">
 						<option value="">-- Select one --</option>
 						<?php
@@ -603,7 +618,6 @@
 						?>
 					</select> 
 					<label class="error"></label>
-					</div>
 				</div>
 				<div class="form-group" id="" style="">  
 					<div class="col-sm-12 text-right">  

@@ -35,6 +35,7 @@ class Scrutiny extends CI_Controller {
 			$this->load->model('case_detail_model');
 			$this->load->helper("bench_helper");		
 			$this->load->helper("report_helper");
+			$this->load->helper("reports_helper");
 			//$this->load->library('html2pdf');
 			$this->load->library('label');	
 			$this->load->helper("proceeding_helper");			
@@ -193,6 +194,10 @@ class Scrutiny extends CI_Controller {
 				$data['remark_history'] = $this->scrutiny_model->get_rem_his($filing_no);
 				//print_r($data['remark_ history']);die;
 		}
+
+		$previous_complaint_desc = $this->scrutiny_model->get_previous_complaint_remarks($filing_no);
+			if(!empty($previous_complaint_desc))
+				$data['previous_complaint_desc'] = $previous_complaint_desc[0]->previous_complaint_description;
 
 			if($data['user']['role'] == 161 || $data['user']['role'] == 162){
 				$comp_type = get_parta_comptype_compno($filing_no);
@@ -410,6 +415,7 @@ class Scrutiny extends CI_Controller {
 						'summary_ts' => $ts,
 						'level' => $torole,
 						'remarkd_by' => $remarks_by,
+						'previous_complaint_description' => trim($this->security->xss_clean($this->input->post('previous_complaint_desc'))),
 						//'any_previous_complaint' => trim($this->security->xss_clean($this->input->post('any_previous_complaint'))),
 					);
 					$query = $this->scrutiny_model->scrutiny_update($scrutiny_upddata, $filing_no);
@@ -3279,43 +3285,6 @@ function updatecategory(){
 
 }
 
-
-
-
-public function update_scrutiny_as_defective(){	
-
-
-			//echo '<pre>';
-	$value  = json_decode($_POST['allids']);
-			//echo '<pre>';print_r($value);
-	$flag = 0;
-	for($i=0;$i<count($value);$i++){
-		$data = explode(':::', $value[$i]);
-		if(!empty($data[0])){
-					//echo $data[0].' : '.$data[1];
-
-			$id=$data[0];				
-					// $listing_date=$data[1];			
-					//echo $id." : ".$listing_date." ::: ";
-					// $listing_date = get_entrydate($listing_date);
-			$modifycounter = $this->scrutiny_model->upd_scrutiny_data_as_defective($id);  
-			$flag = 1;
-		}
-
-	}
-	if($flag == 1){
-			//echo 'success';
-		echo json_encode(array('success' => 'success'));
-	}else{
-		echo json_encode(array('data'=>'fail'));
-	}
-
-
-}
-
-
-
-
  public function affidavit_detail_pre($dash_ref_no=NULL){	
 
    if($this->isUserLoggedIn) 
@@ -4526,6 +4495,120 @@ public function update_scrutiny_as_defective(){
 	        }
 		}
 	}
+
+public function update_scrutiny_as_defective(){	
+			//echo '<pre>';
+	$value  = json_decode($_POST['allids']);
+			//echo '<pre>';print_r($value);
+	$flag = 0;
+	for($i=0;$i<count($value);$i++){
+		$data = explode(':::', $value[$i]);
+		if(!empty($data[0])){
+					//echo $data[0].' : '.$data[1];
+
+			$id=$data[0];				
+					// $listing_date=$data[1];			
+					//echo $id." : ".$listing_date." ::: ";
+					// $listing_date = get_entrydate($listing_date);
+
+			$query1 = $this->scrutiny_model->upd_scrutiny_data_as_defective_his($id);
+
+			$modifycounter = $this->scrutiny_model->upd_scrutiny_data_as_defective($id);  
+			$flag = 1;
+		}
+
+	}
+	if($flag == 1){
+			//echo 'success';
+		echo json_encode(array('success' => 'success'));
+	}else{
+		echo json_encode(array('data'=>'fail'));
+	}
+
+
+}
+/*ysc code 23072021 */
+
+public function update_scrutiny_as_undefective(){	
+			//echo '<pre>';
+	$value  = json_decode($_POST['allids']);
+			//echo '<pre>';print_r($value);
+	$flag = 0;
+	for($i=0;$i<count($value);$i++){
+		$data = explode(':::', $value[$i]);
+		if(!empty($data[0])){
+					//echo $data[0].' : '.$data[1];
+
+			 $id=$data[0];			
+					// $listing_date=$data[1];			
+					//echo $id." : ".$listing_date." ::: ";
+					// $listing_date = get_entrydate($listing_date);
+
+			$query1 = $this->scrutiny_model->upd_scrutiny_data_as_undefective_his($id);			
+			$modifycounter = $this->scrutiny_model->upd_scrutiny_data_as_undefective($id);  
+			
+			$flag = 1;
+		}
+
+	}
+	if($flag == 1){
+			//echo 'success';
+		echo json_encode(array('success' => 'success'));
+	}else{
+		echo json_encode(array('data'=>'fail'));
+	}
+
+
+}
+
+
+public function status_open_for_edit_complaint(){	
+			//echo '<pre>';
+	$value  = json_decode($_POST['allids']);
+			//echo '<pre>';print_r($value);
+	$flag = 0;
+	for($i=0;$i<count($value);$i++){
+		$data = explode(':::', $value[$i]);
+		if(!empty($data[0])){
+					//echo $data[0].' : '.$data[1];
+
+			$id=$data[0];				
+					// $listing_date=$data[1];			
+					//echo $id." : ".$listing_date." ::: ";
+					// $listing_date = get_entrydate($listing_date);
+			$query1 = $this->scrutiny_model->status_edit_open_complaint_history($id, '1');	
+			
+			$modifycounter1 = $this->scrutiny_model->status_edit_open_complaint($id, '1'); 
+
+			$comp_cap = get_parta_comptype_fn($id);
+			 if($comp_cap != 1){
+
+			$query2 = $this->scrutiny_model->status_edit_open_complaint_history($id, '2');	
+			
+			$modifycounter2 = $this->scrutiny_model->status_edit_open_complaint($id, '2');
+		}else{
+			$query2 = 1;
+			$modifycounter2 = 1;
+		}
+
+			$query3 = $this->scrutiny_model->status_edit_open_complaint_history($id, '3');	
+			
+			$modifycounter3 = $this->scrutiny_model->status_edit_open_complaint($id, '3');
+
+		}
+
+	}
+	if($query1 && $modifycounter1 && $query2 && $modifycounter2 && $query3 && $modifycounter3){
+			//echo 'success';
+		echo json_encode(array('success' => 'success'));
+	}else{
+		echo json_encode(array('data'=>'fail'));
+	}
+
+
+}
+
+
 
 
 }

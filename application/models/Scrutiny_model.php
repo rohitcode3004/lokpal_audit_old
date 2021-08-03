@@ -22,7 +22,7 @@ class Scrutiny_model extends CI_Model{
 	}
 
 	function get_scrutiny_pen_complaints_def(){  
-		$this->db->select('C.ref_no, C.sur_name, C.mid_name, C.first_name, C.dt_of_filing, S.filing_no, S.scrutiny_status,S.defective, S.objections');
+		$this->db->select('C.ref_no, C.sur_name, C.mid_name, C.gazzette_notification_url, C.first_name, C.dt_of_filing, S.filing_no, S.scrutiny_status,S.defective, S.objections');
 		$this->db->from('scrutiny S');
 		$this->db->join('complainant_details_parta C', 'S.filing_no = C.filing_no');
 		//$this->db->join('scrutinyteam_master T', 'S.level = T.level_id');
@@ -520,12 +520,14 @@ class Scrutiny_model extends CI_Model{
 
 
  	function upd_scrutiny_data_as_defective($id)
-		{ 			
-			
+		{ 
+
+		//history			
+			$ts = date('Y-m-d H:i:s', time());
 			$this->db->where('filing_no', $id);
 			$upd_data = array(
 									'defective' => 'true',
-									//'bench_no' => '1',									
+									'updated_date' => $ts,									
 								);
 			$this->db->update('scrutiny', $upd_data); 
 			//print_r($r);die;
@@ -660,7 +662,7 @@ function ins_order_opertunity_to_ps_pi_report($insert_data)
 		{
 			$this->db->insert('any_other_action_detail',$insert_data);
 
-			 $this->db->last_query();
+			// $this->db->last_query();
 			
     		return ($this->db->affected_rows() != 1) ? false : true;
 		}
@@ -676,6 +678,137 @@ function ins_order_opertunity_to_ps_pi_report($insert_data)
 		}
 
 
+		/* ysc code for 23072021 */
 
+		function upd_scrutiny_data_as_defective_his($filing_no){
+
+    	$this->db->where('filing_no', $filing_no);
+    	$query = $this->db->get('scrutiny');
+    	foreach ($query->result() as $row) {
+          $this->db->insert('scrutiny_history',$row);
+    	}    	
+    	return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+
+
+		function upd_scrutiny_data_as_undefective_his($filing_no){			
+    	$this->db->where('filing_no', $filing_no);
+    	$query = $this->db->get('scrutiny');
+    	foreach ($query->result() as $row) {
+          $this->db->insert('scrutiny_history',$row);
+    	}
+
+    	
+    	return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+
+ 	function upd_scrutiny_data_as_undefective($id)
+		{ 		
+
+		//history	
+			$ts = date('Y-m-d H:i:s', time());	
+			$this->db->where('filing_no', $id);
+			$upd_data = array(
+									'defective' => 'false',	
+									'updated_date' => $ts,																
+								);
+			$this->db->update('scrutiny', $upd_data); 
+			//print_r($r);die;
+			return ($this->db->affected_rows() != 1) ? false : true;   
+		}
+
+
+
+function status_edit_open_complaint_history($filing_no, $flag){			
+    	$this->db->where('filing_no', $filing_no);
+    	if($flag == 1){
+    	$query = $this->db->get('complainant_details_parta');
+    	foreach ($query->result() as $row) {
+          $this->db->insert('complainant_details_parta_his',$row);
+    	}
+    }elseif($flag == 2){
+    	$query = $this->db->get('complainant_addl_partb1');
+    	foreach ($query->result() as $row) {
+          $this->db->insert('complainant_addl_partb1_his',$row);
+    	}
+    }elseif($flag == 3){
+    	$query = $this->db->get('public_servant_partc');
+    	foreach ($query->result() as $row) {
+          $this->db->insert('public_servant_partc_his',$row);
+    	}
+    }else{
+    	die('no table provided');
+    }
+    	
+    	return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+
+function status_edit_open_complaint($id, $flag)
+		{ 	
+			$ts = date('Y-m-d H:i:s', time());	
+			$this->db->where('filing_no', $id);
+			if($flag == 1){
+							$upd_data = array(
+									'filing_status' => 'false',
+									'openforedit' => 'true',
+									'updated_at' => $ts,																			
+								);
+				$this->db->update('complainant_details_parta', $upd_data); 
+			}
+			elseif($flag == 2){
+							$upd_data = array(
+									'status' => 'false',
+									'updated_at' => $ts,																			
+								);
+				$this->db->update('complainant_addl_partb1', $upd_data);
+			}
+			elseif($flag == 3){
+							$upd_data = array(
+									'status' => 'false',
+									'updated_at' => $ts,																			
+								);
+				$this->db->update('public_servant_partc', $upd_data);
+			}
+			else
+				die('No table provided');
+			//print_r($r);die;
+			return ($this->db->affected_rows() != 1) ? false : true;   
+		}
+
+function fetch_gadjet_report($filing_no)
+		{
+			$this->db->select('gazzette_notification_url');
+			$this->db->from('complainant_details_parta');
+			$this->db->where('filing_no',$filing_no);
+			//echo $this->db->last_query();die('ooo');
+			return $this->db->get()->row();
+		}
+
+function fetch_previous_gadjet_report($ref_no)
+		{
+			$this->db->select('gazzette_notification_url,filing_no');
+			$this->db->from('complainant_details_parta_his');
+			$this->db->where('ref_no', $ref_no);
+			$this->db->where('filing_status','true');
+			//echo $this->db->last_query();die('ooo');
+			return $this->db->get()->result();
+		}
+
+function get_previous_complaint_remarks($fn)
+		{
+			$this->db->select('previous_complaint_description');
+			$this->db->where('filing_no', $fn);
+			$query = $this->db->get('scrutiny');
+
+			if ($query->num_rows() > 0){
+		        return $query->result();;
+		    }
+		    else{
+		        return false;
+		    }
+		}
 }
 ?>

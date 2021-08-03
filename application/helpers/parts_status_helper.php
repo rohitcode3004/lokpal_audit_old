@@ -33,6 +33,17 @@ if (!function_exists('convertToBase64'))
 			return $comp_cap;
 		 }
 
+		 function get_parta_comptype_fn($fn=null)
+	     {
+	 	 	//echo $user_id;
+	 	 	$CI =& get_instance();
+	 	 	$CI->load->model('filing_model');
+	 	 	$comp_row =  $CI->filing_model->check_parta_comp_fn($fn);
+			//print_r($comp_row);die('hel');
+			$comp_cap = $comp_row->complaint_capacity_id;
+			return $comp_cap;
+		 }
+
 		 function get_parta_comptype_compno($filing_no)
 	     {
 	 	 	//echo $user_id;
