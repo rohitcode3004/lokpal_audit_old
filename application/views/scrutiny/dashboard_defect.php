@@ -101,14 +101,11 @@
                   </table>
                 </div>               
                 <div class="row">
-                  <div class="col-md-6 mb-30">
+                  <div class="col-md-12 mb-30">
                     <button type="button" class="btn btn-success status_submit">                 
                      Mark As Undefective
                     </button> 
-                  </div>
-
-                  <div class="col-md-6 mb-30">
-                    <button type="button" class="btn btn-success status_edit_submit">                 
+                    <button type="button" class="btn btn-primary status_edit_submit">                 
                     Open for editing
                     </button> 
                   </div>

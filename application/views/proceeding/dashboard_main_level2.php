@@ -67,21 +67,21 @@ if (0 == $bench_no) {
 							  		<div class="col-md-4 mb-15">
 							  			<a href="<?php echo base_url("proceeding/dashboard/$bench_no/OPI"); ?>" class="widgets-card gd-purple" data-toggle="tooltip" data-placement="bottom">
 							  				<div class="widgets-icon"><span><?php echo $ops_inq_report_count;  ?></span></div>
-							  				<div class="widgets-content">Complaints for which Public Servant's Report after Preliminary Inquiry has been Farwarded by HCP</div>
+							  				<div class="widgets-content">Complaints for which Public Servant's Report after Preliminary Inquiry has been received</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>
 							  		<div class="col-md-4 mb-15">
 							  			<a href="<?php echo base_url("proceeding/dashboard/$bench_no/OPV"); ?>" class="widgets-card gd-olive" data-toggle="tooltip" data-placement="bottom">
 							  				<div class="widgets-icon"><span><?php echo $ops_inv_report_count; ?></span></div>
-							  				<div class="widgets-content">Complaints for which Public Servant's Report after Investigation has been Farwarded by HCP</div>
+							  				<div class="widgets-content">Complaints for which Public Servant's Report after Investigation has been received</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>	
 							  		<div class="col-md-4 mb-15">
 							  			<a href="<?php echo base_url("proceeding/dashboard/$bench_no/AOA"); ?>" class="widgets-card gd-navy" data-toggle="tooltip" data-placement="bottom">
 							  				<div class="widgets-icon"><span><?php echo $aoa_report_count;  ?></span></div>
-							  				<div class="widgets-content">Complaints for which Status/Additional Documents/Other Report has been Farwarded by HCP</div>
+							  				<div class="widgets-content">Complaints for which Status/Additional Documents/Other Report has been received</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>	

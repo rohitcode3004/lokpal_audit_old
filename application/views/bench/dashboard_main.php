@@ -58,21 +58,21 @@
 							  		<div class="col-md-4 mb-15">
 							  			<a href="<?php echo base_url('bench/get_complaints_ops/PIR'); ?>" class="widgets-card gd-purple">
 							  				<div class="widgets-icon"><span><?php echo $opportunity_ps_after_pi_receive; ?></span></div>
-							  				<div class="widgets-content">Complaints for which Public Servant's Report after Preliminary Inquiry has been <strong>Accepted by DR</strong></div>
+							  				<div class="widgets-content">Complaints for which Public Servant's Report after Preliminary Inquiry has been <strong>Accepted</strong></div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>
 							  		<div class="col-md-4 mb-15">
 							  			<a href="<?php echo base_url('bench/get_complaints_ops/IR'); ?>" class="widgets-card gd-olive">
 							  				<div class="widgets-icon"><span><?php echo $opportunity_ps_after_inq_receive;  ?></span></div>
-							  				<div class="widgets-content">Complaints for which Public Servant's Report after Investigation has been <strong>Accepted by DR</strong> </div>
+							  				<div class="widgets-content">Complaints for which Public Servant's Report after Investigation has been <strong>Accepted</strong> </div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>
 							  		<div class="col-md-4 mb-15">
 							  			<a href="<?php echo base_url('bench/get_complaints_ops/AOA'); ?>" class="widgets-card gd-navy">
 							  				<div class="widgets-icon"><span><?php echo $any_other_action_count; ?></span></div>
-							  				<div class="widgets-content">Complaints for which Status/Additional Documents/Other Report has been <strong>Accepted by DR</strong> </div>
+							  				<div class="widgets-content">Complaints for which Status/Additional Documents/Other Report has been <strong>Accepted</strong> </div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
 							  			</a>
 							  		</div>

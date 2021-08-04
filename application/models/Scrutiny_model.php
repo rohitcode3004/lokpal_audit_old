@@ -810,5 +810,20 @@ function get_previous_complaint_remarks($fn)
 		        return false;
 		    }
 		}
+
+
+		function get_previous_complaint_description($filing_no)
+		{
+			$this->db->select('previous_complaint_description');
+			//$this->db->from('scrutiny');
+			$this->db->where('filing_no', $filing_no);
+			$query = $this->db->get('scrutiny');
+			if ($query->num_rows() > 0){
+		        return $query->result();;
+		    }
+		    else{
+		        return false;
+		    }
+		}
 }
 ?>

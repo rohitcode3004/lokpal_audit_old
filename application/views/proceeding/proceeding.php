@@ -221,6 +221,25 @@ $elements = $this->label->view(1);
           <form id="complaint_allotment" class="form-horizontal" role="form" method="post" action='<?= base_url();?>proceeding/action'  name="complaint_allotment" enctype="multipart/form-data">
         <?php } ?>
 
+                <div class="panel panel-primary">
+                <div class="panel-heading">
+                   <h4 class="panel-title">Any Other Previous Complaint:</h4>
+                </div>
+
+                <?php                      
+                $previous_complaint_description=(array)$previous_complaint_description;
+                $previous_complaint_description[0]->previous_complaint_description ?? '';
+                if(isset($previous_complaint_description)) { 
+                ?>                                  
+                  <div class="panel-body">
+                    <p><?php echo $previous_complaint_description[0]->previous_complaint_description ?? ''; ?></p>               
+                  </div>
+                </div>                                 
+                <?php
+                }
+                ?>
+
+
         <?php
           if(isset($summary)) { 
         ?>
