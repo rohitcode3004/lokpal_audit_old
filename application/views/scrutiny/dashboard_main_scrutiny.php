@@ -59,7 +59,7 @@
 							  			<a href="<?php //echo base_url("proceeding/dashboard/$bench_no/RI");
 							  				echo base_url("scrutiny/agency_report_chk/RI");
 
-							  			 ?>" class="widgets-card gd-cyanblue" data-toggle="tooltip" data-placement="bottom" title="The Preliminary-Inquiry report has been received from the agency but, yet to be examined by the bench">
+							  			 ?>" class="widgets-card gd-cyanblue" data-toggle="tooltip" data-placement="bottom">
 							  				<div class="widgets-icon"><span><?php echo $inq_report_count;  ?></span></div>
 							  				<div class="widgets-content">Preliminary Inquiry</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
@@ -71,7 +71,7 @@
 
 
 
-							  			 ?>" class="widgets-card gd-green" data-toggle="tooltip" data-placement="bottom" title="The Investigation report has been received from the agency but, yet to be examined by the bench">
+							  			 ?>" class="widgets-card gd-green" data-toggle="tooltip" data-placement="bottom">
 							  				<div class="widgets-icon"><span><?php echo  $inv_report_count; ?></span></div>
 							  				<div class="widgets-content">Investigation Report</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
@@ -107,7 +107,7 @@
 
 
 
-							  			 ?>" class="widgets-card gd-blue" data-toggle="tooltip" data-placement="bottom" title="The Investigation report has been received from the agency but, yet to be examined by the bench">
+							  			 ?>" class="widgets-card gd-blue" data-toggle="tooltip" data-placement="bottom">
 							  				<div class="widgets-icon"><span><?php echo  $oppertunity_ps_after_pi_count; ?></span></div>
 							  				<div class="widgets-content">After Preliminary Inquiry</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
@@ -118,7 +118,7 @@
 							  			<a href="<?php  //echo base_url("proceeding/dashboard/$bench_no/RV");
 							  			echo base_url("scrutiny/ps_report_chk/OIR");
 
-							  			 ?>" class="widgets-card gd-fuchsia" data-toggle="tooltip" data-placement="bottom" title="The Investigation report has been received from the agency but, yet to be examined by the bench">
+							  			 ?>" class="widgets-card gd-fuchsia" data-toggle="tooltip" data-placement="bottom">
 							  				<div class="widgets-icon"><span><?php echo  $oppertunity_ps_after_IR_count; ?></span></div>
 							  				<div class="widgets-content">After Investigation</div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>
@@ -139,7 +139,7 @@
 							  			<a href="<?php  //echo base_url("proceeding/dashboard/$bench_no/RV");
 							  			echo base_url("scrutiny/ps_report_chk/AOA");
 
-							  			 ?>" class="widgets-card gd-peru" data-toggle="tooltip" data-placement="bottom" title="The Investigation report has been received from the agency but, yet to be examined by the bench">
+							  			 ?>" class="widgets-card gd-peru" data-toggle="tooltip" data-placement="bottom" >
 							  				<div class="widgets-icon"><span><?php echo  $any_other_action; ?></span></div>
 							  				<div class="widgets-content">  Status Report/Additional Documents/Others  </div>
 							  				<i class="fa fa-file-text-o transparent_icon" aria-hidden="true"></i>

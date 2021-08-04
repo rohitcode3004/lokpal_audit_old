@@ -98,6 +98,8 @@ class Bench extends CI_Controller {
 		$data['filing_no'] = $filing_no;
 
 		$last_remarks = $this->scrutiny_model->get_last_rem($filing_no);
+
+		$data['previous_complaint_description'] = $this->scrutiny_model->get_previous_complaint_description($filing_no);
 				//print_r($last_remarks);die;
 		if($last_remarks[0]->summary)
 				$data['summary'] = $last_remarks[0]->summary;

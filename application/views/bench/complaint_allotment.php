@@ -120,8 +120,30 @@ $public_servant_name=$ps_first_name.' '.$ps_mid_name.' '.$ps_sur_name;
                                   <input type="hidden" name="filing_no" value="<?php echo $filing_no; ?>">
  
                                   <div class="form_error">
-                                    <?php echo validation_errors(); ?>
+                                    <?php echo validation_errors(); 
+
+
+                                    ?>
                                   </div>
+                                    
+                                  <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                      <h4 class="panel-title">Any Other Previous Complaint:</h4>
+                                    </div>
+
+                                    <?php                      
+                                    $previous_complaint_description=(array)$previous_complaint_description;
+                                     $previous_complaint_description[0]->previous_complaint_description ?? '';
+                                      if(isset($previous_complaint_description)) { 
+                                  ?>                                  
+                                    <div class="panel-body">
+                                      <p><?php echo $previous_complaint_description[0]->previous_complaint_description ?? ''; ?></p>               
+                                    </div>
+                                  </div>                                 
+                                  <?php
+                                    }
+                                  ?>
+
 
                                   <?php
                                       if(isset($summary)) { 
@@ -154,53 +176,15 @@ $public_servant_name=$ps_first_name.' '.$ps_mid_name.' '.$ps_sur_name;
                                         endforeach;
                                         } 
                                         ?>
-                                      </ul>
-
-                                      <!--<table class="table table-bordered">
-                                        <tbody id="">
-                                          <?php
-                                            if(isset($last_remarks)) {
-                                          ?>
-                                        <tr class='' style="background-color:#fcf876">
-                                          <td>
-                                            <span style="" font-size:15px;> <i> <?php echo "Remarks by ".$last_remarkedby; ?> :-</i></span>
-                                            <label for="" ><?php echo $last_remarks;?></label>
-                                          </td>
-                                        </tr>
-                                        <?php } if(isset($remark_history)) { ?>
-                                        <?php foreach($remark_history as $row):
-                                        if($row->remarks != '') {
-                                        ?>
-                                        <tr style="background-color:#fcf876">
-                                          <td><span style="" font-size:15px;> <i> <?php echo "Remarks by ".get_remarkedby_name($row->remarkd_by); ?>:-</i></span>
-                                          <label for="" ><?php echo $row->remarks; ?></label>
-                                          </td>
-                                        </tr>
-                                        <?php
-                                        }
-                                        endforeach;
-                                        } 
-                                        ?>
-                                        </tbody>
-                                      </table>-->
+                                      </ul>                                     
                                     </div>
-                                  </div>
-                                  <!--<div class="searchComplaint">
-                                    <legend style="" align="margin-left"><b style="font-size: 125%; color: indianred;">Summary of complaint: </b></legend>
-                                  </div>
-                                  <table class="table table-bordered">
-                                    <tbody id="">
-                                      <tr>
-                                        <td>
-                                          <label for="complaint_capacity_id" ><?php print_r($summary); ?></label>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>-->
-                                  
+                                  </div>                                 
                                   <?php
                                     }
                                   ?>
+
+
+
 
                                   
                                   <div class="panel panel-primary">

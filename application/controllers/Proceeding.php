@@ -191,7 +191,7 @@
 					//print_r($last_remarks);die;
 			if(isset($last_remarks[0]->summary))
 					$data['summary'] = $last_remarks[0]->summary;
-
+			$data['previous_complaint_description'] = $this->scrutiny_model->get_previous_complaint_description($filing_no);
 			if(isset($last_remarks[0]->remarks))
 					$data['last_remarks'] = $last_remarks[0]->remarks;
 			
