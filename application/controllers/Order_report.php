@@ -61,10 +61,42 @@ class Order_report extends CI_Controller {
 		$this->load->helper("compno_helper");
 		$userid=$data['user']['id'];
 		$data['menus'] = $this->menus_lib->get_menus($data['user']['role']);
+
+
+		$search_case= ($this->input->post('search_case'));
+		if($search_case=='1')
+		{
 		$dt_of_order_from= ($this->input->post('dt_of_order_from'));
-		$dt_of_order_to= ($this->input->post('dt_of_order_to'));	
-		$this->load->view('templates/front/dheader.php',$data);
+		$dt_of_order_to= ($this->input->post('dt_of_order_to'));
 		$data['case_list'] = $this->order_report_model->get_all_case($dt_of_order_from,$dt_of_order_to);
+		}
+		else
+		{	$complaint_number= ($this->input->post('complaint_number'));
+			$var = preg_split("#/#", $complaint_number);
+			$case_no=(int)$var['0'];
+			$year=$var['1'];
+			if ($case_no =='' or $year =='')
+			{  
+			$this->session->set_flashdata('success_msg', '<div class="alert alert-danger text-center"><h4 class="m-0">Please Enter Complaint Number / Year</h2></div>');
+			redirect('order_report/list_of_case');
+			}
+			else
+			{
+				$data['filing_no'] = $this->bench_model->case_status_data($case_no,$year);
+
+				//echo "<pre>";
+				//print_r($data['filing_no']);
+			//	$part_a[0]->first_name ?? '';
+				$filing_no=$data['filing_no']['0']->filing_no;
+				
+			$data['case_list'] = $this->order_report_model->get_all_case_report_comp_no($filing_no);
+			}
+
+
+			}
+	
+		$this->load->view('templates/front/dheader.php',$data);
+		//$data['case_list'] = $this->order_report_model->get_all_case($dt_of_order_from,$dt_of_order_to);
 		$this->load->view('order_report/list_of_cases.php',$data);
 		$this->load->view('templates/front/dfooter.php',$data);
 		
@@ -96,6 +128,8 @@ $this->load->view('templates/front/dheader.php',$data);
 
 $data['agencydata']= $this->agency_model->getAgencydata($filing_no);
 $data['agencydatahis']= $this->agency_model->getAgencydata_his($filing_no);
+$data['anyotheractiondata']= $this->agency_model->getAnyOtherData($filing_no);
+$data['anyotheractiondata_report']= $this->agency_model->getAnyOtherData_report($filing_no);
 
 
 		 //$data['last_proceeding'] = $this->proceeding_model->get_last_proceeding($filing_no);

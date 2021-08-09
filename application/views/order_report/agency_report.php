@@ -56,9 +56,12 @@
                                         </tr>
              <?php endforeach;
             if(count($agencydata) == 0){ ?>
-              <tr><td colspan="8"> <h3>No data found. </h3></td></tr>
+              <tr></tr>
            <?php }
            ?>
+
+
+
           <?php  if($agencydatahis != 0){
                                                   $c = 1;
                                           foreach($agencydatahis as $row):
@@ -75,6 +78,53 @@
                                         <?php endforeach; 
                                       }
                                         ?>
+
+
+
+                                        <?php 
+                                         if($anyotheractiondata != 0){
+                                                  $c = 1;
+                                          foreach($anyotheractiondata as $row):
+                                      ?>
+                                              <tr>
+                                          <!--<td><?php echo $c++.'.'; ?></td>-->
+                                          <td><?php echo get_displaydate($row->dt_submission); ?></td>
+                                          <td><?php echo get_order_type($row->ordertype_code); ?></td>
+                                          <td><?php echo ($row->team_lead_nm); ?></td>
+                                          <td><?php echo ($row->contact_no); ?></td>
+                                          <td><?php echo $row->email_id; ?></td>
+                                          <td><a href="<?php echo base_url().$row->report_upload; ?>" target="_blank" alt=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Preview report uploaded </a></td>
+                                        </tr>
+                                        <?php endforeach; 
+                                      }
+                                        ?>
+
+
+                                         <?php 
+
+                                         //echo "<pre>";
+                                         //print_r($anyotheractiondata_report);
+                                         if($anyotheractiondata_report != 0){
+                                                  $c = 1;
+                                          foreach($anyotheractiondata_report as $row):
+                                      ?>
+                                              <tr>
+                                          <!--<td><?php echo $c++.'.'; ?></td>-->
+                                          <td><?php echo get_displaydate($row->dt_submission); ?></td>
+                                          <td><?php echo get_order_type($row->ordertype_code); ?></td>
+                                          <td><?php echo ($row->team_lead_nm); ?></td>
+                                          <td><?php echo ($row->contact_no); ?></td>
+                                          <td><?php echo $row->email_id; ?></td>
+                                          <td><a href="<?php echo base_url().$row->report_upload; ?>" target="_blank" alt=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Preview report uploaded </a></td>
+                                        </tr>
+                                        <?php endforeach; 
+                                      }
+                                        ?>
+
+
+
+
+
         </tbody>
                                     <tfoot>
                                         <tr>

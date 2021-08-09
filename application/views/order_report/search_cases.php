@@ -22,10 +22,66 @@
                           <br>
                           <div class="panel-body">
 
-     <form id="search_cases" class="form-horizontal" role="form" method="post" action='<?= base_url();?>order_report/search_case_action'  name="search_case" enctype="multipart/form-data">     
+     <form id="search_cases" class="form-horizontal" role="form" method="post" action='<?= base_url();?>order_report/search_case_action'  name="search_case" enctype="multipart/form-data">   
+      <?php  
+       if(!empty($success_msg)){
+         echo "hello";
+         echo '<div>'.$success_msg.'</div>';
+       }
+       elseif(!empty($error_msg)){
+         echo "Hi";
+         echo '<div>'.$error_msg.'</div>';
+         }
+         echo '<div>'.$this->session->flashdata('success_msg').'</div>';
+     ?>
+
+                    <div class="row">                     
+                                <div class="col-md-8">   
+                                  <ul class="radio-search text-center">
+                                    <li>
+                                      <label>                           
+                                        <input type="radio" name="search_case" id="search_case" value="1">
+                                      Listing Date
+                                      </label>
+                                    </li>                                   
+                                    <li>
+                                      <label>                          
+                                        <input type="radio" name="search_case" id="search_case" value="2">
+                                        Complaint Number
+                                      </label>
+                                    </li>
+                                  </ul>                    
+                                </div>                        
+                              </div>
+       
   
+                <div class="form-group" id="orderdate">                       
+                  <div class="col-md-4 mb-15">
+                    <label for="dt_of_filing"><span style="color: red;">*</span>Listing Date From</label>
+                       <input type="text" class="form-control" name="dt_of_order_from" id="dt_of_order_from"
+                       placeholder="">        
+                  </div> 
+                  <div class="col-md-4 mb-15">
+                    <label for="dt_of_filing_to"><span style="color: red;">*</span>Listing Date To</label>
+                       <input type="text" class="form-control" name="dt_of_order_to" id="dt_of_order_to"
+                       placeholder="">        
+                  </div>
+                  <div class="col-md-8 text-center">
+                    <button type="submit" class="btn btn-success" id="submitbtn">Submit</button>
+                  </div>
+                </div>
+                <div class="form-group" id="cpnumber">    
+                  <label class="control-label col-md-4 col-lg-3" for="complaint_number"><span style="color: red;">*</span>Complaint Number:</label>
+                  <div class="col-md-7 col-lg-5">
+                    <div class="text-danger">Please Enter Complaint Number / Year Format</div> 
+                    <input type="text" class="form-control" name="complaint_number" maxlength="50" id="complaint_number" placeholder="">  
+                    <button type="submit" class="btn btn-success mt-15" id="submitbtn">Submit</button>         
+                  </div> 
+                </div>
+
+
            
-      <div class="panel panel-primary">
+     <!-- <div class="panel panel-primary">
         <div class="panel-heading">Search Order/Report </div>
         <div class="panel-body">
            <div class="row">     
@@ -47,7 +103,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
 
     </form>
@@ -70,6 +126,7 @@
       rules: {        
         dt_of_order_from:"required",
         dt_of_order_to:"required",
+        complaint_number:"required",
       },
 
 
@@ -113,6 +170,36 @@
       
  </script>
 
+
+  <script type="text/javascript">
+    $(document).ready(function(){       
+       $("#orderdate").hide();
+       $("#cpnumber").hide();
+       
+
+       // $('#search_case').on('click', function() {
+        $('input[type="radio"]').click(function() {
+
+           var value = $(this).val(); 
+          // alert(value);
+         // alert(#recieved_by.value);
+         
+          if ( this.value == '1')
+          //.....................^.......
+          {
+             $("#orderdate").show();           
+            $("#cpnumber").hide();        
+          }
+          if ( this.value == '2')
+          {          
+            $("#cpnumber").show();
+             $("#orderdate").hide();
+          }
+         
+        });
+    });
+  </script>
+
  <script type="text/javascript">
             // When the document is ready
             $(document).ready(function () {
@@ -121,7 +208,9 @@
                     format: "dd-mm-yyyy"
                 });  
             
-            });       
+            });   
+
+
 
          $(document).ready(function () {
                  autoclose: true,  

@@ -31,6 +31,7 @@
                                         <tr>
                                            <th>S.No.</th>
                                                 <th>Complaint No</th>
+                                                 <th>Listing Date</th>
                                                 <th>Name of the complainant</th>
                                                 <th>Name of public servant</th>
                                                 <th>Date of filing</th>
@@ -42,14 +43,15 @@
         <tbody>
 
                         <?php
-                      //  echo "<pre>";
-                      // print_r($case_list);
+                        //echo "<pre>";
+                       //print_r($case_list);
             $c = 1;
             foreach($case_list as $row):
               ?>
             <tr>
                 <td><?php echo $c++.'.'; ?></td>
                 <td><b><?php echo get_complaintno($row->filing_no); ?></b></td>
+                 <td><b><?php echo get_displaydate($row->listing_date); ?></b></td>
                  <td>
                 <?php
                     echo $row->first_name.' '.$row->mid_name.' '.$row->sur_name; ?></td>
@@ -75,6 +77,7 @@
                                         <tr>
                                            <th>S.No.</th>
                                                 <th>Complaint No</th>
+                                                 <th>Listing Date</th>
                                                 <th>Name of the complainant</th>
                                                 <th>Name of public servant</th>
                                                 <th>Date of filing</th>
