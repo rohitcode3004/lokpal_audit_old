@@ -249,4 +249,34 @@ class Agency_model extends CI_Model
 			$this->db->insert('orders_agency_report',$insert_data);
     		return ($this->db->affected_rows() != 1) ? false : true;
 		}
+
+
+		public function getAnyOtherData($filing_no)
+	{	 
+		$query = $this->db->get_where('public_servant_detail', array(//making selection
+            'filing_no' => $filing_no
+        ));
+			//$query = $this->db->get();
+			$count = $query->num_rows();
+			if($count === 0)
+				return 0;
+			else
+				return $query->result();	
+	}
+
+
+		public function getAnyOtherData_report($filing_no)
+	{	 
+		$query = $this->db->get_where('any_other_action_detail', array(//making selection
+            'filing_no' => $filing_no
+        ));
+			//$query = $this->db->get();
+			$count = $query->num_rows();
+			if($count === 0)
+				return 0;
+			else
+				return $query->result();	
+	}
 }
+
+

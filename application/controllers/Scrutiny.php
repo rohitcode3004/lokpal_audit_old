@@ -3780,17 +3780,28 @@ function updatecategory(){
 
 				
 				//if($select_an_option == 2){
-				$proceeding_count = $this->proceeding_model->get_proc_count($filing_no);
-				if($proceeding_count != 0)
-				$proceeding_count = $proceeding_count[0]->proceeding_count;
-				//print_r($proceeding_count);die;
-				$proceeding_count = $proceeding_count+1;
+				$proceeding_count_ps_data = $this->scrutiny_model->get_public_servant_data_count($filing_no);
+				 $proceeding_count_ps_data=count($proceeding_count_ps_data);
+			
+
+				
+				if($proceeding_count_ps_data == 0)
+				{
+
+				$proceeding_count_ps_data =1;
+				}
+				else
+				{	
+						//print_r($proceeding_count);die;
+					$proceeding_count_ps_data = $proceeding_count_ps_data+1;
+				}				
+
 					//echo $proceeding_count;die;
 
-			$config['upload_path']   = './cdn/proceeding_order/'; 
+			$config['upload_path']   = './cdn/public_servant_order/'; 
 	        $config['allowed_types'] = 'pdf|doc|docx'; 
-	        //$config['max_size']      = 2000; 
-	        $config['file_name'] = 'agency_report_order_'.$filing_no.'.pdf';
+	        //$config['max_size']      = 2000; 	      
+	        $config['file_name'] = 'ps_report_order_'.$filing_no.'_'.$proceeding_count_ps_data.'.pdf';
 
 	        $this->upload->initialize($config);
 	        $this->load->library('upload', $config);
@@ -3838,14 +3849,14 @@ function updatecategory(){
 									'dt_submission'=>$dt_submission,
 									'team_lead_nm'=>$team_lead_nm,
 									'contact_no'=>$contact_no,
-									'report_content'=>$report_content,
-								'report_upload' => 'cdn/proceeding_order/agency_report_order_'.$filing_no.'.pdf',	
+									'report_content'=>$report_content,									 
+								'report_upload' => 'cdn/public_servant_order/ps_report_order_'.$filing_no.'_'.$proceeding_count_ps_data.'.pdf',	
 								'user_id' => $this->con['id'],						
 								'created_at' => $ts,
 								'ip' => $ip,
 
 							);
-
+						
 
 					//$query6 = $this->agency_model->ins_orders_agency_report($ins_data4);
 					$query6 = $this->scrutiny_model->ins_order_opertunity_to_ps_pi_report($ins_data4);
@@ -4034,7 +4045,7 @@ function updatecategory(){
 
 		function any_other_action_proceeding()
 		{	
-			//echo "hello";die;
+			
 			//print_r($_FILES);die;
 			//print_r($_POST);die;
 			$this->form_validation->set_rules('dt_submission', 'Date of Submission', 'required');			
@@ -4144,17 +4155,27 @@ function updatecategory(){
 
 				
 				//if($select_an_option == 2){
-				$proceeding_count = $this->proceeding_model->get_proc_count($filing_no);
-				if($proceeding_count != 0)
-				$proceeding_count = $proceeding_count[0]->proceeding_count;
-				//print_r($proceeding_count);die;
-				$proceeding_count = $proceeding_count+1;
+				
+				$proceeding_count_ps_data = $this->scrutiny_model->get_public_servant_data_count($filing_no);
+				 $proceeding_count_ps_data=count($proceeding_count_ps_data);				
+				if($proceeding_count_ps_data == 0)
+				{
+
+				$proceeding_count_ps_data =1;
+				}
+				else
+				{	
+						//print_r($proceeding_count);die;
+					$proceeding_count_ps_data = $proceeding_count_ps_data+1;
+				}	
+
+
 					//echo $proceeding_count;die;
 
-			$config['upload_path']   = './cdn/proceeding_order/'; 
-	        $config['allowed_types'] = 'pdf|doc|docx'; 
+				$config['upload_path']   = './cdn/public_servant_order/'; 
+	        $config['allowed_types'] = 'pdf'; 
 	        //$config['max_size']      = 2000; 
-	        $config['file_name'] = 'agency_report_order_'.$filing_no.'.pdf';
+	       $config['file_name'] = 'ps_report_order_'.$filing_no.'_'.$proceeding_count_ps_data.'.pdf';
 
 	        $this->upload->initialize($config);
 	        $this->load->library('upload', $config);
@@ -4172,7 +4193,7 @@ function updatecategory(){
 	         	//check data exist or not
 
 	   
-
+	        
 
 	         		//die('send to chairperson');
 	         		$query1 = $this->proceeding_model->updhis_insert($filing_no, $listing_date, $bench_no);
@@ -4194,7 +4215,7 @@ function updatecategory(){
 					if($query4){
 							$ins_data4 = array(
 									'filing_no' => $filing_no,
-									'agency_counter'=>$proceeding_count,
+									'agency_counter'=>$proceeding_count_ps_data,
 									'listing_date' => $listing_date,
 									'bench_id' => $bench_id,
 									'email_id' => $email_id,
@@ -4205,7 +4226,7 @@ function updatecategory(){
 									'team_lead_nm'=>$team_lead_nm,
 									'contact_no'=>$contact_no,
 									'report_content'=>$report_content,
-								'report_upload' => 'cdn/proceeding_order/agency_report_order_'.$filing_no.'.pdf',	
+								 'report_upload' => 'cdn/public_servant_order/ps_report_order_'.$filing_no.'_'.$proceeding_count_ps_data.'.pdf',
 								'user_id' => $this->con['id'],						
 								'created_at' => $ts,
 								'ip' => $ip,

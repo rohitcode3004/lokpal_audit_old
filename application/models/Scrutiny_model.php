@@ -651,7 +651,7 @@ function ins_order_opertunity_to_ps_pi_report($insert_data)
 			$this->db->insert('public_servant_detail',$insert_data);
 
 
-			 $this->db->last_query();
+			//echo $this->db->last_query();
 			//die;
     		return ($this->db->affected_rows() != 1) ? false : true;
 		}
@@ -662,7 +662,7 @@ function ins_order_opertunity_to_ps_pi_report($insert_data)
 		{
 			$this->db->insert('any_other_action_detail',$insert_data);
 
-			// $this->db->last_query();
+			//echo $this->db->last_query();die;
 			
     		return ($this->db->affected_rows() != 1) ? false : true;
 		}
@@ -823,6 +823,23 @@ function get_previous_complaint_remarks($fn)
 		    }
 		    else{
 		        return false;
+		    }
+		}
+
+		function get_public_servant_data_count($filing_no)
+		{
+			//$this->db->select('proceeding_count');
+			//$this->db->from('case_proceeding');
+			//$this->db->where('filing_no', $filing_no);
+			//return $this->db->get()->row();
+
+			$this->db->where('filing_no',$filing_no);
+		    $query = $this->db->get('public_servant_detail');
+		    if ($query->num_rows() > 0){
+		        return $query->result();
+		    }
+		    else{
+		        return 0;
 		    }
 		}
 }

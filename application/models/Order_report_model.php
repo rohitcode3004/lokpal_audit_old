@@ -18,10 +18,10 @@ class Order_report_model extends CI_Model
 
    			//$sql = "select * from case_detail where ack_no='$ack_no' and cur_year='$ackyear' ";
 
-			$sql = "SELECT cp.filing_no, cdp.first_name,cdp.sur_name,cdp.mid_name,cdp.dt_of_filing,psc.ps_first_name, psc.ps_mid_name,psc.ps_sur_name FROM case_proceeding cp			
+			$sql = "SELECT cp.filing_no,cp.listing_date, cdp.first_name,cdp.sur_name,cdp.mid_name,cdp.dt_of_filing,psc.ps_first_name, psc.ps_mid_name,psc.ps_sur_name FROM case_proceeding cp			
 			LEFT JOIN complainant_details_parta cdp ON cdp.filing_no = cp.filing_no		
 			LEFT JOIN public_servant_partc psc ON psc.filing_no = cp.filing_no
-			where order_date BETWEEN '%$dt_of_order_from%' and '$dt_of_order_to'";
+			where listing_date BETWEEN '%$dt_of_order_from%' and '$dt_of_order_to'";
 			$query 	= $this->db->query($sql)->result();
 			return $query;	
 		}
@@ -60,6 +60,18 @@ class Order_report_model extends CI_Model
 
 		}
 		
+
+		public function get_all_case_report_comp_no($filing_no){	
+			
+   			//$sql = "select * from case_detail where ack_no='$ack_no' and cur_year='$ackyear' ";
+
+			$sql = "SELECT cp.filing_no,cp.listing_date, cdp.first_name,cdp.sur_name,cdp.mid_name,cdp.dt_of_filing,psc.ps_first_name, psc.ps_mid_name,psc.ps_sur_name FROM case_proceeding cp			
+			LEFT JOIN complainant_details_parta cdp ON cdp.filing_no = cp.filing_no		
+			LEFT JOIN public_servant_partc psc ON psc.filing_no = cp.filing_no
+			where cp.filing_no='$filing_no' ";
+			$query 	= $this->db->query($sql)->result();
+			return $query;	
+		}
 
 		
 
