@@ -1,7 +1,8 @@
 <?php //include(APPPATH.'views/templates/front/header2.php'); 
 $elements = $this->label->view(1);
 ?>
-
+<!-- Bootstrap Datepicker  Css -->
+<link href="<?php echo base_url();?>assets/admin_material/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url();?>assets/bootstrap/js/jquery.validate.min.js"></script>
 
@@ -82,12 +83,12 @@ $elements = $this->label->view(1);
 
       rules: {  
         party_cate: "required",
-        affect_name:"required",   
-        affect_gender_id: "required",
-        affect_ageyears:"required",
-        affect_state_id:"required",
-        affect_country_id:"required",
-       // affect_mob_no: "required",
+        //affect_name:"required",   
+        //affect_gender_id: "required",
+        //affect_ageyears:"required",
+        //affect_state_id:"required",
+        //affect_country_id:"required",
+        //affect_mob_no: "required",
         a_comp_gender:"required",
         a_comp_age:"required",
         a_comp_nationality:"required",
@@ -206,7 +207,7 @@ $elements = $this->label->view(1);
                     <?php // echo validation_errors(); ?>
                   </div>
 
-                  <div class="alert alert-info"><strong>NOTE:</strong> This form can be filled multiple times if the number of third party EXCEEDS one</div>
+                  <div class="alert alert-info"><strong>NOTE:</strong> cghfThis form can be filled multiple times if the number of third party EXCEEDS one</div>
 
                   <div class="row">       
                     <?php if (isset($ref_no)) {?>
@@ -227,7 +228,7 @@ $elements = $this->label->view(1);
                   <?php if(!empty($addparty)) { ?>
                     <div class="row">
                       <div class="col-md-4 mb-15">                   
-                        <label for="modify_party" class="text-orange"><span class="text-danger">*</span>Select third party for modification</label> 
+                        <label for="modify_party" class="text-orange">Select third party for modification</label> 
                           <select type="text" class="form-control chosen-single chosen-default" name="modify_party" id="modify_party" onChange="modifyParty(this.value);">
                             <option value="">-- Select third party --</option>
                             <?php foreach($addparty as $row):?>
@@ -240,26 +241,26 @@ $elements = $this->label->view(1);
 
                     <div class="row">
                       <div class="col-md-4 mb-15">
-                        <label class="text-orange" for="affect_name"><?php print_r($this->label->get_short_name($elements, 127)); ?><span class="text-danger">*</span></label>     
+                        <label class="text-orange" for="affect_name"><?php print_r($this->label->get_short_name($elements, 127)); ?></label>     
                         <input type="text" class="form-control" name="affect_name" id="affect_name" maxlength="50" onkeypress="return ValidateAlpha(event)" placeholder="" oninput="this.value = this.value.toUpperCase()" value="<?php echo set_value('affect_name') ?>"> 
-                        <label class="error"><?php echo form_error('affect_name'); ?></label>       
+                        <!--<div class="error"><?php echo form_error('affect_name'); ?></div>-->       
                       </div>
 
                       <div class="col-md-4 mb-15">                   
-                        <label class="text-orange" for="affect_gender_id">(b) Gender<span class="text-danger">*</span></label> 
+                        <label class="text-orange" for="affect_gender_id">(b) Gender</label> 
                         <select class="form-control chosen-single chosen-default" name="affect_gender_id" id="affect_gender_id">
                           <option value="">Select</option>
                           <?php foreach($gender as $row):?>
                            <option value="<?php echo $row->gender_id; ?>" <?php echo set_select('affect_gender_id',  $row->gender_id); ?>><?php echo $row->gender_desc; ?></option>
                          <?php endforeach;?>
                        </select>    
-                       <label class="error"><?php echo form_error('affect_gender_id'); ?></label>      
+                       <!--<div class="error"><?php echo form_error('affect_gender_id'); ?></div>-->      
                      </div>
 
                      <div class="col-md-4 mb-15">
-                      <label class="text-orange" for="affect_ageyears">(c) Age<span class="text-danger">*</span></label>
+                      <label class="text-orange" for="affect_ageyears">(c) Age</label>
                       <input type="text" class="form-control" name="affect_ageyears" maxlength="3" id="affect_ageyears" onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('affect_ageyears') ?>">   
-                      <label class="error"><?php echo form_error('affect_ageyears'); ?></label>      
+                      <!--<div class="error"><?php echo form_error('affect_ageyears'); ?></div>-->      
                     </div> 
                   </div>
 
@@ -281,23 +282,23 @@ $elements = $this->label->view(1);
                     </div>
 
                     <div class="col-md-4 mb-15">
-                      <label for="affect_state_id">State<span class="text-danger">*</span></label>  
+                      <label for="affect_state_id">State</label>  
                       <select class="form-control chosen-single chosen-default" name="affect_state_id" id="affect_state_id" onChange="pageRefesh(this.value);" >
                         <option value="">Select state</option>
                         <?php foreach($state as $row):?>
                          <option value="<?php echo $row->state_code; ?>" <?php echo set_select('affect_state_id',  $row->state_code); ?>><?php echo $row->name; ?></option> 
                        <?php endforeach;?>
                      </select>  
-                     <label class="error"><?php echo form_error('affect_state_id'); ?></label>  
+                     <!--<div class="error"><?php echo form_error('affect_state_id'); ?></div>  -->
                    </div>
                  </div> 
 
                  <div class="row">
                   <div class="col-md-4 mb-15">
-                    <label for="affect_dist_id">District<span class="text-danger">*</span></label>
+                    <label for="affect_dist_id">District</label>
                     <select type="text" class="form-control chosen-single chosen-default" name="affect_dist_id" id="affect_dist_id">         
                     </select>
-                    <label class="error"><?php echo form_error('affect_dist_id'); ?></label> 
+                    <!--<div class="error"><?php echo form_error('affect_dist_id'); ?></div> -->
                   </div>  
 
                   <div class="col-md-4 mb-15">
@@ -313,14 +314,14 @@ $elements = $this->label->view(1);
 
                 <div class="row">
                   <div class="col-md-4 mb-15">
-                    <label for="affect_country_id"><?php print_r($this->label->get_short_name($elements, 119)); ?><span class="text-danger">*</span></label>  
+                    <label for="affect_country_id"><?php print_r($this->label->get_short_name($elements, 119)); ?></label>  
                     <select class="form-control chosen-single chosen-default" name="affect_country_id" id="affect_country_id">
                       <option value=""class="chosen-single">Select Country</option>
                       <?php foreach($getcountry as $row):?>
                         <option value="<?php echo $row->country_id; ?>" <?php echo set_select('affect_country_id',  $row->country_id); ?>><?php echo $row->country_desc; ?></option>
                          <?php endforeach;?>
                       </select> 
-                      <label class="error"><?php echo form_error('affect_country_id'); ?></label>       
+                      <!--<div class="error"><?php echo form_error('affect_country_id'); ?></div>   -->    
                     </div>
 
                     <div class="col-md-4 mb-15">
@@ -331,7 +332,7 @@ $elements = $this->label->view(1);
                     <div class="col-md-4 mb-15">
                       <label class="text-orange" for="affect_mob_no"><?php print_r($this->label->get_short_name($elements, 101)); ?></label>
                       <input type="text" class="form-control" name="affect_mob_no" id="affect_mob_no" maxlength="10"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('affect_mob_no') ?>">
-                      <label class="error"><?php echo form_error('affect_mob_no'); ?></label> 
+                      <!--<div class="error"><?php echo form_error('affect_mob_no'); ?></div> -->
                     </div>
                   </div>
 

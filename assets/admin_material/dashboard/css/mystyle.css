@@ -62,6 +62,7 @@ input[type="radio"], input[type="checkbox"]{
 
 label{
     font-size: 16px;
+    font-weight: 500;
 }
 
 .section-title{
@@ -210,21 +211,13 @@ hr {
 .gd-peru{
     background: linear-gradient(to top, #996100 0%, #f9a726 100%);  
 }
-.gd-olive{
-    background: linear-gradient(to top, #0d9c9c 0%, #0f6d6d 100%);  
-}
-.gd-purple{
-    background: linear-gradient(to top, #9a649a 0%, #b100b1 100%);  
-}
-.gd-navy{
-    background: linear-gradient(to top, #7171de 0%, #0000FF 100%);  
-}
+
 .editable{
     background-color: #d9edf7;
 }
 
 .text-theme{
-    color: #031938;
+    color: #1a4f76;
 }
 .text-orange{
     color: #f47629;
@@ -783,7 +776,7 @@ ul.more-action > li > a {
 }
 .radio-search li{
     display: inline-block;
-    margin: 0 15px 15px 0;
+    margin: 0 0 15px 0;
     padding: 10px 15px;
     background-color: #f7d8ba;
     color: #031938;
@@ -809,13 +802,11 @@ ul.more-action > li > a {
 #affidavitform div.error,
 #affidavitform div.error,
 #officebeared div.error,
-#causelist div.error,
-#search_case div.error,
-#search_case_data div.error {
-   color: red;
-   margin: 0;
-   font-size:12px;
-   padding: 0;
+#causelist div.error {
+    color: red;
+    margin: 0;
+    font-size:12px;
+    padding: 0;
 }
 
 
@@ -920,47 +911,44 @@ ul.more-action > li > a {
     color: #fff;
 }
 
-
-.msg-box{
-    /*display: none;*/
+.card-body{
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+.card-title{
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a4f76;
 }
 
-.form_list{
+.medium_sea_green1{
+    position: absolute;
+    right: 20px;
+    top: 38px;
+}
+.form-control{
+    height: 44px;
+}
+
+
+
+.radio-list{
     display: flex;
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
-    list-style: outside none;
+    list-style: outside none;   
 }
-.form_list li{
-    width: 25%;
-    padding: 0 15px;
+.radio-list li{
+    width: 50%;
     margin-bottom: 15px;
+    padding: 0 15px 0 30px;
     position: relative;
 }
-.form_list li a{
-    display: block;
-    padding: 15px 15px 15px 70px;
-    background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 1px 1px 16px rgb(0 0 0 / 10%);
-    font-size: 18px;
-    font-weight: 500;
-
-}
-
-.form_list li::before{
+.radio-list li input[type="radio"]{
     position: absolute;
-    left: 30px;
-    top: 8px;
-    content: '\f1c1';
-    font-family: 'FontAwesome';
-    color: #f75700;
-    background-color: #ececec;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 50%;
-}
+    left: 5px;
+    top: 0;
 }

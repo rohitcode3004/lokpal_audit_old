@@ -1,20 +1,21 @@
 <?php //include(APPPATH.'views/templates/front/header2.php'); 
 $elements = $this->label->view(1);
 ?>
-
+<!-- Bootstrap Datepicker  Css -->
+<link href="<?php echo base_url();?>assets/admin_material/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url();?>assets/bootstrap/js/jquery.validate.min.js"></script> 
  
  <script language="javascript"> 
  function close_window() {
-  if (confirm("Are you Completed to add witness detail, want to close this Window?")) {
+  if (confirm("Are you sure that you have saved the witness details?")) {
     close();
   }
 }
  function modifyParty()
   {
     var mod_party=$('#modify_party').val();  
-   // alert(mod_party);  
+   
   var post_url= '<?php echo base_url('user/getModifyWitness')?>';
   var request_method= 'POST';  
       $.ajax({
@@ -28,7 +29,7 @@ $elements = $this->label->view(1);
      var json=$.parseJSON(response);
      console.log(json);
      //console.log(JSON.stringify(response));
-        //alert(json[0].w_first_name);
+       // alert(json[0].w_first_name);
         pageRefesh(json[0].w_state_id, json[0].w_dist_id);
 
         $('#w_salutation_id').val(json[0].w_salutation_id);
@@ -44,7 +45,6 @@ $elements = $this->label->view(1);
         $('#w_state_id').val(json[0].w_state_id);
         
         $('#w_country_id').val(json[0].w_country_id);
-        $('#w_pin_code').val(json[0].w_pin_code);
         $('#w_tel_no').val(json[0].w_tel_no);
         $('#w_mob_no').val(json[0].w_mob_no);
         $('#w_email_id').val(json[0].w_email_id);
@@ -98,14 +98,15 @@ $elements = $this->label->view(1);
       onkeyup: false,
 
       rules: {  
-        w_salutation_id: "required",   
-        w_salutation_id: "required",
-        w_first_name: "required",
-        w_gender_id:"required",
-        w_age_years:"required",
-       // w_state_id:"required",
-        w_country_id: "required",
-        w_mob_no:"required",
+        //w_salutation_id: "required",   
+        //w_salutation_id: "required",
+        //w_first_name: "required",
+        //w_gender_id:"required",
+        //w_age_years:"required",
+        //w_state_id:"required",
+        //w_dist_id: "required",
+        //w_country_id: "required",
+        // w_mob_no:"required",
        
 
          w_email_id: {
@@ -189,30 +190,21 @@ $elements = $this->label->view(1);
 
 <?php 
 $ref_no=$this->session->userdata('ref_no');
-//print_r($array);
-  //$array['ref_no'];
-
- // echo "<pre>";
- // print_r($complainant_type); 
-  
-  //var_dump($data['state']);
-  
    ?>
 
 <div class="app-content">
   <div class="main-content-app">
-    <div class="page-header">
-      <h4 class="page-title">Filing Entry</h4>
+   <!-- <div class="page-header">    
       <ol class="breadcrumb"> 
         <li class="breadcrumb-item"><a href="<?php echo base_url('counter/dashboard_main_registry'); ?>">Dashboad</a></li> 
         <li class="breadcrumb-item active" aria-current="page">Filing Entry</li> 
       </ol>
-    </div>
+    </div>-->
 
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">Witness Details</div>
+        <div class="panel  panel-warring">
+          <div class="panel-heading text-center">Witness Details</div>
           <div class="panel-body">
             <div class="row">
               <div class="col-md-12">  
@@ -222,7 +214,7 @@ $ref_no=$this->session->userdata('ref_no');
             <?php //echo validation_errors(); ?>
       </div>
 
-      <div class="alert alert-info">NOTE: This form can be filled multiple times if the number of witnesses exceeds one</div>
+      <div class="alert alert-info"><strong>NOTE:</strong> This form can be filled multiple times if the number of witnesses exceeds one</div>
 
       <div class="row">       
         <?php if (isset($ref_no)) {?>
@@ -267,14 +259,14 @@ $ref_no=$this->session->userdata('ref_no');
         </div>
 
         <div class="col-md-4 mb-15">                   
-          <label for="w_salutation_id" ><?php print_r($this->label->get_short_name($elements, 75)); ?><span style="color: red;">*</span></label>    
+          <label for="w_salutation_id" ><?php print_r($this->label->get_short_name($elements, 75)); ?></label>    
           <select type="text" class="form-control chosen-single chosen-default" name="w_salutation_id" id="w_salutation_id">
             <option value="">Select Title</option>
             <?php foreach($salution as $row):?>
             <option value="<?php echo $row->salutation_id; ?>" <?php echo set_select('w_salutation_id',  $row->salutation_id); ?>><?php echo $row->salutation_desc; ?></option>
             <?php endforeach;?>
           </select>      
-           <label class="error"><?php echo form_error('w_salutation_id'); ?></label>   
+          <!--<div class="error"><?php echo form_error('w_salutation_id'); ?></div>   -->
         </div>
 
         <div class="col-md-4 mb-15">
@@ -290,27 +282,27 @@ $ref_no=$this->session->userdata('ref_no');
       
       <div class="row">
         <div class="col-md-4 mb-15">
-          <label for="w_first_name"><?php print_r($this->label->get_short_name($elements, 78)); ?><span class="text-danger">*</span></label>      
+          <label for="w_first_name"><?php print_r($this->label->get_short_name($elements, 78)); ?></label>      
           <input type="text" class="form-control" name="w_first_name" id="w_first_name" maxlength="50" onkeypress="return ValidateAlpha(event)" maxlength="50" placeholder="" oninput="this.value = this.value.toUpperCase()" value="<?php echo set_value('w_first_name') ?>"> 
-          <label class="error"><?php echo form_error('w_first_name'); ?></label>          
+          <!--<div class="error"><?php echo form_error('w_first_name'); ?></div>       -->   
         </div> 
 
         <div class="col-md-4 mb-15">                   
-          <label for="w_gender_id">(c) Gender:<span class="text-danger">*</span></label>    
+          <label for="w_gender_id">(c) Gender:</label>    
           <select type="text" class="form-control chosen-single chosen-default" name="w_gender_id" id="w_gender_id">
             <option value="">Select</option>
             <?php foreach($gender as $row):?>
              <option value="<?php echo $row->gender_id; ?>" <?php echo set_select('w_gender_id',  $row->gender_id); ?>><?php echo $row->gender_desc; ?></option>
             <?php endforeach;?>
           </select>  
-          <label class="error"><?php echo form_error('w_gender_id'); ?></label>      
+          <!--<div class="error"><?php echo form_error('w_gender_id'); ?></div> -->     
         </div>
 
         <div class="col-md-4 mb-15">
-          <label for="w_age_years">(d) Age: <span style="color: red;">*</span></label>
+          <label for="w_age_years">(d) Age:</label>
           <input type="text" class="form-control" name="w_age_years" maxlength="3" id="w_age_years" onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('w_age_years') ?>">        
         </div>
-         <label class="error"><?php echo form_error('w_age_years'); ?></label> 
+        <!--<div class="error"><?php echo form_error('w_age_years'); ?></div> -->
       </div>
 
       <hr>
@@ -331,23 +323,23 @@ $ref_no=$this->session->userdata('ref_no');
         </div> 
 
         <div class="col-md-4 mb-15">
-          <label for="w_state_id">State<span class="text-danger">*</span></label>  
+          <label for="w_state_id">State</label>  
           <select class="form-control chosen-single chosen-default" name="w_state_id" id="w_state_id" onChange="pageRefesh(this.value);" >
             <option value="">Select state</option>
             <?php foreach($state as $row):?>
             <option value="<?php echo $row->state_code; ?>" <?php echo set_select('w_state_id',  $row->state_code); ?>><?php echo $row->name; ?></option>
             <?php endforeach;?>
           </select>   
-           <label class="error"><?php echo form_error('w_state_id'); ?></label>
+          <!--<div class="error"><?php echo form_error('w_state_id'); ?></div>-->
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-4 mb-15">
-          <label for="w_dist_id">District<span class="text-danger">*</span></label>
+          <label for="w_dist_id">District</label>
           <select class="form-control chosen-single chosen-default" name="w_dist_id" id="w_dist_id">              
           </select>
-           <label class="error"><?php echo form_error('w_dist_id'); ?></label>
+          <!--<div class="error"><?php echo form_error('w_dist_id'); ?></div> -->
         </div> 
 
         <div class="col-md-4 mb-15">
@@ -356,14 +348,14 @@ $ref_no=$this->session->userdata('ref_no');
         </div>
 
         <div class="col-md-4 mb-15">
-          <label for="w_country_id"> <?php print_r($this->label->get_short_name($elements, 119)); ?><span class="text-danger">*</span></label>  
+          <label for="w_country_id"> <?php print_r($this->label->get_short_name($elements, 119)); ?></label>  
           <select class="form-control chosen-single chosen-default" name="w_country_id" id="w_country_id">
             <option value=""class="chosen-single">Select Country</option>
             <?php foreach($getcountry as $row):?>              
             <option value="<?php echo $row->country_id; ?>" <?php echo set_select('w_country_id',  $row->country_id); ?>><?php echo $row->country_desc; ?></option>
             <?php endforeach;?>          
           </select>      
-          <label class="error"><?php echo form_error('w_country_id'); ?></label>    
+          <!--<div class="error"><?php echo form_error('w_country_id'); ?></div>  -->  
         </div>
       </div>
 
@@ -374,10 +366,11 @@ $ref_no=$this->session->userdata('ref_no');
         </div>
 
         <div class="col-md-4 mb-15">
-          <label for="w_mob_no">(f) Mobile No:<span style="color: red;">*</span></label>
+          <label for="w_mob_no">(f) Mobile No:</label>
              <input type="text" class="form-control" name="w_mob_no" id="w_mob_no" maxlength="10"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('w_mob_no') ?>">
+              <div class="error"><?php echo form_error('w_mob_no'); ?></div> 
         </div>
-         <label class="error"><?php echo form_error('w_mob_no'); ?></label> 
+        
 
         <div class="col-md-4 mb-15">
           <label for="w_email_id">(g) E-mail Id:</label>
@@ -386,14 +379,25 @@ $ref_no=$this->session->userdata('ref_no');
       </div>
 
       <div class="row">
-        <div class="col-md-6">
-          <button type="button" class="btn btn-primary"  onclick="window.open('<?php echo site_url("respondent/witnessdetail");?>')">Do you want to add more click here</button>
-        </div>
+
+
+
+
+          <?php if(!empty($addparty)){ ?>  
+
+          <div class="col-md-6">
+            <button type="button" class="btn btn-primary" id="mySubmit" onclick="window.open('<?php echo site_url("respondent/witnessdetail");?>')">Do you want to add more click here</button>
+          </div>
+
+    <?php  }?>
+
+
         <div class="col-md-6 text-right">
           <button type="submit" class="btn btn-success" id="submitbtn">Save witness details</button> 
           <a class="btn btn-danger" href="javascript:close_window();"><span>Close this windows</span></a>
         </div>
       </div>
+
 
       <div class="row">
         <div class="col-md-12">
@@ -417,6 +421,8 @@ $ref_no=$this->session->userdata('ref_no');
     </div>
   </div>
 </div>
+
+
 
  <script type="text/javascript">
             // When the document is ready

@@ -1,7 +1,8 @@
 <?php //include(APPPATH.'views/templates/front/header2.php'); 
 $elements = $this->label->view(1);
 ?>
-
+<!-- Bootstrap Datepicker  Css -->
+<link href="<?php echo base_url();?>assets/admin_material/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url();?>assets/bootstrap/js/jquery.validate.min.js"></script> 
  
@@ -281,7 +282,14 @@ function PageComplain(value, value2)
         ad_complaint_capacity_id:"required",
         ad_ps_id:"required",
         ad_ps_pl_stateid: "required",
-        ad_ps_pl_dist_id:"required",        
+        ad_ps_pl_dist_id:"required",    
+        ad_present_ps_desig:"required",  
+        ad_ps_desig:"required", 
+        ad_ps_orgn:"required", 
+        ad_psc_postheld:"required", 
+        ad_periodf_coa:"required", 
+        ad_periodt_coa:"required", 
+        ad_ps_pl_occ:"required",          
       },
       messages: {
         groups_err: "Please select roll",
@@ -328,8 +336,8 @@ $ref_no=$this->session->userdata('ref_no');
 
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">Additional Public Servant Details</div>
+        <div class="panel panel-warring">
+          <div class="panel-heading text-center">Additional Public Servant Details</div>
           <div class="panel-body">
             <div class="row">
               <div class="col-md-12">     
@@ -382,7 +390,7 @@ $ref_no=$this->session->userdata('ref_no');
       <div class="row">
         <div class="col-md-12"> 
           <h4 class="text-theme mb-15"><?php print_r($this->label->get_short_name($elements, 129)); ?></h4>
-          <label>1. Name of the public servant(s) against whom complaint is being made (in block letters)* -</label>
+          <label class="text-orange">1. Name of the public servant(s) against whom complaint is being made (in block letters)* -</label>
         </div>
         <div class="col-md-3 mb-15">                   
           <label for="ad_ps_salutation_id" ><?php print_r($this->label->get_short_name($elements, 75)); ?><span class="text-danger">*</span></label>    
@@ -411,39 +419,42 @@ $ref_no=$this->session->userdata('ref_no');
       </div>
 
       <div class="row">
-        <div class="col-md-6 mb-15">
-          <label>2. Present designation/status of the public servant(s) against whom complaint is being made -</label>
+        <div class="col-md-12 mb-15">
+          <label class="text-orange">2. Present designation/status of the public servant(s) against whom complaint is being made<span class="text-danger">*</span> -</label>
           <input type="text" class="form-control" name="ad_present_ps_desig" id="ad_present_ps_desig" value="<?php if(isset($partc)) echo $partc['ad_present_ps_desig']; else echo set_value('ad_present_ps_desig');?>" maxlength="50" onkeypress="return ValidateAlpha(event)" placeholder="" >      
         </div>
-        <div class="col-md-6 mb-15">                   
-          <label for="ad_ps_dsp_lp"><?php print_r($this->label->get_short_name($elements, 130)); ?></label>    
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 mb-15">                   
+          <label class="text-orange" for="ad_ps_dsp_lp"><?php print_r($this->label->get_short_name($elements, 130)); ?><span class="text-danger">*</span></label>    
           <div class="radio">
-            <label><input type="radio" name="ad_ps_dsp_lp" id="Active" value="1"  checked="checked"> Yes</label>
-            <label><input type="radio" name="ad_ps_dsp_lp" id="Inactive" value="2" > No</label>
+            <label><input type="radio" name="ad_ps_dsp_lp" id="Active" required="required" value="1" checked="checked"> Yes</label>
+            <label><input type="radio" name="ad_ps_dsp_lp" id="Inactive" required="required" value="2" > No</label>
           </div>
         </div>
       </div>
 
       <div class="row"> 
         <div class="col-md-12">
-          <label>4. With respect to serial no. 2 above, indicate:</label>
+          <label class="text-orange">4. With respect to serial no. 2 above, indicate:</label>
         </div>
       </div>
 
       <div class="row"> 
         <div class="col-md-4 mb-15">
-          <label for="ad_ps_desig"><?php print_r($this->label->get_short_name($elements, 131)); ?></label>
+          <label for="ad_ps_desig"><?php print_r($this->label->get_short_name($elements, 131)); ?><span class="text-danger">*</span></label>
             <input type="text" class="form-control" name="ad_ps_desig"  id="ad_ps_desig" maxlength="150" placeholder="">
         </div>
         <div class="col-md-8 mb-15">
-          <label for="ad_ps_orgn"><?php print_r($this->label->get_short_name($elements, 132)); ?></label>       
+          <label for="ad_ps_orgn"><?php print_r($this->label->get_short_name($elements, 132)); ?><span class="text-danger">*</span></label>       
           <input type="text" class="form-control" name="ad_ps_orgn" id="ad_ps_orgn" maxlength="50" onkeypress="return ValidateAlpha(event)" placeholder="">        
         </div>
       </div>
 
       <div class="row">   
         <div class="col-md-6 mb-15"> 
-          <label for="ad_complaint_capacity_id"><?php print_r($this->label->get_short_name($elements, 133)); ?><span class="text-danger">*</span></label>    
+          <label class="text-orange" for="ad_complaint_capacity_id"><?php print_r($this->label->get_short_name($elements, 133)); ?><span class="text-danger">*</span></label>    
           <select type="text" class="form-control chosen-single chosen-default" name="ad_complaint_capacity_id" id="ad_complaint_capacity_id" onChange="PageComplain(this.value);" >
             <option value="">Select</option>
             <?php foreach($complainant_type as $row):?>
@@ -461,7 +472,7 @@ $ref_no=$this->session->userdata('ref_no');
 
         <div class="col-md-6 mb-15">
           <div id="otherid">
-            <label for="ad_ps_othcate"><?php print_r($this->label->get_short_name($elements, 135)); ?></label>
+            <label for="ad_ps_othcate"><?php print_r($this->label->get_short_name($elements, 135)); ?><span class="text-danger">*</span></label>
             <input type="text" class="form-control" name="ad_ps_othcate" id="ad_ps_othcate" maxlength="50" placeholder="">
           </div>
         </div>
@@ -470,17 +481,17 @@ $ref_no=$this->session->userdata('ref_no');
       <div id="comhide">
         <div class="row"> 
           <div class="col-md-12">
-            <label><?php print_r($this->label->get_short_name($elements, 136)); ?>-</label>
+            <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 136)); ?>-</label>
           </div>
         </div>
 
         <div class="row">
           <?php //$tas=$partc['tas_fingoi'] ?? ''; ?>
           <div class="col-md-6 mb-15">                   
-            <label for="ad_tas_fingoi"><?php print_r($this->label->get_short_name($elements, 137)); ?></label>
+            <label for="ad_tas_fingoi"><?php print_r($this->label->get_short_name($elements, 137)); ?><span class="text-danger">*</span></label>
             <div class="radio">
-              <label><input type="radio" name="ad_tas_fingoi" id="Active" value="1" checked="checked"> Yes</label>
-              <label><input type="radio" name="ad_tas_fingoi" id="Inactive" value="2"> No</label>
+              <label><input type="radio" name="ad_tas_fingoi" id="Active" required="required" value="1"> Yes</label>
+              <label><input type="radio" name="ad_tas_fingoi" id="Inactive" required="required" value="2"> No</label>
             </div>
           </div>
         </div>
@@ -488,10 +499,10 @@ $ref_no=$this->session->userdata('ref_no');
         <div class="row">
           <div class="col-md-6 mb-15"> 
             <?php // $anninc=$partc['anninc_onecr'] ?? ''; ?>                  
-            <label for="ad_anninc_onecr"><?php print_r($this->label->get_short_name($elements, 138)); ?></label>    
+            <label for="ad_anninc_onecr"><?php print_r($this->label->get_short_name($elements, 138)); ?><span class="text-danger">*</span></label>    
             <div class="radio">
-              <label><input type="radio" name="ad_anninc_onecr" id="Active" value="1" checked="checked"> Yes</label>
-              <label><input type="radio" name="ad_anninc_onecr" id="Inactive" value="2"> No</label>
+              <label><input type="radio" name="ad_anninc_onecr" id="Active" required="required" value="1"> Yes</label>
+              <label><input type="radio" name="ad_anninc_onecr" id="Inactive" required="required" value="2"> No</label>
             </div>
           </div>
         </div>
@@ -499,9 +510,10 @@ $ref_no=$this->session->userdata('ref_no');
         <div class="row">
           <div class="col-md-12 mb-15">    
           <?php // $dona=$partc['dona_fs'] ?? ''; ?> 
-            <label for="ad_dona_fs"><?php print_r($this->label->get_short_name($elements, 139)); ?></label><div class="radio">
-              <label><input type="radio" name="ad_dona_fs" id="Active" value="1" checked="checked"> Yes</label>
-              <label><input type="radio" name="ad_dona_fs" id="Inactive" value="2"> No</label>
+            <label for="ad_dona_fs"><?php print_r($this->label->get_short_name($elements, 139)); ?><span class="text-danger">*</span></label>
+            <div class="radio">
+              <label><input type="radio" name="ad_dona_fs" id="Active" required="required" value="1"> Yes</label>
+              <label><input type="radio" name="ad_dona_fs" id="Inactive" required="required" value="2"> No</label>
             </div>      
           </div>
         </div>
@@ -510,7 +522,7 @@ $ref_no=$this->session->userdata('ref_no');
       <div class="row"> 
         <?php // $pss=$partc['pss_sbbca'] ?? ''; ?> 
         <div class="col-md-12 mb-15">
-          <label><?php print_r($this->label->get_short_name($elements, 140)); ?></label>
+          <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 140)); ?></label>
           <div class="radio">
             <label><input type="radio" name="ad_pss_sbbca" id="Active" value="1" checked="checked"> Yes</label>
             <label><input type="radio" name="ad_pss_sbbca" id="Inactive" value="2"> No</label>
@@ -520,25 +532,25 @@ $ref_no=$this->session->userdata('ref_no');
 
       <div class="row"> 
         <div class="col-md-12 mb-15"> 
-          <label><?php print_r($this->label->get_short_name($elements, 141)); ?></label>      
+          <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 141)); ?><span class="text-danger">*</span></label>      
           <input type="text" class="form-control" name="ad_psc_postheld" id="ad_psc_postheld" value="<?php echo $partc['psc_postheld'] ?? '';?>" onkeypress="return ValidateAlpha(event)" maxlength="150" placeholder="">        
         </div>
       </div>
 
       <div class="row"> 
         <div class="col-md-12 mb-15">
-          <label>9. Details of the Cause of Action/offence (under the Prevention of Corruption Act, 1988) -</label><br>
+          <label class="text-orange">9. Details of the Cause of Action/offence (under the Prevention of Corruption Act, 1988) -</label><br>
           <label for="periodf_coa">(i). Period during which alleged misconduct was committed.</label>
         </div> 
         <div class="col-md-6 mb-15">
-          <label for="ad_periodf_coa"><?php print_r($this->label->get_short_name($elements, 143)); ?><span style="color: red;">*</span></label>
+          <label for="ad_periodf_coa"><?php print_r($this->label->get_short_name($elements, 143)); ?><span class="text-danger">*</span></label>
           <input type="text" class="form-control" name="ad_periodf_coa" value="<?php
                 if(isset($partc)){
               echo get_displaydate($partc['ad_periodf_coa']) ?? ''; } ?>" id="ad_periodf_coa" placeholder="">
         </div> 
 
         <div class="col-md-6 mb-15">
-          <label for="ad_periodt_coa"><?php print_r($this->label->get_short_name($elements, 144)); ?><span style="color: red;">*</span></label>
+          <label for="ad_periodt_coa"><?php print_r($this->label->get_short_name($elements, 144)); ?><span class="text-danger">*</span></label>
           <input type="text" class="form-control" name="ad_periodt_coa" id="ad_periodt_coa" value="<?php if(isset($partc)){
               echo get_displaydate($partc['ad_periodt_coa']) ?? ''; }?>" placeholder="">
         </div>
@@ -546,15 +558,13 @@ $ref_no=$this->session->userdata('ref_no');
 
       <div class="row"> 
         <div class="col-md-6 mb-15">
-          <label for="ad_ps_pl_occ"><?php print_r($this->label->get_short_name($elements, 145)); ?></label>
+          <label for="ad_ps_pl_occ"><?php print_r($this->label->get_short_name($elements, 145)); ?><span class="text-danger">*</span></label>
           <input type="text" class="form-control" name="ad_ps_pl_occ" id="ad_ps_pl_occ" maxlength="150" onkeypress="return ValidateAlpha(event)" placeholder="">        
         </div>
-      </div>
 
-      <div class="row">
         <?php $ps_pl_state=$partc['ps_pl_stateid'] ?? ''; ?>
         <div class="col-md-6 mb-15">
-          <label for="ad_ps_pl_stateid"><?php print_r($this->label->get_short_name($elements, 92)); ?><span style="color: red;">*</span></label>  
+          <label for="ad_ps_pl_stateid"><?php print_r($this->label->get_short_name($elements, 92)); ?><span class="text-danger">*</span></label>  
           <select type="text" class="form-control" name="ad_ps_pl_stateid" id="ad_ps_pl_stateid" class="chosen-single chosen-default" onChange="getDistrict(this.value);" >
             <option value="">Select state</option>
             <?php foreach($state as $row):?>
@@ -562,9 +572,11 @@ $ref_no=$this->session->userdata('ref_no');
             <?php endforeach;?>
           </select>   
         </div>
+      </div>
 
+      <div class="row">
         <div class="col-md-6 mb-15">
-          <label for="ad_ps_pl_dist_id"><?php print_r($this->label->get_short_name($elements, 93)); ?><span style="color: red;">*</span></label>
+          <label for="ad_ps_pl_dist_id"><?php print_r($this->label->get_short_name($elements, 93)); ?><span class="text-danger">*</span></label>
           <select type="text" class="form-control chosen-single chosen-default" name="ad_ps_pl_dist_id" id="ad_ps_pl_dist_id">  
               
           </select> 

@@ -3,7 +3,8 @@
 $elements = $this->label->view(1);
 ?>
 
-
+<!-- Bootstrap Datepicker  Css -->
+<link href="<?php echo base_url();?>assets/admin_material/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
   <?php 
 
@@ -77,10 +78,9 @@ $elements = $this->label->view(1);
                     
                   <div class="row">
                     <div class="col-md-12 mb-15">  
-                    <label class="text-orange">1. In case the complaint is made by a body or board or corporation or authority or company, society or association
-                   of persons or trust or limited liability partnership, then please indicate: -</label>
+                    <label class="text-orange">1. In case the complaint is made by a body or board or corporation or authority or company, society or association of persons or trust or limited liability partnership, then please indicate: -</label>
                       <?php $org_ref=$partb['orgn_referred_india'] ?? ''; ?>                 
-                      <label for="orgn_referred_india" ><?php print_r($this->label->get_short_name($elements, 61)); ?></label>  
+                      <label for="orgn_referred_india" ><?php print_r($this->label->get_short_name($elements, 61)); ?><span class="text-danger">*</span></label>  
 
                       <div class="radio">
                         <label>
@@ -91,7 +91,8 @@ $elements = $this->label->view(1);
                           <input type="radio" name="orgn_referred_india" id="orgn_referred_india" value="2" <?php if ($org_ref=="2"){echo "checked=checked";}?>>
                           No
                         </label>
-                      </div>       
+                      </div>  
+                      <span><?php echo form_error('orgn_referred_india'); ?></span>     
                     </div>
                   </div> 
 
@@ -100,15 +101,15 @@ $elements = $this->label->view(1);
 
                       <?php $cert=$partb['cert_regInc_encl'] ?? ''; ?> 
 
-                      <label for="cert_regInc_encl">(b). If the answer to (a) above is “YES” then whether the certificate of registration/incorporation [<i>as issued by the authority competent to issue such certificate in India or by authority competent to issue such <br> certificate as per the regulating law of the Foreign State, as the case may be</i>], in respect of such organisation has been
-                       enclosed?</label>    
+                      <label for="cert_regInc_encl">(b). If the answer to (a) above is “YES” then whether the certificate of registration/incorporation [<i>as issued by the authority competent to issue such certificate in India or by authority competent to issue such certificate as per the regulating law of the Foreign State, as the case may be</i>], in respect of such organisation has been
+                       enclosed?<span class="text-danger">*</span></label>    
                       <div class="radio">
                         <label>
-                          <input type="radio" name="cert_regInc_encl" id="Active" value="1" <?php if ($cert=="1"){echo "checked=checked";}?>>
+                          <input type="radio" name="cert_regInc_encl" id="Active" required="required" value="1" <?php if ($cert=="1"){echo "checked=checked";}?>>
                           Yes
                         </label>
                         <label>
-                          <input type="radio" name="cert_regInc_encl" id="Inactive" value="2" <?php if ($cert=="2"){echo "checked=checked";}?>>
+                          <input type="radio" name="cert_regInc_encl" id="Inactive" required="required" value="2" <?php if ($cert=="2"){echo "checked=checked";}?>>
                           No
                         </label>
                       </div> 
@@ -119,9 +120,10 @@ $elements = $this->label->view(1);
                   <div class="row namecert_div" style="display: none;">
 
                     <div class="col-md-12 mb-15">
-                      <label for="auth_iregInc"><?php print_r($this->label->get_short_name($elements, 64)); ?></label>       
+                      <label for="auth_iregInc"><?php print_r($this->label->get_short_name($elements, 64)); ?><span class="text-danger">*</span></label>       
                       <input type="text" class="form-control" name="auth_ireginc" id="auth_ireginc" onkeypress="return ValidateAlpha(event)"
-                      value="<?php if(isset($partb)) echo $partb['auth_ireginc']; else echo set_value('auth_ireginc');?>" placeholder="" maxlength="1000">        
+                      value="<?php if(isset($partb)) echo $partb['auth_ireginc']; else echo set_value('auth_ireginc');?>" placeholder="" maxlength="1000">   
+                      <span><?php echo form_error('auth_ireginc'); ?></span>          
                     </div>
                   </div>
 
@@ -129,18 +131,20 @@ $elements = $this->label->view(1);
 
                   <div class="row">
                     <div class="col-md-4 mb-15">
-                      <label for="o_hpnl"><?php print_r($this->label->get_short_name($elements, 66)); ?></label>       
+                      <label for="o_hpnl"><?php print_r($this->label->get_short_name($elements, 66)); ?><span class="text-danger">*</span></label>       
                       <input type="text" class="form-control" name="o_hpnl" id="o_hpnl"             
                       value="<?php if(isset($partb)) echo $partb['o_hpnl']; else echo set_value('o_hpnl');?>"
 
-                      maxlength="1000"  placeholder="">        
+                      maxlength="1000"  placeholder=""> 
+                      <div class="error"><?php echo form_error('o_hpnl'); ?></div>       
                     </div>
 
                     <div class="col-md-4 mb-15">
-                      <label for="o_vill_city"><?php print_r($this->label->get_short_name($elements, 106)); ?></label>
+                      <label for="o_vill_city"><?php print_r($this->label->get_short_name($elements, 106)); ?><span class="text-danger">*</span></label>
                       <input type="text" class="form-control" name="o_vill_city" id="o_vill_city" maxlength="1000"
-                      value="<?php if(isset($partb)) echo $partb['o_vill_city']; else echo set_value('o_vill_city');?>" onkeypress="return ValidateAlpha(event)" placeholder="">        
-                    </div> 
+                      value="<?php if(isset($partb)) echo $partb['o_vill_city']; else echo set_value('o_vill_city');?>" onkeypress="return ValidateAlpha(event)" placeholder="">  
+                      <div class="error"><?php echo form_error('o_vill_city'); ?></div>      
+                    </div>  
 
                     <div class="col-md-4 mb-15">
                       <label for="o_state_id"><?php print_r($this->label->get_short_name($elements, 69)); ?><span class="text-danger">*</span></label>  
@@ -168,9 +172,10 @@ $elements = $this->label->view(1);
 
     
                     <div class="col-md-4 mb-15">
-                      <label for="o_pin_code"><?php print_r($this->label->get_short_name($elements, 70)); ?></label>   
+                      <label for="o_pin_code"><?php print_r($this->label->get_short_name($elements, 70)); ?><span class="text-danger">*</span></label>   
                       <input type="text" class="form-control" name="o_pin_code" id="o_pin_code" maxlength="6"  
                      value="<?php echo set_value('o_pin_code', @$partb['o_pin_code'] ?? ''); ?>" onkeypress="return isNumberKey(event)" placeholder=""> 
+                     <div class="error"><?php echo form_error('o_pin_code'); ?></div>  
                     </div>
 
 
@@ -212,8 +217,8 @@ $elements = $this->label->view(1);
                     </div>
                   
                     <div class="col-md-4 mb-15">
-                      <label for="o_email_id"><?php print_r($this->label->get_short_name($elements, 72)); ?></label>
-                      <input type="text" class="form-control" name="o_email_id" id="o_email_id" value="<?php if(isset($partb)) echo $partb['o_email_id']; else echo set_value('o_email_id');?>" placeholder="" maxlength="500">
+                      <label for="o_email_id"><?php print_r($this->label->get_short_name($elements, 72)); ?><span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="o_email_id" id="o_email_id" required="required" value="<?php if(isset($partb)) echo $partb['o_email_id']; else echo set_value('o_email_id');?>" placeholder="" maxlength="500">
                     </div>
                   </div>
                   
@@ -235,8 +240,9 @@ $elements = $this->label->view(1);
                       <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 107)); ?> - </label>
                     </div>
                     <div class="col-md-4 mb-15">
-                      <label for="h_first_name"><?php print_r($this->label->get_short_name($elements, 111)); ?> </label>       
+                      <label for="h_first_name"><?php print_r($this->label->get_short_name($elements, 111)); ?><span class="text-danger">*</span></label>       
                       <input type="text" class="form-control" name="h_first_name" id="h_first_name" maxlength="500" value="<?php if(isset($partb)) echo $partb['h_first_name']; else echo set_value('h_first_name');?>" onkeypress="return ValidateAlpha(event)" placeholder="" oninput="this.value = this.value.toUpperCase()">     
+                      <div class="error"><?php echo form_error('h_first_name'); ?></div>      
                     </div>
                   </div>
 
@@ -354,6 +360,7 @@ $elements = $this->label->view(1);
                       <input type="text" class="form-control" name="aidentity_proof_doi" value="<?php if(isset($partb)) echo get_displaydate($partb['aidentity_proof_doi']); else echo set_value('aidentity_proof_doi'); ?>" id="aidentity_proof_doi" placeholder="">
                     </div>
                   </div>
+
                   <div class="row">
                     <div class="col-md-4 mb-15">
                       <label for="aidentity_proof_vupto"><?php print_r($this->label->get_short_name($elements, 86)); ?></label>
@@ -367,7 +374,7 @@ $elements = $this->label->view(1);
 
                     <?php  $identity_upload=$partb['identity_url_partb'] ?? ''; ?>
                     <div class="col-md-4 mb-15">
-                      <label for="identity_proof_upload" class="col-md-12"><?php print_r($this->label->get_short_name($elements, 88)); ?></label>
+                      <label for="identity_proof_upload" class="col-md-12"><?php print_r($this->label->get_short_name($elements, 88)); ?><span class="text-danger">*</span></label>
                       <input type="file" id="identity_proof_upload" name="identity_proof_upload" class="form-control"> 
                       <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
                       <div class="error" id="identity_proof_upload_error"><?php echo form_error('identity_proof_upload'); ?></div>   
@@ -429,7 +436,7 @@ $elements = $this->label->view(1);
 
                     <?php  $residence_upload=$partb['residence_url_partb'] ?? ''; ?>
                     <div class="col-md-4 mb-15">
-                      <label for="aidres_proof_upload"><?php print_r($this->label->get_short_name($elements, 118)); ?></label>
+                      <label for="aidres_proof_upload"><?php print_r($this->label->get_short_name($elements, 118)); ?><span class="text-danger">*</span></label>
                       <input type="file" id="aidres_proof_upload" name="aidres_proof_upload" class="form-control" size="20"> 
                       <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
                       <div class="error" id="aidres_proof_upload_error"><?php echo form_error('aidres_proof_upload'); ?></div>   
@@ -450,14 +457,16 @@ $elements = $this->label->view(1);
                       <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 89)); ?>-</label>
                     </div>
                     <div class="col-md-4 mb-15">
-                      <label for="ap_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?></label>
+                      <label for="ap_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?><span class="text-danger">*</span></label>
                       <input type="text" class="form-control" name="ap_hpnl"  id="ap_hpnl" value="<?php  if(isset($partb)) echo $partb['ap_hpnl']; else echo set_value('ap_hpnl');?>" maxlength="1000" placeholder="">
+                      <div class="error"><?php echo form_error('ap_hpnl'); ?></div>    
                     </div>      
 
                     <div class="col-md-4 mb-15">
-                      <label for="ap_vill_city"><?php print_r($this->label->get_short_name($elements, 94)); ?></label>   
-                      <input type="text" class="form-control" name="ap_vill_city" id="ap_vill_city" maxlength="1000" onkeypress="return ValidateAlpha(event)" value="<?php  if(isset($partb)) echo $partb['ap_vill_city']; else echo set_value('ap_vill_city');?>" placeholder="">        
-                    </div> 
+                      <label for="ap_vill_city"><?php print_r($this->label->get_short_name($elements, 94)); ?><span class="text-danger">*</span></label>   
+                      <input type="text" class="form-control" name="ap_vill_city" id="ap_vill_city" maxlength="1000" onkeypress="return ValidateAlpha(event)" value="<?php  if(isset($partb)) echo $partb['ap_vill_city']; else echo set_value('ap_vill_city');?>" placeholder="">
+                      <div class="error"><?php echo form_error('ap_vill_city'); ?></div>         
+                    </div>
 
                     <div class="col-md-4 mb-15">
                       <label for="ap_state_id">State<span class="text-danger">*</span></label>  
@@ -520,12 +529,14 @@ $elements = $this->label->view(1);
                     </div>
 
                     <div class="col-md-4 mb-15">
-                      <label for="ac_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?></label>
+                      <label for="ac_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?><span class="text-danger">*</span></label>
                       <input type="text" class="form-control" name="ac_hpnl" id="ac_hpnl" value="<?php  if(isset($partb)) echo $partb['ac_hpnl']; else echo set_value('ac_hpnl');?>" maxlength="1000" placeholder="">
+                      <div class="error"><?php echo form_error('ac_hpnl'); ?></div>      
                     </div>      
                     <div class="col-md-4 mb-15">
-                      <label for="ac_vill_city"> <?php print_r($this->label->get_short_name($elements, 94)); ?></label>      
-                      <input type="text" class="form-control" name="ac_vill_city" id="ac_vill_city" maxlength="50" onkeypress="return ValidateAlpha(event)" value="<?php  if(isset($partb)) echo $partb['ac_vill_city']; else echo set_value('ac_vill_city');?>" placeholder="">        
+                      <label for="ac_vill_city"> <?php print_r($this->label->get_short_name($elements, 94)); ?><span class="text-danger">*</span></label>      
+                      <input type="text" class="form-control" name="ac_vill_city" id="ac_vill_city" maxlength="50" onkeypress="return ValidateAlpha(event)" value="<?php  if(isset($partb)) echo $partb['ac_vill_city']; else echo set_value('ac_vill_city');?>" placeholder="">   
+                      <div class="error"><?php echo form_error('ac_vill_city'); ?></div>           
                     </div>
                     <div class="col-md-4 mb-15">
                       <label for="ac_state_id" class="control-label">State<span class="text-danger">*</span></label>  
@@ -551,8 +562,9 @@ $elements = $this->label->view(1);
                     </div>  
 
                     <div class="col-md-4 mb-15">
-                     <label for="ac_pin_code"><?php print_r($this->label->get_short_name($elements, 95)); ?></label>   
+                     <label for="ac_pin_code"><?php print_r($this->label->get_short_name($elements, 95)); ?><span class="text-danger">*</span></label>   
                      <input type="text" class="form-control" name="ac_pin_code" id="ac_pin_code" maxlength="6"  onkeypress="return isNumberKey(event)" value="<?php  if(isset($partb)) echo $partb['ac_pin_code']; else echo set_value('ac_pin_code');?>" placeholder=""> 
+                     <div class="error"><?php echo form_error('ac_pin_code'); ?></div>
                     </div>
                     <div class="col-md-4 mb-15">
                       <?php $nationalty2=$partb['ac_country_id'] ?? ''; ?>
@@ -577,8 +589,9 @@ $elements = $this->label->view(1);
 
                   <div class="row"> 
                     <div class="col-md-6 mb-15">
-                      <label class="text-orange" for="aoccu_desig_avo"><?php print_r($this->label->get_short_name($elements, 99)); ?></label>
+                      <label class="text-orange" for="aoccu_desig_avo"><?php print_r($this->label->get_short_name($elements, 99)); ?><span class="text-danger">*</span></label>
                       <input type="text" class="form-control" name="aoccu_desig_avo" id="aoccu_desig_avo" onkeypress="return ValidateAlpha(event)"  value="<?php  if(isset($partb)) echo $partb['aoccu_desig_avo']; else echo set_value('aoccu_desig_avo');?>" placeholder="" maxlength="1000">
+                      <div class="error"><?php echo form_error('aoccu_desig_avo'); ?></div>  
                     </div>
 
                     <div class="col-md-6 mb-15">
@@ -593,22 +606,23 @@ $elements = $this->label->view(1);
                       <div class="error"><?php echo form_error('amob_no'); ?></div> 
                     </div>
                     <div class="col-md-6 mb-15">
-                      <label class="text-orange" for="email_id"><?php print_r($this->label->get_short_name($elements, 102)); ?></label>
-                      <input type="text" class="form-control" name="email_id" id="email_id" value="<?php   if(isset($partb)) echo $partb['email_id']; else echo set_value('email_id');?>" placeholder="" maxlength="500">
+                      <label class="text-orange" for="email_id"><?php print_r($this->label->get_short_name($elements, 102)); ?><span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="email_id" id="email_id" required="required" value="<?php   if(isset($partb)) echo $partb['email_id']; else echo set_value('email_id');?>" placeholder="" maxlength="500">
+                      <div class="error"><?php echo form_error('email_id'); ?></div>  
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <?php $auth_doc=$partb['auth_doc_encl'] ?? ''; ?>
                     <div class="col-md-6 mb-15">
-                      <label class="text-orange" for="auth_doc_encl"><?php print_r($this->label->get_short_name($elements, 103)); ?></label>
+                      <label class="text-orange" for="auth_doc_encl"><?php print_r($this->label->get_short_name($elements, 103)); ?><span class="text-danger">*</span></label>
                       <div class="radio">
                         <label>
-                          <input type="radio" name="auth_doc_encl" id="Active" value="1" <?php if ($auth_doc=="1"){echo "checked=checked";}?> checked="checked">
+                          <input type="radio" name="auth_doc_encl" id="Active" required="required" value="1" <?php if ($auth_doc=="1"){echo "checked=checked";}?> checked="checked">
                           Yes
                         </label>
                         <label>
-                          <input type="radio" name="auth_doc_encl" id="Inactive" value="2" <?php if ($auth_doc=="2"){echo "checked=checked";}?>>
+                          <input type="radio" name="auth_doc_encl" id="Inactive" required="required" value="2" <?php if ($auth_doc=="2"){echo "checked=checked";}?>>
                           No
                         </label>
                       </div>
@@ -617,7 +631,7 @@ $elements = $this->label->view(1);
                     <?php 
                     $auth_doc_upload=$partb['auth_doc_upload'] ?? ''; ?>
                     <div class="col-md-6 mb-15">
-                      <label for="auth_doc_upload">Authorized document upload</label>
+                      <label for="auth_doc_upload">Upload Authorization Document <span class="text-danger">*</span></label>
                       <input type="file" id="auth_doc_upload" name="auth_doc_upload" class="form-control" size="20">
                       <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
                       <div class="error" id="auth_doc_upload_error"><?php echo form_error('auth_doc_upload'); ?></div> 
@@ -839,7 +853,7 @@ $("input[name$='orgn_referred_india']").click(function() {
         nationality_id: "required",
         a_gender_id:"required",
         h_salutation_id:"required",
-       // h_first_name:"required",
+        h_first_name:"required",
         a_nationality_id:"required",
         a_first_name:"required",
         //aidentity_proof_vupto:"required",
@@ -862,14 +876,26 @@ $("input[name$='orgn_referred_india']").click(function() {
         affect_office_beared:"required",
         notory_affi_annex:"required",
         complainant_victim:"required",
+        orgn_referred_india:"required",
+        auth_ireginc:"required",
+        aoccu_desig_avo:"required",
+        o_hpnl:"required",
+        o_vill_city:"required",
+        o_pin_code:"required",
+        ap_hpnl:"required",
+        ap_vill_city:"required",
+        ap_pin_code:"required",
+        ac_hpnl:"required",
+        ac_vill_city:"required",
+        ac_pin_code:"required",
 
-         o_email_id: {
+        o_email_id: {
                 email: true,          
-      },
+        },
 
        email_id: {
                 email: true,          
-      },
+        },
            
         username: {
           required: true,
@@ -899,15 +925,20 @@ $("input[name$='orgn_referred_india']").click(function() {
           minlength:10,
           maxlength:10
 
-      },
-       gender: { // <- NAME of every radio in the same group
+        },
+
+        identity_proof_upload: {required: true, accept: "application/pdf"},
+        aidres_proof_upload: {required: true, accept: "application/pdf"},
+        auth_doc_upload: {required: true, accept: "application/pdf"},
+
+        gender: { // <- NAME of every radio in the same group
             required: true
         },
 
         agree: "required",
-      identity_proof_upload:{ accept: "application/pdf" },
-      aidres_proof_upload:{ accept: "application/pdf" },
-      auth_doc_upload:{ accept: "application/pdf" }
+        //identity_proof_upload:{ accept: "application/pdf" },
+        //aidres_proof_upload:{ accept: "application/pdf" },
+        //auth_doc_upload:{ accept: "application/pdf" }
       },
 
 
@@ -943,9 +974,9 @@ $("input[name$='orgn_referred_india']").click(function() {
         gender_err: {
           required: "Please select at least one gender"
         },
-      identity_proof_upload:{ accept: "Only pdf format are allowed" },
-      aidres_proof_upload:{ accept: "Only pdf format are allowed" },
-      auth_doc_upload:{ accept: "Only pdf format are allowed" }
+        identity_proof_upload:{ accept: "Only pdf format are allowed" },
+        aidres_proof_upload:{ accept: "Only pdf format are allowed" },
+        auth_doc_upload:{ accept: "Only pdf format are allowed" }
       }
     });
     

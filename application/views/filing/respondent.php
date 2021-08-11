@@ -1,7 +1,8 @@
 <?php //include(APPPATH.'views/templates/front/header2.php'); 
 $elements = $this->label->view(1);
 ?>
-
+<!-- Bootstrap Datepicker  Css -->
+<link href="<?php echo base_url();?>assets/admin_material/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url();?>assets/bootstrap/js/jquery.validate.min.js"></script>
   <script src="<?php echo base_url();?>assets/bootstrap/js/additional-methods.min.js"></script>
@@ -344,7 +345,13 @@ $(document).ready(function(){
         a_co_occupation:"required",
         a_mode_of_complaint:"required",
         a_affidavit_attached:"required",
-
+        present_ps_desig:"required",
+        ps_desig:"required",
+        ps_orgn:"required",
+        psc_postheld:"required",
+        ps_pl_occ:"required",
+        relied_doc_list:"required",
+        sum_facalle:"required",
 
         username: {
           required: true,
@@ -363,15 +370,20 @@ $(document).ready(function(){
           minlength:10,
           maxlength:10
 
-      },
-       gender: { // <- NAME of every radio in the same group
+        },
+
+        sum_fact_allegation_upload: {required: true, accept: "application/pdf"},
+        detail_offence_upload: {required: true, accept: "application/pdf"},
+        relevant_evidence_upload: {required: true, accept: "application/pdf"},
+
+        gender: { // <- NAME of every radio in the same group
             required: true
         },
 
         agree: "required",
-         relevant_evidence_upload:{ accept: "application/pdf" },
-        sum_fact_allegation_upload:{ accept: "application/pdf" },
-        detail_offence_upload:{ accept: "application/pdf" }
+        //relevant_evidence_upload:{ accept: "application/pdf" },
+        //sum_fact_allegation_upload:{ accept: "application/pdf" },
+        //detail_offence_upload:{ accept: "application/pdf" }
       },
       messages: {
         groups_err: "Please select roll",
@@ -404,9 +416,9 @@ $(document).ready(function(){
         gender_err: {
           required: "Please select at least one gender"
         },
-        relevant_evidence_upload:{ accept: "Only pdf format are allowed" },
-        sum_fact_allegation_upload:{ accept: "Only pdf formats are allowed" },
-        detail_offence_upload:{ accept: "Only pdf formats are allowed" }
+        sum_fact_allegation_upload:{ accept: "Only pdf format are allowed" },
+        detail_offence_upload:{ accept: "Only pdf formats are allowed" },
+        relevant_evidence_upload:{ accept: "Only pdf formats are allowed" }
       }
     });
     
@@ -445,7 +457,7 @@ $(document).ready(function(){
           <div class="panel-body">
             <div class="row">
               <div class="col-md-12">
-  <form id="respondentform" class="form-horizontal" role="form" method="post" action='<?= base_url();?>respondent/save'  name="respondentform" enctype="multipart/form-data">
+  <form id="respondentform" class="form-horizontal" role="form" method="post" action='<?php echo base_url();?>respondent/save'  name="respondentform" enctype="multipart/form-data">
     <div class="alert alert-danger"><h4 class="m-0"><?php print_r($this->label->get_short_name($elements, 129)); ?></h4></div>
 
 
@@ -499,22 +511,23 @@ $(document).ready(function(){
 
     <div class="row">
       <div class="col-md-12 mb-15">
-        <label class="text-orange">2. Present designation/status of the public servant(s) against whom complaint is being made -</label>
-        <input type="text" class="form-control" name="present_ps_desig" id="present_ps_desig" value="<?php if(isset($partc)) echo $partc['present_ps_desig']; else echo set_value('present_ps_desig');?>" maxlength="1000" onkeypress="return ValidateAlpha(event)" placeholder="" >    
+        <label class="text-orange">2. Present designation/status of the public servant(s) against whom complaint is being made<span class="text-danger">*</span> -</label>
+        <input type="text" class="form-control" name="present_ps_desig" id="present_ps_desig" value="<?php if(isset($partc)) echo $partc['present_ps_desig']; else echo set_value('present_ps_desig');?>" maxlength="1000" onkeypress="return ValidateAlpha(event)" placeholder="" >   
+        <div class="error"><?php echo form_error('present_ps_desig'); ?></div> 
       </div>
     </div>
 
     <div class="row">
       <?php $dsp=$partc['ps_dsp_lp'] ?? ''; ?>
       <div class="col-md-12 mb-15">
-        <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 130)); ?></label>
+        <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 130)); ?><span class="text-danger">*</span></label>
         <div class="radio">
           <label>
-            <input type="radio" name="ps_dsp_lp" id="Active" checked="checked" value="1" <?php  echo set_value('ps_dsp_lp', $dsp) == 1 ? "checked" : ""; ?> />
+            <input type="radio" name="ps_dsp_lp" id="Active" checked="checked" required="required" value="1" <?php  echo set_value('ps_dsp_lp', $dsp) == 1 ? "checked" : ""; ?> />
                               Yes
           </label>
           <label>
-            <input type="radio" name="ps_dsp_lp" value="2" <?php  echo set_value('ps_dsp_lp', $dsp) == 2 ? "checked" : ""; ?> /> No
+            <input type="radio" name="ps_dsp_lp" required="required" value="2" <?php  echo set_value('ps_dsp_lp', $dsp) == 2 ? "checked" : ""; ?> /> No
           </label>
         </div>
       </div>
@@ -527,12 +540,14 @@ $(document).ready(function(){
         <label class="text-orange">4. With respect to serial no. 2 above, indicate:</label>
       </div>
       <div class="col-md-6 mb-15">
-        <label for="ps_desig"><?php print_r($this->label->get_short_name($elements, 131)); ?></label>
+        <label for="ps_desig"><?php print_r($this->label->get_short_name($elements, 131)); ?><span class="text-danger">*</span></label>
         <input type="text" class="form-control" name="ps_desig" value="<?php if(isset($partc)) echo $partc['ps_desig']; else echo set_value('ps_desig');?>" id="ps_desig" maxlength="1000" placeholder="">
+        <div class="error"><?php echo form_error('ps_desig'); ?></div>
       </div>
       <div class="col-md-6 mb-15">
-        <label for="ps_orgn"><?php print_r($this->label->get_short_name($elements, 132)); ?></label>       
-        <input type="text" class="form-control" name="ps_orgn" id="ps_orgn" maxlength="1000" value="<?php if(isset($partc)) echo $partc['ps_orgn']; else echo set_value('ps_orgn');?>" onkeypress="return ValidateAlpha(event)" placeholder="">        
+        <label for="ps_orgn"><?php print_r($this->label->get_short_name($elements, 132)); ?><span class="text-danger">*</span></label>       
+        <input type="text" class="form-control" name="ps_orgn" id="ps_orgn" maxlength="1000" value="<?php if(isset($partc)) echo $partc['ps_orgn']; else echo set_value('ps_orgn');?>" onkeypress="return ValidateAlpha(event)" placeholder="">    
+        <div class="error"><?php echo form_error('ps_orgn'); ?></div>    
       </div>
     </div>
 
@@ -580,21 +595,22 @@ $(document).ready(function(){
       <div class="row">
         <?php $tas=$partc['tas_fingoi'] ?? ''; ?>
         <div class="col-md-12 mb-15">                   
-          <label for="tas_fingoi"><?php print_r($this->label->get_short_name($elements, 137)); ?></label>    
+          <label for="tas_fingoi"><?php print_r($this->label->get_short_name($elements, 137)); ?><span class="text-danger">*</span></label>    
           <div class="radio">
-            <label><input type="radio" name="tas_fingoi" value="1" <?php  echo set_value('tas_fingoi', $tas) == 1 ? "checked" : ""; ?> /> Yes </label>
-            <label><input type="radio" name="tas_fingoi" value="2" <?php  echo set_value('tas_fingoi', $tas) == 2 ? "checked" : ""; ?> /> No </label>
+            <label><input type="radio" name="tas_fingoi" required="required" value="1" <?php  echo set_value('tas_fingoi', $tas) == 1 ? "checked" : ""; ?> /> Yes </label>
+            <label><input type="radio" name="tas_fingoi" required="required" value="2" <?php  echo set_value('tas_fingoi', $tas) == 2 ? "checked" : ""; ?> /> No </label>
           </div>
+          <div class="error"><?php echo form_error('ps_id'); ?></div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-12 mb-15"> 
           <?php $anninc=$partc['anninc_onecr'] ?? ''; ?>                  
-          <label for="anninc_onecr"><?php print_r($this->label->get_short_name($elements, 138)); ?></label>
+          <label for="anninc_onecr"><?php print_r($this->label->get_short_name($elements, 138)); ?><span class="text-danger">*</span></label>
           <div class="radio">
-            <label><input type="radio" name="anninc_onecr" value="1" <?php  echo set_value('anninc_onecr', $anninc) == 1 ? "checked" : ""; ?> /> Yes </label>
-            <label><input type="radio" name="anninc_onecr" value="2" <?php  echo set_value('anninc_onecr', $anninc) == 2 ? "checked" : ""; ?> /> No </label>
+            <label><input type="radio" name="anninc_onecr" required="required" value="1" <?php  echo set_value('anninc_onecr', $anninc) == 1 ? "checked" : ""; ?> /> Yes </label>
+            <label><input type="radio" name="anninc_onecr" required="required" value="2" <?php  echo set_value('anninc_onecr', $anninc) == 2 ? "checked" : ""; ?> /> No </label>
           </div>
         </div>
       </div>
@@ -602,10 +618,10 @@ $(document).ready(function(){
       <div class="row">
         <div class="col-md-12 mb-15">    
           <?php $dona=$partc['dona_fs'] ?? ''; ?>
-          <label for="dona_fs"><?php print_r($this->label->get_short_name($elements, 139)); ?></label>
+          <label for="dona_fs"><?php print_r($this->label->get_short_name($elements, 139)); ?><span class="text-danger">*</span></label>
           <div class="radio">
-            <label><input type="radio" name="dona_fs" value="1" <?php  echo set_value('dona_fs', $dona) == 1 ? "checked" : ""; ?> /> Yes </label>
-            <label><input type="radio" name="dona_fs" value="2" <?php  echo set_value('dona_fs', $dona) == 2 ? "checked" : ""; ?> /> No </label>
+            <label><input type="radio" name="dona_fs" required="required" value="1" <?php  echo set_value('dona_fs', $dona) == 1 ? "checked" : ""; ?> /> Yes </label>
+            <label><input type="radio" name="dona_fs" required="required" value="2" <?php  echo set_value('dona_fs', $dona) == 2 ? "checked" : ""; ?> /> No </label>
           </div>      
         </div>
       </div>
@@ -624,8 +640,9 @@ $(document).ready(function(){
 
     <div class="row">
       <div class="col-md-12 mb-15">
-        <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 141)); ?></label>
-        <input type="text" class="form-control" name="psc_postheld" id="psc_postheld" value="<?php if(isset($partc)) echo $partc['psc_postheld']; else echo set_value('psc_postheld');?>" onkeypress="return ValidateAlpha(event)" maxlength="1000" placeholder="">        
+        <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 141)); ?><span class="text-danger">*</span></label>
+        <input type="text" class="form-control" name="psc_postheld" id="psc_postheld" value="<?php if(isset($partc)) echo $partc['psc_postheld']; else echo set_value('psc_postheld');?>" onkeypress="return ValidateAlpha(event)" maxlength="1000" placeholder="">   
+        <div class="error"><?php echo form_error('psc_postheld'); ?></div>        
       </div>
     </div>
 
@@ -657,8 +674,9 @@ $(document).ready(function(){
 
     <div class="row">
       <div class="col-md-6 mb-15">
-        <label for="ps_pl_occ"><?php print_r($this->label->get_short_name($elements, 145)); ?></label>       
-        <input type="text" class="form-control" name="ps_pl_occ" id="ps_pl_occ" value="<?php if(isset($partc)) echo $partc['ps_pl_occ']; else echo set_value('ps_pl_occ');?>" maxlength="150" onkeypress="return ValidateAlpha(event)" placeholder="">        
+        <label for="ps_pl_occ"><?php print_r($this->label->get_short_name($elements, 145)); ?><span class="text-danger">*</span></label>       
+        <input type="text" class="form-control" name="ps_pl_occ" id="ps_pl_occ" value="<?php if(isset($partc)) echo $partc['ps_pl_occ']; else echo set_value('ps_pl_occ');?>" maxlength="150" onkeypress="return ValidateAlpha(event)" placeholder=""> 
+        <div class="error"><?php echo form_error('ps_pl_occ'); ?></div>       
       </div>
 
       <?php $ps_pl_state=$partc['ps_pl_stateid'] ?? ''; ?>
@@ -692,15 +710,16 @@ $(document).ready(function(){
         <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 146)); ?>-</label>
       </div>
       <div class="col-md-8 mb-15">
-        <label for="sum_facalle"><?php print_r($this->label->get_short_name($elements, 147)); ?></label>
+        <label for="sum_facalle"><?php print_r($this->label->get_short_name($elements, 147)); ?><span class="text-danger">*</span></label>
         <?php  $sum_facalle=$partc['sum_facalle'] ?? '';?>
         <textarea class="form-control" rows="4" cols="100" id="sum_facalle" name="sum_facalle" maxlength="3000" placeholder="type here...">
           <?php if(isset($partc)) echo $partc['sum_facalle']; else echo set_value('sum_facalle');?>  
-        </textarea>
+        </textarea> 
+        <div class="error"><?php echo form_error('sum_facalle'); ?></div>     
       </div>
       <?php    $sum_fact_allegation_upload=$partc['sum_fact_allegation_upload'] ?? ''; ?>
       <div class="col-md-4 mb-15">
-        <label for="sum_fact_allegation_upload">Summary of Fact/allegation upload</label>
+        <label for="sum_fact_allegation_upload">Upload Summary of Fact/allegation <span class="text-danger">*</span></label>
         <input type="file" id="sum_fact_allegation_upload" name="sum_fact_allegation_upload" class="form-control" accept=".pdf" size="20">
         <span class="text-danger">The File should not greater than 20 MB (only pdf file allowed)</span>
         <div class="error" id="sum_fact_allegation_upload_error"><?php echo form_error('sum_fact_allegation_upload'); ?></div>
@@ -721,8 +740,8 @@ $(document).ready(function(){
 
       <?php    $detail_offence_upload=$partc['detail_offence_upload'] ?? ''; ?>
       <div class="col-md-4 mb-15">
-        <label for="det_offen_upload">Detail offence upload</label> 
-        <input type="file" style="width:90%;" id="detail_offence_upload" name="detail_offence_upload" class="form-control" accept=".pdf">
+        <label for="det_offen_upload">Upload Detail Offence <span class="text-danger">*</span></label> 
+        <input type="file" id="detail_offence_upload" name="detail_offence_upload" class="form-control" accept=".pdf">
         <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
         <div class="error" id="detail_offence_upload_error"><?php echo form_error('detail_offence_upload'); ?></div>
         <?php if($detail_offence_upload !='')  {?>
@@ -753,15 +772,15 @@ $(document).ready(function(){
     <div class="row">
       <?php  $reil_doc=$partc['relied_doc_list'] ?? '';?>
       <div class="col-md-8 mb-15">  
-        <label class="text-orange">12. Particulars/List of the documents relied upon by the Complainant in support of the allegation:</label> 
+        <label class="text-orange">12. Particulars/List of the documents relied upon by the Complainant in support of the allegation: <span class="text-danger">*</span></label> 
         <textarea class="form-control" name="relied_doc_list" id="relied_doc_list" maxlength="500" rows="4" cols="100" wrap="hard">
          <?php if(isset($partc)) echo $partc['relied_doc_list']; else echo set_value('relied_doc_list');?>
-        </textarea>       
+        </textarea>  
       </div>
 
       <?php    $relevant_evidence_upload=$partc['relevant_evidence_upload'] ?? ''; ?>
       <div class="col-md-4 mb-15">
-        <label for="relevant_evidence_upload">Relevant evidence Upload</label>
+        <label for="relevant_evidence_upload">Upload Relevant evidence <span class="text-danger">*</span></label>
         <input type="file" id="relevant_evidence_upload" name="relevant_evidence_upload" class="form-control" accept=".pdf" size="20">
         <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
         <div class="error" id="relevant_evidence_upload_error"><?php echo form_error('relevant_evidence_upload'); ?></div>
@@ -785,21 +804,21 @@ $(document).ready(function(){
     <div class="row">
     <?php $doc_copy=$partc['doc_copy_attached'] ?? ''; ?> 
       <div class="col-md-12 mb-15">
-        <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 151)); ?></label>
+        <label class="text-orange"><span class="text-danger">*</span><?php print_r($this->label->get_short_name($elements, 151)); ?></label>
         <div class="radio">
-          <label><input type="radio" name="doc_copy_attached" id="Active" checked="checked" value="1" <?php  echo set_value('doc_copy_attached', $doc_copy) == 1 ? "checked" : ""; ?> /> Yes </label>
-          <label><input type="radio" name="doc_copy_attached" value="2" <?php  echo set_value('doc_copy_attached', $doc_copy) == 2 ? "checked" : ""; ?> /> No</label>
+          <label><input type="radio" name="doc_copy_attached" id="Active" checked="checked" required="required" value="1" <?php  echo set_value('doc_copy_attached', $doc_copy) == 1 ? "checked" : ""; ?> /> Yes </label>
+          <label><input type="radio" name="doc_copy_attached" required="required" value="2" <?php  echo set_value('doc_copy_attached', $doc_copy) == 2 ? "checked" : ""; ?> /> No</label>
         </div>     
       </div>     
     </div>
 
     <div class="row">
       <div class="col-md-12 mb-15">   
-        <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 152)); ?></label>
+        <label class="text-orange"><span class="text-danger">*</span><?php print_r($this->label->get_short_name($elements, 152)); ?></label>
         <?php $electronic=$partc['electronic_file'] ?? ''; ?>                 
         <div class="radio">
-          <label><input type="radio" name="electronic_file" id="Active" checked="checked" value="1" <?php  echo set_value('electronic_file', $electronic) == 1 ? "checked" : ""; ?> /> Yes</label>
-          <label><input type="radio" name="electronic_file" value="2" <?php  echo set_value('electronic_file', $electronic) == 2 ? "checked" : ""; ?> /> No</label>
+          <label><input type="radio" name="electronic_file" id="Active" checked="checked" required="required" value="1" <?php  echo set_value('electronic_file', $electronic) == 1 ? "checked" : ""; ?> /> Yes</label>
+          <label><input type="radio" name="electronic_file" required="required" value="2" <?php  echo set_value('electronic_file', $electronic) == 2 ? "checked" : ""; ?> /> No</label>
         </div> 
       </div>
     </div>

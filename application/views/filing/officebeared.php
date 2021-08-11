@@ -1,7 +1,8 @@
 <?php //include(APPPATH.'views/templates/front/header2.php');
 $elements = $this->label->view(1);
 ?>
-
+<!-- Bootstrap Datepicker  Css -->
+<link href="<?php echo base_url();?>assets/admin_material/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
   <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url();?>assets/bootstrap/js/jquery.validate.min.js"></script>
   <script src="<?php echo base_url();?>assets/bootstrap/js/additional-methods.min.js"></script>
@@ -235,12 +236,22 @@ function FillBilling(f) {
         ob_c_state_id:"required",
         ob_c_dist_id:"required",
         ob_c_country_id:"required",
-      //  ob_mob_no:"required",
+        ob_mob_no:"required",
         a_co_state_code:"required",
         a_co_pin_code:"required",
         a_co_occupation:"required",
         a_mode_of_complaint:"required",
         a_affidavit_attached:"required",
+        ob_p_hpnl:"required",
+        ob_p_add1:"required",
+        ob_p_pin_code:"required",
+        ob_c_hpnl:"required",
+        ob_c_add1:"required",
+        ob_c_pin_code:"required",
+        ob_occu_desig_avo:"required",
+        ob_occu_desig_avo:"required",
+        ob_email_id:"required",
+
            
         username: {
           required: true,
@@ -257,9 +268,11 @@ function FillBilling(f) {
          // minlength: 8,
           equalTo: "#password"
         },
+
         ob_email_id: {
                     email: true,          
         },
+
         topic: {
           required: "#newsletter:checked",
           minlength: 2
@@ -271,13 +284,15 @@ function FillBilling(f) {
           maxlength:10
 
       },
+
+      ob_identity_proof_upload: {required: true, accept: "application/pdf"},
+      ob_idres_proof_upload: {required: true, accept: "application/pdf"},
+
        gender: { // <- NAME of every radio in the same group
             required: true
         },
 
         agree: "required",
-      ob_identity_proof_upload:{ accept: "application/pdf" },
-      ob_idres_proof_upload:{ accept: "application/pdf" }
       },
 
 
@@ -433,7 +448,7 @@ $ref_no=$this->session->userdata('ref_no');
           <option value="<?php echo $row->salutation_id; ?>" <?php echo set_select('ob_salutation_id',  $row->salutation_id); ?>><?php echo $row->salutation_desc; ?></option>
           <?php endforeach;?>
         </select>   
-         <label class="error"><?php echo form_error('ob_salutation_id'); ?></label>       
+        <div class="error"><?php echo form_error('ob_salutation_id'); ?></div>       
       </div>
 
       <div class="col-md-6 mb-15">
@@ -451,7 +466,7 @@ $ref_no=$this->session->userdata('ref_no');
       <div class="col-md-6 mb-15">
         <label for="ob_first_name"><?php print_r($this->label->get_short_name($elements, 78)); ?><span class="text-danger">*</span></label>     
         <input type="text" class="form-control" name="ob_first_name" id="ob_first_name" maxlength="50" onkeypress="return ValidateAlpha(event)" placeholder="" oninput="this.value = this.value.toUpperCase()" value="<?php echo set_value('ob_first_name') ?>"> 
-  <label class="error"><?php echo form_error('ob_first_name'); ?></label>     
+        <div class="error"><?php echo form_error('ob_first_name'); ?></div>     
       </div> 
     </div>
     
@@ -466,16 +481,16 @@ $ref_no=$this->session->userdata('ref_no');
           <option value="<?php echo $row->gender_id; ?>" <?php echo set_select('ob_gender_id',  $row->gender_id); ?>><?php echo $row->gender_desc; ?></option>
           <?php endforeach;?>
         </select>   
-        <label class="error"><?php echo form_error('ob_gender_id'); ?></label>       
+        <div class="error"><?php echo form_error('ob_gender_id'); ?></div>       
       </div>
 
       <div class="col-md-6 mb-15">
         <label for="ob_age_years" class="text-orange">3. Age [in complete years] <span class="text-danger">*</span></label>
            <input type="text" class="form-control" name="ob_age_years" maxlength="3" id="ob_age_years"
            onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('ob_age_years') ?>">  
-           <label class="error"><?php echo form_error('ob_age_years'); ?></label> 
-</div>       
-      </div>
+           <div class="error"><?php echo form_error('ob_age_years'); ?></div> 
+      </div>       
+    </div>
 
 
     <div class="row">
@@ -487,7 +502,7 @@ $ref_no=$this->session->userdata('ref_no');
           <option value="<?php echo $row->nationality_id; ?>" <?php echo set_select('ob_nationality_id',  $row->nationality_id); ?>><?php echo $row->nationality_desc; ?></option>
           <?php endforeach;?>
         </select> 
-         <label class="error"><?php echo form_error('ob_nationality_id'); ?></label>          
+         <div class="error"><?php echo form_error('ob_nationality_id'); ?></div>          
       </div>
     </div>
    
@@ -509,7 +524,7 @@ $ref_no=$this->session->userdata('ref_no');
          <option value="<?php echo $row->identity_proof_id; ?>" <?php echo set_select('ob_identity_proof_id',  $row->identity_proof_id); ?>><?php echo $row->Identity_proof_desc; ?></option>
           <?php endforeach;?>
         </select>   
-         <label class="error"><?php echo form_error('ob_identity_proof_id'); ?></label>      
+         <div class="error"><?php echo form_error('ob_identity_proof_id'); ?></div>      
       </div>
       <div class="col-md-6 mb-15">
         <label for="ob_identity_proof_no">(a). Number</label>
@@ -534,10 +549,10 @@ $ref_no=$this->session->userdata('ref_no');
         <input type="text" class="form-control" name="ob_identity_proof_iauth" id="ob_identity_proof_iauth" onkeypress="return ValidateAlpha(event)" placeholder="" maxlength="50" value="<?php echo set_value('ob_identity_proof_iauth') ?>">
       </div>
       <div class="col-md-6 mb-15">
-        <label for="ob_identity_proof_upload"><?php print_r($this->label->get_short_name($elements, 88)); ?></label>
+        <label for="ob_identity_proof_upload"><?php print_r($this->label->get_short_name($elements, 88)); ?><span class="text-danger">*</span></label>
         <input type="file" id="ob_identity_proof_upload" name="ob_identity_proof_upload" class="form-control" size="20"> 
          <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
-         <label class="error" id="identity_proof_upload_error"><?php echo form_error('ob_identity_proof_upload'); ?></label> 
+         <div class="error" id="identity_proof_upload_error"><?php echo form_error('ob_identity_proof_upload'); ?></div> 
         <div><label><a href="#" id="imgURL" target="_blank" alt="" >show uploaded document </a></label></div>
       </div>   
     </div>
@@ -555,7 +570,7 @@ $ref_no=$this->session->userdata('ref_no');
           <option value="<?php echo $row->idres_proof_id; ?>" <?php echo set_select('ob_idres_proof_id',  $row->idres_proof_id); ?>><?php echo $row->idres_proof_desc; ?></option>
           <?php endforeach;?>
         </select>    
-         <label class="error"><?php echo form_error('ob_idres_proof_id'); ?></label>        
+         <div class="error"><?php echo form_error('ob_idres_proof_id'); ?></div>        
       </div>
 
       <div class="col-md-6 mb-15">
@@ -582,10 +597,10 @@ $ref_no=$this->session->userdata('ref_no');
        </div>
 
       <div class="col-md-6 mb-15">
-        <label for="ob_idres_proof_upload"><?php print_r($this->label->get_short_name($elements, 118)); ?></label>
+        <label for="ob_idres_proof_upload"><?php print_r($this->label->get_short_name($elements, 118)); ?><span class="text-danger">*</span></label>
         <input type="file" id="ob_idres_proof_upload" name="ob_idres_proof_upload" class="form-control" size="20">
          <span class="text-danger">The File should not greater than 20 MB (Only pdf file allowed)</span>
-         <label class="error" id="ob_idres_proof_upload_error"><?php echo form_error('ob_idres_proof_upload'); ?></label>
+         <div class="error" id="ob_idres_proof_upload_error"><?php echo form_error('ob_idres_proof_upload'); ?></div>
         <label><a href="#" id="imgURL2" target="_blank" >show uploaded document </a></label>
       </div>          
     </div>
@@ -597,13 +612,15 @@ $ref_no=$this->session->userdata('ref_no');
         <label class="text-orange">6. Permanent Address -</label>
       </div>
       <div class="col-md-6 mb-15">
-        <label for="ob_p_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?></label>
+        <label for="ob_p_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?><span class="text-danger">*</span></label>
         <input type="text" class="form-control" name="ob_p_hpnl" id="ob_p_hpnl" placeholder="" maxlength="50" value="<?php echo set_value('ob_p_hpnl') ?>">
+        <div class="error"><?php echo form_error('ob_p_hpnl'); ?></div> 
       </div>
 
       <div class="col-md-6 mb-15">
-        <label for="ob_p_add1"><?php print_r($this->label->get_short_name($elements, 94)); ?></label>
+        <label for="ob_p_add1"><?php print_r($this->label->get_short_name($elements, 94)); ?><span class="text-danger">*</span></label>
         <input type="text" class="form-control" name="ob_p_add1" id="ob_p_add1" placeholder="" maxlength="50" value="<?php echo set_value('ob_p_add1') ?>">
+        <div class="error"><?php echo form_error('ob_p_add1'); ?></div> 
       </div>
     </div>
 
@@ -616,21 +633,22 @@ $ref_no=$this->session->userdata('ref_no');
          <option value="<?php echo $row->state_code; ?>" <?php echo set_select('ob_p_state_id',  $row->state_code); ?>><?php echo $row->name; ?></option>
           <?php endforeach;?>
         </select> 
-        <label class="error"><?php echo form_error('ob_p_state_id'); ?></label>  
+        <div class="error"><?php echo form_error('ob_p_state_id'); ?></div>  
       </div>
       <div class="col-md-6 mb-15">
-        <label for="ob_p_dist_id">District<span style="color: red;">*</span></label>
+        <label for="ob_p_dist_id">District <span class="text-danger">*</span></label>
         <select class="form-control chosen-single chosen-default" name="ob_p_dist_id" id="ob_p_dist_id">  
         </select>
-         <label class="error"><?php echo form_error('ob_p_dist_id'); ?></label> 
+        <div class="error"><?php echo form_error('ob_p_dist_id'); ?></div> 
       </div>   
     </div>
 
 
     <div class="row">       
       <div class="col-md-6 mb-15">
-         <label for="ob_p_pin_code"><?php print_r($this->label->get_short_name($elements, 95)); ?></label>   
-            <input type="text" class="form-control" name="ob_p_pin_code" id="ob_p_pin_code" maxlength="6"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('ob_p_pin_code') ?>"> 
+          <label for="ob_p_pin_code"><?php print_r($this->label->get_short_name($elements, 95)); ?><span class="text-danger">*</span></label>   
+          <input type="text" class="form-control" name="ob_p_pin_code" id="ob_p_pin_code" maxlength="6"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('ob_p_pin_code') ?>"> 
+          <div class="error"><?php echo form_error('ob_p_pin_code'); ?></div>
       </div>
 
       <div class="col-md-6 mb-15">
@@ -641,7 +659,7 @@ $ref_no=$this->session->userdata('ref_no');
           <option value="<?php echo $row->country_id; ?>" <?php echo set_select('ob_p_country_id',  $row->country_id); ?>><?php echo $row->country_desc; ?></option>
           <?php endforeach;?>
         </select>  
-        <label class="error"><?php echo form_error('ob_p_country_id'); ?></label>        
+        <div class="error"><?php echo form_error('ob_p_country_id'); ?></div>        
       </div>
     </div>
 
@@ -660,13 +678,15 @@ $ref_no=$this->session->userdata('ref_no');
         <label class="text-orange">7. Address for Correspondence</label>
       </div>
       <div class="col-md-6 mb-15">
-        <label for="ob_c_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?></label>
+        <label for="ob_c_hpnl"><?php print_r($this->label->get_short_name($elements, 91)); ?><span class="text-danger">*</span></label>
         <input type="text" class="form-control" name="ob_c_hpnl" id="ob_c_hpnl" placeholder="" maxlength="50" value="<?php echo set_value('ob_c_hpnl') ?>">
+        <div class="error"><?php echo form_error('ob_c_hpnl'); ?></div>
       </div>
 
       <div class="col-md-6 mb-15">
-        <label for="ob_c_add1"><?php print_r($this->label->get_short_name($elements, 94)); ?></label>
+        <label for="ob_c_add1"><?php print_r($this->label->get_short_name($elements, 94)); ?><span class="text-danger">*</span></label>
         <input type="text" class="form-control" name="ob_c_add1" id="ob_c_add1" placeholder="" maxlength="50" value="<?php echo set_value('ob_c_add1') ?>">
+        <div class="error"><?php echo form_error('ob_c_add1'); ?></div>
       </div>
 
       <div class="col-md-6 mb-15">
@@ -677,21 +697,22 @@ $ref_no=$this->session->userdata('ref_no');
           <option value="<?php echo $row->state_code; ?>" <?php echo set_select('ob_c_state_id',  $row->state_code); ?>><?php echo $row->name; ?></option>
           <?php endforeach;?>
         </select> 
-         <label class="error"><?php echo form_error('ob_c_state_id'); ?></label>    
+         <div class="error"><?php echo form_error('ob_c_state_id'); ?></div>    
         </div>
         <div class="col-md-6 mb-15">
           <label for="ob_c_dist_id">District <span class="text-danger">*</span></label>
           <select class="form-control chosen-single chosen-default" name="ob_c_dist_id" id="ob_c_dist_id">  
           <?php ?>
           </select> 
-           <label class="error"><?php echo form_error('ob_c_dist_id'); ?></label>  
+           <div class="error"><?php echo form_error('ob_c_dist_id'); ?></div>  
       </div>  
     </div>
 
     <div class="row">    
       <div class="col-md-6 mb-15">
-        <label for="ob_c_pin_code"><?php print_r($this->label->get_short_name($elements, 95)); ?></label>   
+        <label for="ob_c_pin_code"><?php print_r($this->label->get_short_name($elements, 95)); ?><span class="text-danger">*</span></label>   
         <input type="text" class="form-control" name="ob_c_pin_code" id="ob_c_pin_code" maxlength="6"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('ob_c_pin_code') ?>"> 
+        <div class="error"><?php echo form_error('ob_c_pin_code'); ?></div>
       </div>
 
       <div class="col-md-6 mb-15">
@@ -702,14 +723,15 @@ $ref_no=$this->session->userdata('ref_no');
          <option value="<?php echo $row->country_id; ?>" <?php echo set_select('ob_c_country_id',  $row->country_id); ?>><?php echo $row->country_desc; ?></option>
           <?php endforeach;?>
         </select>   
-         <label class="error"><?php echo form_error('ob_c_country_id'); ?></label>      
+         <div class="error"><?php echo form_error('ob_c_country_id'); ?></div>      
       </div>
     </div>
     <hr>    
     <div class="row">
       <div class="col-md-6 mb-15">
-        <label for="ob_occu_desig_avo" class="text-orange">8. Occupation/Designation/Avocation</label>
+        <label for="ob_occu_desig_avo" class="text-orange">8. Occupation/Designation/Avocation <span class="text-danger">*</span></label>
         <input type="text" class="form-control" name="ob_occu_desig_avo" id="ob_occu_desig_avo" onkeypress="return ValidateAlpha(event)" placeholder="" maxlength="50" value="<?php echo set_value('ob_occu_desig_avo') ?>">
+        <div class="error"><?php echo form_error('ob_occu_desig_avo'); ?></div>
       </div>
 
       <div class="col-md-6 mb-15">
@@ -720,14 +742,15 @@ $ref_no=$this->session->userdata('ref_no');
 
     <div class="row">
       <div class="col-md-6 mb-15">
-        <label for="ob_mob_no" class="text-orange">9(b) Mobile Number</label>
+        <label for="ob_mob_no" class="text-orange">9(b) Mobile Number <span class="text-danger">*</span></label>
         <input type="text" class="form-control" name="ob_mob_no" id="ob_mob_no" maxlength="10"  onkeypress="return isNumberKey(event)" placeholder="" value="<?php echo set_value('ob_mob_no') ?>">
-         <label class="error"><?php echo form_error('ob_mob_no'); ?></label>
+         <div class="error"><?php echo form_error('ob_mob_no'); ?></div>
       </div>
 
       <div class="col-md-6 mb-15">
-        <label for="ob_email_id" class="text-orange">10. e-mail id</label>
-        <input type="text" class="form-control" name="ob_email_id" id="ob_email_id" placeholder="" maxlength="50" value="<?php echo set_value('ob_email_id') ?>">
+        <label for="ob_email_id" class="text-orange">10. e-mail id <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" name="ob_email_id" id="ob_email_id" required="required" placeholder="" maxlength="50" value="<?php echo set_value('ob_email_id') ?>">
+        <div class="error"><?php echo form_error('ob_email_id'); ?></div>
       </div>
     </div>
 

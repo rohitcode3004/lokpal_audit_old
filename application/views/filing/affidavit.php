@@ -161,7 +161,7 @@ $this->load->helper("date_helper");
             <th>Date of Issue</th>
             <th>Validity Upto Date</th>
             <th>Issuing Authority</th>
-            <th>Identity Document Upload</th>
+            <th>Upload Identity Document </th>
              
           </tr>
         </thead>
@@ -207,7 +207,7 @@ $this->load->helper("date_helper");
             <th>Date of Issue</th>
             <th>Validity Upto Date</th>
             <th>Issuing Authority</th>
-            <th>Residence Document Upload</th> 
+            <th>Upload Residence Document </th> 
           </tr>
         </thead>
         <tbody>
