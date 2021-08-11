@@ -96,14 +96,14 @@ class Document extends CI_Controller {
 
 
 
-    2. That I have filed the present complaint under the provisions of the Lokpal and Lokyayukts Act,2013 and the rules made thereunder.
+     2. That I have filed the present complaint under the provisions of the Lokpal and Lokayuktas Act,2013 and the rules made thereunder.
     <br></br><br></br>
-    3. That I have gone through the provision of the Lokpal and Lokyayukts Act, 2013 and do hereby affirm that the present complaint is in conformity therewith and I am fully aware that under the provisions of sections 46 and 47 of the act making any false and frivolous or vexatious complaint is punishible with imprisonment for a term which may extend to one year and with fine which may extend to one lakh rupees.
+    3. That I have gone through the provisions of the Lokpal and Lokayuktas Act, 2013 and do hereby affirm that the present complaint is in conformity therewith and I am fully aware that under the provisions of sections 46 and 47 of the Act making any false and frivolous or vexatious complaint is Punishable with imprisonment for a term which may extend to one year and with fine which may extend to one lakh rupees.
     <br></br><br></br>
     4. That neither I nor any other person in the organisation / institution /body that I represent in this complaint has filed any complaint in this matter before any Court or Committee of either House of Parliament or befor any other Authority and this
-    complaint does not attract the provisions of section 15 of the act.
+    complaint does not attract the provisions of section 15 of the Act.
     <br></br><br></br>
-    5.    I state That before filing this complaint I have collected and presented the information and supporting evidence to the best of my knowledge, ability and capacity which are relevant in support of the allegations of corruption against the concerned public servant and I further confirm that I have not concealed any data /material / information in this complaint.
+    5.    I state that before filing this complaint I have collected and presented the information and supporting evidence to the best of my knowledge, ability and capacity which are relevant in support of the allegations of corruption against the concerned public servant and I further confirm that I have not concealed any data /material / information in this complaint.
 
     <br></br><br></br>
      
@@ -124,7 +124,7 @@ class Document extends CI_Controller {
 
 
 
-    </div>    
+    </div>   
     ';
 
                        //echo $getallwidget;die;

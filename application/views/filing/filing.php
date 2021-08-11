@@ -1,3 +1,6 @@
+<!-- Bootstrap Datepicker  Css -->
+<link href="<?php echo base_url();?>assets/admin_material/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
 <?php
 //print_r($user_profile);die;
 //$r = $this->session->userdata('ref_no');
@@ -221,7 +224,7 @@ if(isset($farma))
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
                 <?php    $identity_upload=$myArray[0]->identity_url_parta ?? ''; ?>
-                <label for="identity_proof_upload"><?php print_r($this->label->get_short_name($elements, 23)); ?></label>
+                <label for="identity_proof_upload"><?php print_r($this->label->get_short_name($elements, 23)); ?><span class="text-danger">*</span></label>
                 <input type="file" id="identity_proof_upload" name="identity_proof_upload" class="form-control" accept=".pdf" size="20">
                 <span class="text-danger">The File should not greater than 20 MB(Only pdf file allowed)</span>
                 <div class="error" id="identity_proof_upload_error"><?php echo form_error('identity_proof_upload'); ?></div>    
@@ -274,7 +277,7 @@ if(isset($farma))
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
                 <?php   $residence_upload=$myArray[0]->residence_url_parta ?? ''; ?>
-                <label for="a_affidavit_upload"><?php print_r($this->label->get_short_name($elements, 30)); ?></label>
+                <label for="a_affidavit_upload"><?php print_r($this->label->get_short_name($elements, 30)); ?><span class="text-danger">*</span></label>
                 <input type="file" id="a_affidavit_upload" name="a_affidavit_upload" class="form-control" size="20"> 
                 <span class="text-danger">The File should not greater than 20 MB(Only pdf file allowed)</span>
                 <div class="error" id="affidavit_proof_upload_error"><?php echo form_error('a_affidavit_upload'); ?></div>
@@ -292,12 +295,14 @@ if(isset($farma))
             <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 57)); ?></label>
             <div class="row">
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-                <label for="p_hpnl"><?php print_r($this->label->get_short_name($elements, 32)); ?></label>
+                <label for="p_hpnl"><?php print_r($this->label->get_short_name($elements, 32)); ?><span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="p_hpnl" value="<?php echo set_value('p_hpnl', @$myArray[0]->p_hpnl); ?>" id="p_hpnl" maxlength="100" placeholder="">
+                <div class="error"><?php echo form_error('p_hpnl'); ?></div>
               </div>  
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-                <label for="p_Add1"><?php print_r($this->label->get_short_name($elements, 94)); ?></label>
+                <label for="p_Add1"><?php print_r($this->label->get_short_name($elements, 94)); ?><span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="p_add1" value="<?php echo set_value('p_add1', @$myArray[0]->p_add1); ?>" id="p_add1" maxlength="100" placeholder="">
+                <div class="error"><?php echo form_error('p_add1'); ?></div>
               </div> 
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
                 <label for="p_state_id"><?php print_r($this->label->get_short_name($elements, 33)); ?><span class="text-danger">*</span></label>  
@@ -321,8 +326,9 @@ if(isset($farma))
                 <div class="error"><?php echo form_error('p_dist_id'); ?></div> 
               </div> 
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-                <label for="p_pin_code"><?php print_r($this->label->get_short_name($elements, 35)); ?></label>   
+                <label for="p_pin_code"><?php print_r($this->label->get_short_name($elements, 35)); ?><span class="text-danger">*</span></label>   
                 <input type="text" class="form-control" name="p_pin_code" id="p_pin_code" maxlength="6" value="<?php echo set_value('p_pin_code', @$myArray[0]->p_pin_code); ?>"  onkeypress="return isNumberKey(event)" placeholder="">
+                <div class="error"><?php echo form_error('p_pin_code'); ?></div> 
               </div> 
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
                 <?php $nationalty2=$myArray[0]->p_country_id ?? ''; ?>
@@ -358,12 +364,14 @@ if(isset($farma))
             <label class="text-orange"><?php print_r($this->label->get_short_name($elements, 58)); ?></label>
             <div class="row">
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-                <label for="c_hpnl"><?php print_r($this->label->get_short_name($elements, 38)); ?></label>
+                <label for="c_hpnl"><?php print_r($this->label->get_short_name($elements, 38)); ?><span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="c_hpnl" id="c_hpnl" value="<?php echo set_value('c_hpnl', @$myArray[0]->c_hpnl); ?>" maxlength="100" placeholder="">
+                <div class="error"><?php echo form_error('c_hpnl'); ?></div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-                <label for="c_add1"><?php print_r($this->label->get_short_name($elements, 94)); ?></label>
+                <label for="c_add1"><?php print_r($this->label->get_short_name($elements, 94)); ?><span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="c_add1" id="c_add1" value="<?php echo set_value('c_add1', @$myArray[0]->c_add1); ?>" maxlength="100" placeholder="">
+                <div class="error"><?php echo form_error('c_add1'); ?></div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
                 <label for="c_state_id"><?php print_r($this->label->get_short_name($elements, 39)); ?><span class="text-danger">*</span></label>  
@@ -392,8 +400,9 @@ if(isset($farma))
                 <div class="error"><?php echo form_error('c_district_id'); ?></div>  
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-                <label for="c_pin_code"><?php print_r($this->label->get_short_name($elements, 41)); ?></label>   
-                 <input type="text" class="form-control" name="c_pin_code" id="c_pin_code" value="<?php echo set_value('c_pin_code', @$myArray[0]->c_pin_code); ?>" maxlength="6"  onkeypress="return isNumberKey(event)" placeholder=""> 
+                <label for="c_pin_code"><?php print_r($this->label->get_short_name($elements, 41)); ?><span class="text-danger">*</span></label>   
+                 <input type="text" class="form-control" name="c_pin_code" id="c_pin_code" value="<?php echo set_value('c_pin_code', @$myArray[0]->c_pin_code); ?>" maxlength="6"  onkeypress="return isNumberKey(event)" placeholder="">
+                 <div class="error"><?php echo form_error('c_pin_code'); ?></div> 
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
                 <?php $nationalty3=$myArray[0]->c_country_id ?? ''; ?>
@@ -418,8 +427,9 @@ if(isset($farma))
 
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-            <label class="text-orange" for="occu_desig_avo"><?php print_r($this->label->get_short_name($elements, 43)); ?></label>
+            <label class="text-orange" for="occu_desig_avo"><?php print_r($this->label->get_short_name($elements, 43)); ?><span class="text-danger">*</span></label>
             <input type="text" class="form-control" name="occu_desig_avo" id="occu_desig_avo" value="<?php echo set_value('occu_desig_avo', @$myArray[0]->occu_desig_avo); ?>" onkeypress="return ValidateAlpha(event)" maxlength="100"  placeholder="">
+            <div class="error"><?php echo form_error('occu_desig_avo'); ?></div>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
             <label class="text-orange" for="tel_no"><?php print_r($this->label->get_short_name($elements, 44)); ?></label>
@@ -447,13 +457,13 @@ if(isset($farma))
 
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
-            <label class="text-orange" for="email_id"><?php print_r($this->label->get_short_name($elements, 46)); ?></label>
+            <label class="text-orange" for="email_id"><?php print_r($this->label->get_short_name($elements, 46)); ?><span class="text-danger">*</span></label>
              <?php if($user['email'] && $user['role'] == 18){ ?>
             <div class="icon medium_sea_green1 hvr-pulse">
               <img src="<?php echo base_url();?>assets/rohp/icon/varified.png" title="varified" >
             </div> 
             <?php } ?>
-            <input type="text" class="form-control" name="email_id" id="email_id" <?php if($user['role'] == 18) echo 'readonly'; ?> value="<?php if(isset($user['email']) && $user['role'] == 18){
+            <input type="text" class="form-control" name="email_id" required="required" id="email_id" <?php if($user['role'] == 18) echo ''; ?> value="<?php if(isset($user['email']) && $user['role'] == 18){
                       echo $user['email'];
                   }else{ echo set_value('email_id', @$myArray[0]->email_id); } ?>" maxlength="50" placeholder="">
           </div>   
@@ -493,18 +503,18 @@ if(isset($farma))
       <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
           <?php $notify=$myArray[0]->notory_affi_annex ?? ''; ?>
-          <label class="text-orange" for="notory_affi_annex"><?php print_r($this->label->get_short_name($elements, 47)); ?></label> 
+          <label class="text-orange" for="notory_affi_annex"><?php print_r($this->label->get_short_name($elements, 47)); ?><span class="text-danger">*</span></label> 
           <div class="radio">
-            <label><input type="radio" name="notory_affi_annex" id="Active" checked="checked" value="1" <?php  echo set_value('notory_affi_annex', $notify) == 1 ? "checked" : ""; ?> /> Yes</label>
-            <label><input type="radio" name="notory_affi_annex" value="2" <?php  echo set_value('notory_affi_annex', $notify) == 2 ? "checked" : ""; ?> /> No</label>
+            <label><input type="radio" name="notory_affi_annex" id="Active" required="required" checked="checked" value="1" <?php  echo set_value('notory_affi_annex', $notify) == 1 ? "checked" : ""; ?> /> Yes</label>
+            <label><input type="radio" name="notory_affi_annex" required="required" value="2" <?php  echo set_value('notory_affi_annex', $notify) == 2 ? "checked" : ""; ?> /> No</label>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 mb-15">
           <?php $cmv=$myArray[0]->complainant_victim ?? ''; ?>
-          <label class="text-orange" for="complainant_victim"><?php print_r($this->label->get_short_name($elements, 48)); ?></label>
+          <label class="text-orange" for="complainant_victim"><?php print_r($this->label->get_short_name($elements, 48)); ?><span class="text-danger">*</span></label>
           <div class="radio">
-            <label><input type="radio" name="complainant_victim" id="Active" checked="checked" value="1" <?php  echo set_value('complainant_victim', $cmv) == 1 ? "checked" : ""; ?> /> Yes</label>
-            <label><input type="radio" name="complainant_victim" value="2" <?php  echo set_value('complainant_victim', $cmv) == 2 ? "checked" : ""; ?> /> No</label>
+            <label><input type="radio" name="complainant_victim" id="Active" required="required" checked="checked" value="1" <?php  echo set_value('complainant_victim', $cmv) == 1 ? "checked" : ""; ?> /> Yes</label>
+            <label><input type="radio" name="complainant_victim" required="required" value="2" <?php  echo set_value('complainant_victim', $cmv) == 2 ? "checked" : ""; ?> /> No</label>
           </div>
         </div>
 
@@ -526,9 +536,10 @@ if(isset($farma))
 
       <div class="row">
         <div class="col-md-6 mb-15">
-          <label for="comp_f_place"><?php print_r($this->label->get_short_name($elements, 49)); ?></label>
+          <label for="comp_f_place"><?php print_r($this->label->get_short_name($elements, 49)); ?><span class="text-danger">*</span></label>
          
-          <input type="text" class="form-control" style="width:90%;" name="comp_f_place" value="<?php echo set_value('comp_f_place', @$myArray[0]->comp_f_place); ?>" id="comp_f_place" onkeypress="return ValidateAlpha(event)" placeholder="Enter place ...">
+          <input type="text" class="form-control" name="comp_f_place" value="<?php echo set_value('comp_f_place', @$myArray[0]->comp_f_place); ?>" id="comp_f_place" onkeypress="return ValidateAlpha(event)" placeholder="Enter place ...">
+          <div class="error"><?php echo form_error('comp_f_place'); ?></div>
         </div>
         <?php
         $curYear = date('Y');
@@ -730,7 +741,15 @@ function showDiv(divId, element)
         p_country_id:"required",
         c_state_id:"required",
         c_country_id:"required",
+        occu_desig_avo:"required",
         mob_no:"required",
+        p_hpnl:"required",
+        p_add1:"required",
+        p_pin_code:"required",
+        c_hpnl:"required",
+        c_add1:"required",
+        c_pin_code:"required",
+        comp_f_place:"required",
 
       //  identity_proof_doi:"required",
        // idres_proof_doi:"required",
@@ -744,17 +763,16 @@ function showDiv(divId, element)
        a_co_email_id: {
         email: true,          
       },
-     
+      
 
+      identity_proof_upload: {required: true, accept: "application/pdf"},
+      a_affidavit_upload: {required: true, accept: "application/pdf"},
       
-      
-       gender: { // <- NAME of every radio in the same group
+      gender: { // <- NAME of every radio in the same group
         required: true
       },
 
       agree: "required",
-      identity_proof_upload:{ accept: "application/pdf" },
-      a_affidavit_upload:{ accept: "application/pdf" }
     },
 
 
