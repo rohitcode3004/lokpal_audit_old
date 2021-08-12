@@ -84,4 +84,15 @@ if (!function_exists('convertToBase64'))
         $cd_row =  $CI->bench_model->fetch_listed_status($filing_no);
         return $cd_row->listed;
     }
+
+    function decode($encoded) {
+        $encoded = base64_decode($encoded);
+        $decoded = "";
+        for( $i = 0; $i < strlen($encoded); $i++ ) {
+    $b = ord($encoded[$i]);
+    $a = $b ^ 10; // 
+    $decoded .= chr($a);
+    }
+    return base64_decode(base64_decode($decoded));
+    }
 }

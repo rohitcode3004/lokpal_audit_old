@@ -238,6 +238,18 @@ class Login_model extends CI_Model {
 		return ($this->db->affected_rows() != 1) ? false : true; 
 	}
 
+	function check_old_password($old_password, $id){
+		$this->db->where('id', $id);
+		$this->db->where('password', $old_password);
+		$query = $this->db->get('users');
+		//echo $this->db->last_query();die;
+		if($query->num_rows() > 0){
+			return 1;
+		}else{
+			return 0;
+		} 
+	}
+
 	//----------------------------------------//
 
 	function see_otp($mobile)

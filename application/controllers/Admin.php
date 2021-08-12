@@ -47,7 +47,10 @@ class Admin extends CI_Controller {
 
 			if($this->form_validation->run() == true){ 
 				$data['username'] = strip_tags($this->input->post('username'));
-				$data['password'] = md5(strip_tags($this->input->post('password')));
+
+				$password_encrypted = $this->input->post('password');
+				$password_decrypted = decode($password_encrypted);
+				$data['password'] = md5(strip_tags($password_decrypted));
 
 				$checkLogin = $this->login_model->authenticate($data);
                 //$checkStaff = $this->login_model->chkstf($data);
