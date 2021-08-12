@@ -1,3 +1,4 @@
+<script src="<?php echo base_url();?>assets/customjs/password_encryption.js"></script>
 <?php include(APPPATH.'views/templates/front/fheader.php'); ?>
 
 <div class="login-box">
@@ -22,8 +23,8 @@
         </div>
       <form class="form-horizontal" role="form" action="<?php echo base_url('admin/authenticate') ?>" method="post">
         <input class="input-form" placeholder="username" name="username" type="text" autofocus>
-        <input class="input-form" placeholder="Password" name="password" type="password" value="">
-        <input class="loginhny-btn btn" type="submit" name="loginSubmit" value="login"/>
+        <input class="input-form" placeholder="Password" name="password" type="password" value="" id="pwd">
+        <input class="loginhny-btn btn" type="submit" name="loginSubmit" value="login" onclick="encode(this)" />
 
         <p class="text-orange">If you want to go Home page <br><a href="<?php echo base_url(); ?>home/index"><strong>Please click here!</strong></a></a></p>
       </form>
